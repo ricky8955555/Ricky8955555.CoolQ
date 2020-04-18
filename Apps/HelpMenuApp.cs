@@ -8,7 +8,7 @@ using HuajiTech.CoolQ.Messaging;
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    // HelpMenuApp(帮助菜单应用) 类 继承 App 类
+    // HelpMenuApp 类 继承 App 类
     class HelpMenuApp : App
     {
         public override string Name { get; } = "HelpMenu";

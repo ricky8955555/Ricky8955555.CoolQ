@@ -12,6 +12,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Ricky8955555.CoolQ.Apps
 {
+    // MusicApp 类 继承 App 类
     class MusicApp : App
     {
         public override string Name { get; } = "Music";
