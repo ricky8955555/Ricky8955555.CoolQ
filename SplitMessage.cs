@@ -33,53 +33,37 @@ namespace Ricky8955555.CoolQ
         public readonly ComplexMessage Parameter = null; // Parameter(参数) 为 ComplexMessage【默认值为 null】
         public readonly bool IsEmpty = true; // IsEmpty(是否为空) 为 Boolean【默认值为 true】
         public readonly bool HasParameter = false; // HasParameter(是否有参数) 为 Boolean【默认值为 false】
-
+    
         public static SplitMessage Parse(Message message)
         {
             var msg = message.Parse(); // 将 Message 转换成 ComplexMessage
+            var currentUser = Bot.CurrentUser; // 定义 currentUser 为 当前用户
 
-            if (msg.Contains(Bot.CurrentUser.At())) // 判断是否存在 At
+            if (msg.Contains(currentUser.At())) // 判断是否存在 At，且对象为机器人
             {
-                int sIndex = GetAtInComplexMessageIndex(msg, out PlainText messagePlainText); // 尝试获取 At 在 ComplexMessage 的位置
-
-                if (sIndex > -1 && msg.Count > sIndex + 1)
+                if ((msg.TryDeconstruct(out At messageAt, out PlainText plainText, out ComplexMessage complexMessage) || // 情况 1：At 前面不存在任何字符串，且 At 后面有纯文本，纯文本后有其他内容
+                msg.TryDeconstruct(out PlainText _, out messageAt, out plainText, out complexMessage)) && // 情况 2：At 前面不存在空纯文本，且 At 后面有纯文本，纯文本后有其他内容
+                messageAt.Target == currentUser) // 确定 At 的目标为当前用户
                 {
-                    string strPlainText = messagePlainText.Content; // 定义 strPlainText 为 ComplexMessage 中从 At 开始的第 1 组数据
-                    string[] splitPlainText = strPlainText.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries); // 以空格为分隔符，把 firstContent 中的内容分隔开，并删去多余空格
-
-                    if (splitPlainText.Length == 1 && msg.Count <= sIndex + 2)
-                        return new SplitMessage(splitPlainText[0].Trim().ToLower()); // 返回只有 Command(命令)、无 Parameter(参数) 的 SplitMessage
-                    else if (splitPlainText.Length > 1)
-                        return new SplitMessage( // 返回带有 Command(命令)、Parameter(参数) 的 SplitMessage
-                            splitPlainText[0].Trim().ToLower(),
-                            new ComplexMessage
-                            {
-                                strPlainText.Substring(strPlainText.IndexOf(splitPlainText[0]) + splitPlainText[0].Length + 1), // 替换从 At 开始的第 1 组数据中前面包含 Command(命令) 的部分
-                                Enumerable.Range(sIndex + 2, msg.Count - sIndex - 2).Select(x => msg.ElementAt(x)) // 添加从 At 开始的第 2 组数据
-                            });
-                    else if (splitPlainText.Length == 1 && msg.Count > sIndex + 2)
-                        return new SplitMessage( // 返回带有 Command(命令)、Parameter(参数) 的 SplitMessage
-                            splitPlainText[0].Trim().ToLower(),
-                            new ComplexMessage { Enumerable.Range(sIndex + 2, msg.Count - sIndex - 2).Select(x => msg.ElementAt(x)) }); // 添加从 At 开始的第 2 组数据
+                    string[] plainTextSplit = plainText.Content.Trim().Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                    if (plainTextSplit.Length == 1) // 情况 a：纯文本中仅有命令
+                        return new SplitMessage(plainTextSplit[0], new ComplexMessage { complexMessage }); // 返回带有命令及参数的 SplitMessage，且参数为纯文本后其他内容
+                    else if (plainTextSplit.Length == 2) // 情况 b：纯文本中有命令及其他内容
+                        return new SplitMessage(plainTextSplit[0], new ComplexMessage { plainTextSplit[1], complexMessage }); // 返回带有命令及参数的 SplitMessage，且参数为纯文本命令后内容
+                }
+                else if ((msg.TryDeconstruct(out messageAt, out plainText) || // 情况 3：At 前面不存在空纯文本，且 At 后面有纯文本，纯文本后无其他内容
+                    msg.TryDeconstruct(out PlainText _, out messageAt, out plainText)) && // 情况 4：At 前面存在空纯文本，且 At 后面有纯文本，纯文本后无其他内容
+                    messageAt.Target == currentUser) // 确定 At 的目标为当前用户
+                {
+                    string[] plainTextSplit = plainText.Content.Trim().Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                    if (plainTextSplit.Length == 1) // 情况 a：纯文本中仅有命令
+                        return new SplitMessage(plainTextSplit[0]); // 返回仅带有命令的 SplitMessage，且参数为纯文本后其他内容
+                    else if (plainTextSplit.Length == 2) // 情况 b：纯文本中有命令及其他内容
+                        return new SplitMessage(plainTextSplit[0], new ComplexMessage { plainTextSplit[1] }); // 返回带有命令及参数的 SplitMessage，且参数为纯文本后其他内容
                 }
             }
 
             return new SplitMessage(); // 返回空的 SplitMessage
-        }
-
-        static int GetAtInComplexMessageIndex(ComplexMessage msg, out PlainText messagePlainText)
-        {
-            var currentUser = Bot.CurrentUser; // 定义 currentUser 为 当前用户
-
-            if (msg.TryDeconstruct(out At messageAt, out messagePlainText) && messageAt.Target == currentUser)
-                return 0; // 确定 At 位于 ComplexMessage 中的第 0 组
-
-            else if (msg.TryDeconstruct(out PlainText messagePlainTextA, out messageAt, out messagePlainText) &&
-                string.IsNullOrWhiteSpace(messagePlainTextA.Content) &&
-                messageAt.Target == currentUser)
-                return 1; // 确定 At 位于 ComplexMessage 中的第 1 组
-
-            return -1; // 返回默认空值
         }
     }
 }

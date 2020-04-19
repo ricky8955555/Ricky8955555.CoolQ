@@ -30,7 +30,7 @@ namespace Ricky8955555.CoolQ.Apps
             {
                 int start = i * MaxInfoCountInSingleMessageCount; // 起始 Index
                 int count = i < splitCount - 1 ? MaxInfoCountInSingleMessageCount : appInfos.Count() - start; // 计算该条消息应用信息数量
-                var appInfosSplit = Enumerable.Range(start, count).Select(x => appInfos.ElementAt(x)); // 该条消息的应用列表
+                var appInfosSplit = appInfos.Skip(start).Take(count); // 该条消息的应用列表
                 e.Source.Send(string.Join("\n", appInfosSplit)); // 发送消息
             }
         }
