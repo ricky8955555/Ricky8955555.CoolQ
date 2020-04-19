@@ -63,7 +63,8 @@ namespace Ricky8955555.CoolQ
             Apps = new App[]
             {
                 new HelpMenuApp(),
-                new MusicApp()
+                new MusicApp(),
+                new GetVersionApp()
             };
         }
     }

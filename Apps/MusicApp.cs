@@ -19,6 +19,7 @@ namespace Ricky8955555.CoolQ.Apps
         public override string DisplayName { get; } = "点歌";
         public override string Command { get; } = "music";
         public override string Usage { get; } = "music <歌曲名>";
+        public override bool IsParameterRequired { get; } = true;
 
         static readonly string BaseURL = "http://192.168.0.233:3001"; // 定义 BaseURL(API 基础URL)
 

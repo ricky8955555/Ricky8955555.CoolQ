@@ -15,7 +15,6 @@ namespace Ricky8955555.CoolQ.Apps
         public override string DisplayName { get; } = "帮助菜单";
         public override string Command { get; } = "help";
         public override string Usage { get; } = "help";
-        public override bool IsParameterRequired { get; } = false;
 
         static readonly int MaxInfoCountInSingleMessageCount = 10; // 定义单消息内显示最大应用数量
         public override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter)
