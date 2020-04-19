@@ -37,33 +37,45 @@ namespace Ricky8955555.CoolQ
         public static SplitMessage Parse(Message message)
         {
             var msg = message.Parse(); // 将 Message 转换成 ComplexMessage
-            var currentUser = Bot.CurrentUser; // 定义 currentUser 为 当前用户
-            int sIndex = -1; // 初始化 At 在 ComplexMessage 中的位置
 
-            if (msg.Contains(currentUser.At())) // 判断是否存在 At
+            if (msg.Contains(Bot.CurrentUser.At())) // 判断是否存在 At
             {
-                if (msg[0].GetType() == typeof(At) && ((At)msg[0]).Target == currentUser) // 判断 At 是否在首位，且 At 的目标为当前用户
-                    sIndex = 0; // 确定 At 位于 ComplexMessage 中的第 0 组
-                else if (msg[0].GetType() == typeof(PlainText) && string.IsNullOrWhiteSpace(((PlainText)msg[0]).Content) && // 判断第 0 组数据是否为空白（为了避免出现 At 前面有空白无法响应的情况）
-                    msg[1].GetType() == typeof(At) && ((At)msg[1]).Target == currentUser) // 判断第 1 组数据是否为 At，且 At 的目标为当前用户
-                    sIndex = 1; // 确定 At 位于 ComplexMessage 中的第 1 组
+                int sIndex = TryGetIndex(msg, out PlainText messagePlainText); // 尝试获取 At 在 ComplexMessage 的位置
 
-                if (sIndex > -1 && msg.Count() > sIndex + 1 && msg[sIndex + 1].GetType() == typeof(PlainText) && ((PlainText)msg[sIndex + 1]).Content.Contains(" "))
+                if (sIndex > -1 && msg.Count > sIndex + 1)
                 {
-                    string firstContent = ((PlainText)msg[sIndex + 1]).Content; // 定义 firstContent 为 ComplexMessage 中从 At 开始的第 1 组
-                    string[] strs = firstContent.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries); // 以空格为分隔符，把 firstContent 中的内容分隔开，并删去多余空格
-                    if (strs.Length == 1) // 当分隔到的 strs 的数量为 1 时
-                            return new SplitMessage(strs[0].ToLower()); // 返回只有 Command(命令)、无 Parameter(参数) 的 SplitMessage
-                    else if (strs.Length > 1) // 当分隔到的 strs 的数量大于 1 时
-                        return new SplitMessage(strs[0].ToLower(),
-                            new ComplexMessage { 
-                                firstContent.Substring(firstContent.IndexOf(strs[0]) + strs[0].Length + 1), // 替换从 At 开始的第 1 组数据中前面包含 Command(命令) 的部分
+                    string strPlainText = messagePlainText.Content; // 定义 strPlainText 为 ComplexMessage 中从 At 开始的第 1 组
+                    string[] splitPlainText = strPlainText.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries); // 以空格为分隔符，把 firstContent 中的内容分隔开，并删去多余空格
+
+                    if (splitPlainText.Length == 1)
+                        return new SplitMessage(splitPlainText[0].Trim().ToLower()); // 返回只有 Command(命令)、无 Parameter(参数) 的 SplitMessage
+                    else if (splitPlainText.Length > 1)
+                        return new SplitMessage(
+                            splitPlainText[0].Trim().ToLower(),
+                            new ComplexMessage
+                            {
+                                strPlainText.Substring(splitPlainText[0].Length + 1), // 替换从 At 开始的第 1 组数据中前面包含 Command(命令) 的部分
                                 Enumerable.Range(sIndex + 2, msg.Count - sIndex - 2).Select(x => msg.ElementAt(x)) // 返回只有 Command(命令)、有 Parameter(参数) 的 SplitMessage
                             });
-                } 
+                }
             }
 
             return new SplitMessage(); // 返回空的 SplitMessage
+        }
+
+        static int TryGetIndex(ComplexMessage msg, out PlainText messagePlainText)
+        {
+            var currentUser = Bot.CurrentUser; // 定义 currentUser 为 当前用户
+
+            if (msg.TryDeconstruct(out At messageAt, out messagePlainText) && messageAt.Target == currentUser)
+                return 0; // 确定 At 位于 ComplexMessage 中的第 0 组
+
+            else if (msg.TryDeconstruct(out PlainText messagePlainTextA, out messageAt, out messagePlainText) &&
+                string.IsNullOrWhiteSpace(messagePlainTextA.Content) &&
+                messageAt.Target == currentUser)
+                return 1; // 确定 At 位于 ComplexMessage 中的第 1 组
+
+            return -1; // 返回默认空值
         }
     }
 }

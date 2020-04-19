@@ -24,10 +24,10 @@ namespace Ricky8955555.CoolQ.Apps
 
         public override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter)
         {
-            if (parameter[0].GetType() == typeof(PlainText))
+            if (parameter.TryDeconstruct(out PlainText songName))
             {
                 var client = new HttpClient(); // 初始化 HttpClient
-                var musicName = ((PlainText)parameter[0]).Content.Trim(); // 获取歌曲名，并去除其中前后多余的空格
+                var musicName = songName.Content.Trim(); // 获取歌曲名，并去除其中前后多余的空格
                 var res = client.GetAsync($"{BaseURL}/search?keywords={WebUtility.UrlEncode(musicName)}").Result; // 发送 Get 请求，并取得结果
                 if (res.IsSuccessStatusCode) // 判断是否返回成功
                 {
