@@ -20,7 +20,7 @@ namespace Ricky8955555.CoolQ
                 t = messageElements[0] as T;
             }
 
-            return !(t is null);
+            return t != null;
         }
 
         public static bool TryDeconstruct<T1, T2>(this ComplexMessage messageElements, out T1 t1, out T2 t2)
@@ -38,7 +38,7 @@ namespace Ricky8955555.CoolQ
                 t2 = messageElements[1] as T2;
             }
 
-            return !(t1 is null || t2 is null);
+            return t1 != null && t2 != null;
         }
 
         public static bool TryDeconstruct<T1, T2, T3>(this ComplexMessage messageElements, out T1 t1, out T2 t2, out T3 t3)
@@ -59,7 +59,7 @@ namespace Ricky8955555.CoolQ
                 t3 = messageElements[2] as T3;
             }
 
-            return !(t1 is null || t2 is null || t3 is null);
+            return t1 != null && t2 != null && t3 != null;
         }
     }
 }
