@@ -40,7 +40,7 @@ namespace Ricky8955555.CoolQ
 
             if (msg.Contains(Bot.CurrentUser.At())) // 判断是否存在 At
             {
-                int sIndex = GetAtIndex(msg, out PlainText messagePlainText); // 尝试获取 At 在 ComplexMessage 的位置
+                int sIndex = GetAtInComplexMessageIndex(msg, out PlainText messagePlainText); // 尝试获取 At 在 ComplexMessage 的位置
 
                 if (sIndex > -1 && msg.Count > sIndex + 1)
                 {
@@ -63,7 +63,7 @@ namespace Ricky8955555.CoolQ
             return new SplitMessage(); // 返回空的 SplitMessage
         }
 
-        static int GetAtIndex(ComplexMessage msg, out PlainText messagePlainText)
+        static int GetAtInComplexMessageIndex(ComplexMessage msg, out PlainText messagePlainText)
         {
             var currentUser = Bot.CurrentUser; // 定义 currentUser 为 当前用户
 
