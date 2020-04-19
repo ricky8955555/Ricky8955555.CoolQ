@@ -40,14 +40,14 @@ namespace Ricky8955555.CoolQ.Apps
                     }
                     catch
                     {
-                        e.Source.Send($"没有叫 {musicName} 的歌曲哦 (๑＞ڡ＜)☆"); // 提示歌曲不存在
+                        e.Source.Send($"{e.Sender.At()} 没有叫 {musicName} 的歌曲哦 (๑＞ڡ＜)☆"); // 提示歌曲不存在
                     }
                 }
                 else
-                    e.Source.Send("请求失败了 (；´д｀)ゞ"); // 提示 HttpClient 请求失败
+                    e.Source.Send($"{e.Sender.At()} 请求失败了 (；´д｀)ゞ"); // 提示 HttpClient 请求失败
             }
             else
-                e.Source.Send($"该程序（{DisplayName}）需要参数 (￣３￣)a ，具体用法：{Usage}"); // 提示参数错误
+                e.Source.Send($"{e.Sender.At()} 该程序（{DisplayName}）需要参数 (￣３￣)a ，具体用法：{Usage}"); // 提示参数错误
         }
     }
 }

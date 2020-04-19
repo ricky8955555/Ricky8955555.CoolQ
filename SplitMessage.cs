@@ -47,16 +47,20 @@ namespace Ricky8955555.CoolQ
                     string strPlainText = messagePlainText.Content; // 定义 strPlainText 为 ComplexMessage 中从 At 开始的第 1 组数据
                     string[] splitPlainText = strPlainText.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries); // 以空格为分隔符，把 firstContent 中的内容分隔开，并删去多余空格
 
-                    if (splitPlainText.Length == 1)
+                    if (splitPlainText.Length == 1 && msg.Count <= sIndex + 2)
                         return new SplitMessage(splitPlainText[0].Trim().ToLower()); // 返回只有 Command(命令)、无 Parameter(参数) 的 SplitMessage
                     else if (splitPlainText.Length > 1)
-                        return new SplitMessage(
+                        return new SplitMessage( // 返回带有 Command(命令)、Parameter(参数) 的 SplitMessage
                             splitPlainText[0].Trim().ToLower(),
                             new ComplexMessage
                             {
                                 strPlainText.Substring(strPlainText.IndexOf(splitPlainText[0]) + splitPlainText[0].Length + 1), // 替换从 At 开始的第 1 组数据中前面包含 Command(命令) 的部分
-                                Enumerable.Range(sIndex + 2, msg.Count - sIndex - 2).Select(x => msg.ElementAt(x)) // 返回只有 Command(命令)、有 Parameter(参数) 的 SplitMessage
+                                Enumerable.Range(sIndex + 2, msg.Count - sIndex - 2).Select(x => msg.ElementAt(x)) // 添加从 At 开始的第 2 组数据
                             });
+                    else if (splitPlainText.Length == 1 && msg.Count > sIndex + 2)
+                        return new SplitMessage( // 返回带有 Command(命令)、Parameter(参数) 的 SplitMessage
+                            splitPlainText[0].Trim().ToLower(),
+                            new ComplexMessage { Enumerable.Range(sIndex + 2, msg.Count - sIndex - 2).Select(x => msg.ElementAt(x)) }); // 添加从 At 开始的第 2 组数据
                 }
             }
 
