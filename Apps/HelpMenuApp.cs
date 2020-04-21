@@ -17,11 +17,9 @@ namespace Ricky8955555.CoolQ.Apps
         public override string Usage { get; } = "help";
 
         static readonly int MaxInfoCountInSingleMessageCount = 10; // 定义单消息内显示最大应用数量
-        public override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter)
+        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter)
         {
-            var appInfos = from app in Main.Apps
-                        select $"{Bot.CurrentUser.At()} {app.Usage}  ->  {app.DisplayName} ({app.Name})"; // 生成应用列表
-            
+            var appInfos = Main.Apps.Select(app => $"{Bot.CurrentUser.At()} {app.Usage}  ->  {app.DisplayName} ({app.Name})"); // 生成应用列表         
             int splitCount = (int)Math.Ceiling((float)appInfos.Count() / MaxInfoCountInSingleMessageCount); // 计算分开消息数量
 
             // for 循环发送多条消息

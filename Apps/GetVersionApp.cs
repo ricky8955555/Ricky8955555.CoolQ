@@ -18,7 +18,7 @@ namespace Ricky8955555.CoolQ.Apps
         public override string Command { get; } = "version";
         public override string Usage { get; } = "version";
 
-        public override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter)
+        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter)
         {
 #if DEBUG
             string fileVersion = FileVersionInfo.GetVersionInfo(typeof(Main).Assembly.Location).FileVersion; // 获取文件版本号

@@ -23,7 +23,7 @@ namespace Ricky8955555.CoolQ.Apps
 
         static readonly string BaseURL = "http://192.168.0.233:3001"; // 定义 BaseURL(API 基础URL)
 
-        public override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter)
+        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter)
         {
             if (parameter.TryDeconstruct(out PlainText songName))
             {
@@ -37,7 +37,7 @@ namespace Ricky8955555.CoolQ.Apps
                     {
                         var musicJson = json["result"]["songs"][0]; // 选中搜索到的第一首歌曲
                         e.Source.Send($"{e.Sender.At()} 这是您点的歌曲哦 φ(>ω<*) ：{string.Join(" / ", musicJson["artists"].Select(x => x["name"]))} - {musicJson["name"]}"); // 发送歌曲信息
-                        e.Source.Send(new Music { Id = musicJson["id"].ToObject<int>(), MusicType = MusicType.Netease }); // 发送歌曲
+                        e.Source.Send(new Music { Id = musicJson["id"].ToObject<int>(), Provider = MusicProvider.Netease }); // 发送歌曲
                     }
                     catch
                     {
