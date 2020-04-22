@@ -17,9 +17,10 @@ namespace Ricky8955555.CoolQ.Features
             if (!splitMessage.IsEmpty)
             {
                 var possibleApps = new ArrayList(); // 初始化 possibleApps(可能的应用) ArrayList
+                string command = splitMessage.Command.ToLower();
 
                 foreach (App app in Main.Apps) // 遍历所有 App
-                    if (app.Command == splitMessage.Command && // 判断指令是否匹配
+                    if (app.Command == command && // 判断指令是否匹配
                         app.IsEnabled) // 判断应用是否启用
                     {
                         if (app.IsParameterRequired == splitMessage.HasParameter) // 判断指令中的参数有无与应用需求是否一致
@@ -29,7 +30,7 @@ namespace Ricky8955555.CoolQ.Features
 
                         e.Handled = true; // 该应用处理完毕，防止指令继续传递
                     }
-                    else if (splitMessage.Command.Contains(app.Command) || app.Command.Contains(splitMessage.Command)) // 判断是否有近似的命令
+                    else if (command.Contains(app.Command) || app.Command.Contains(command)) // 判断是否有近似的命令
                         possibleApps.Add($"{app.Usage}  ->  {app.DisplayName}"); // 添加可能的命令到 possibleApps
 
                 if (possibleApps.Count > 0) // 判断是否存在可能的命令

@@ -18,10 +18,10 @@ namespace Ricky8955555.CoolQ.Apps
 
         public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter)
         {
-            if (RichTextAutoParserFeature.Switch((Group)e.Source))
-                e.Source.Send("富文本自动解析器 已关闭 (๑＞ڡ＜)☆");
+            if (RichTextAutoParserFeature.Switch((Group)e.Source)) // 判断程序是否启用并反转应用启用状态
+                e.Source.Send("富文本自动解析器 已关闭 (๑＞ڡ＜)☆"); // 提示应用已关闭
             else
-                e.Source.Send("富文本自动解析器 已启用 (๑＞ڡ＜)☆");
+                e.Source.Send("富文本自动解析器 已启用 (๑＞ڡ＜)☆"); // 提示应用已启用
         }
     }
 }

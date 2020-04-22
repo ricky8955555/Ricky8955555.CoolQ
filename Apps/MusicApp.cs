@@ -48,7 +48,7 @@ namespace Ricky8955555.CoolQ.Apps
                     e.Source.Send($"{e.Sender.At()} 请求失败了 (；´д｀)ゞ"); // 提示 HttpClient 请求失败
             }
             else
-                e.Source.Send($"{e.Sender.At()} 该程序（{DisplayName}）需要参数 (￣３￣)a ，具体用法：{Usage}"); // 提示参数错误
+                e.Source.Send($"{e.Sender.At()} 参数错误 (￣３￣)a ，具体用法：{Usage}"); // 提示参数错误
         }
     }
 }

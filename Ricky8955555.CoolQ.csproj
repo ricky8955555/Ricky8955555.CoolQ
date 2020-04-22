@@ -54,10 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Apps\CovidStatusApp.cs" />
     <Compile Include="Apps\GetVersionApp.cs" />
     <Compile Include="Apps\HelpMenuApp.cs" />
     <Compile Include="Apps\MusicApp.cs" />
     <Compile Include="Apps\RichTextAutoParserApp.cs" />
+    <Compile Include="Apps\SpacingApp.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Feature.cs" />
     <Compile Include="Features\AppRunnerFeature.cs" />

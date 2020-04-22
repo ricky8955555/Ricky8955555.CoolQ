@@ -53,7 +53,9 @@ namespace Ricky8955555.CoolQ
                 new HelpMenuApp(),
                 new MusicApp(),
                 new GetVersionApp(),
-                new RichTextAutoParserApp()
+                new RichTextAutoParserApp(),
+                new CovidStatusApp(),
+                new SpacingApp()
             };
         }
     }
