@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\HuajiTech.CoolQ.0.1.2-alpha.2004.9\build\HuajiTech.CoolQ.props" Condition="Exists('packages\HuajiTech.CoolQ.0.1.2-alpha.2004.9\build\HuajiTech.CoolQ.props')" />
+  <Import Project="packages\HuajiTech.CoolQ.0.1.2-alpha.2004.10\build\HuajiTech.CoolQ.props" Condition="Exists('packages\HuajiTech.CoolQ.0.1.2-alpha.2004.10\build\HuajiTech.CoolQ.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HuajiTech.CoolQ, Version=0.1.0.0, Culture=neutral, PublicKeyToken=0c359f77d3d00a9d, processorArchitecture=MSIL">
-      <HintPath>packages\HuajiTech.CoolQ.0.1.2-alpha.2004.9\lib\net45\HuajiTech.CoolQ.dll</HintPath>
+      <HintPath>packages\HuajiTech.CoolQ.0.1.2-alpha.2004.10\lib\net45\HuajiTech.CoolQ.dll</HintPath>
     </Reference>
     <Reference Include="HuajiTech.UnmanagedExports.Metadata, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3d66017a845d9010, processorArchitecture=MSIL">
       <HintPath>packages\HuajiTech.UnmanagedExports.Metadata.1.0.0\lib\net45\HuajiTech.UnmanagedExports.Metadata.dll</HintPath>
@@ -81,8 +81,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('packages\HuajiTech.UnmanagedExports.MSBuild.1.0.0-rc2\build\HuajiTech.UnmanagedExports.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\HuajiTech.UnmanagedExports.MSBuild.1.0.0-rc2\build\HuajiTech.UnmanagedExports.MSBuild.targets'))" />
     <Error Condition="!Exists('packages\ILRepack.Lib.MSBuild.Task.2.0.18\build\ILRepack.Lib.MSBuild.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\ILRepack.Lib.MSBuild.Task.2.0.18\build\ILRepack.Lib.MSBuild.Task.targets'))" />
-    <Error Condition="!Exists('packages\HuajiTech.CoolQ.0.1.2-alpha.2004.9\build\HuajiTech.CoolQ.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\HuajiTech.CoolQ.0.1.2-alpha.2004.9\build\HuajiTech.CoolQ.props'))" />
-    <Error Condition="!Exists('packages\HuajiTech.CoolQ.0.1.2-alpha.2004.9\build\HuajiTech.CoolQ.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\HuajiTech.CoolQ.0.1.2-alpha.2004.9\build\HuajiTech.CoolQ.targets'))" />
+    <Error Condition="!Exists('packages\HuajiTech.CoolQ.0.1.2-alpha.2004.10\build\HuajiTech.CoolQ.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\HuajiTech.CoolQ.0.1.2-alpha.2004.10\build\HuajiTech.CoolQ.props'))" />
+    <Error Condition="!Exists('packages\HuajiTech.CoolQ.0.1.2-alpha.2004.10\build\HuajiTech.CoolQ.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\HuajiTech.CoolQ.0.1.2-alpha.2004.10\build\HuajiTech.CoolQ.targets'))" />
   </Target>
   <Import Project="packages\ILRepack.Lib.MSBuild.Task.2.0.18\build\ILRepack.Lib.MSBuild.Task.targets" Condition="Exists('packages\ILRepack.Lib.MSBuild.Task.2.0.18\build\ILRepack.Lib.MSBuild.Task.targets')" />
   <ProjectExtensions>
@@ -90,5 +90,5 @@
       <UserProperties app_1json__JsonSchema="https://raw.githubusercontent.com/cqmoe/awesome-coolq/master/schema/app/v9/app-schema.json" />
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="packages\HuajiTech.CoolQ.0.1.2-alpha.2004.9\build\HuajiTech.CoolQ.targets" Condition="Exists('packages\HuajiTech.CoolQ.0.1.2-alpha.2004.9\build\HuajiTech.CoolQ.targets')" />
+  <Import Project="packages\HuajiTech.CoolQ.0.1.2-alpha.2004.10\build\HuajiTech.CoolQ.targets" Condition="Exists('packages\HuajiTech.CoolQ.0.1.2-alpha.2004.10\build\HuajiTech.CoolQ.targets')" />
 </Project>
