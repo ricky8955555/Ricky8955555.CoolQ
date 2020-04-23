@@ -18,13 +18,13 @@ namespace Ricky8955555.CoolQ.Apps
 
         public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter)
         {
-            if (parameter.TryDeconstruct(out PlainText plainText))
+            if (parameter.Count == 1 & parameter.TryDeconstruct(out PlainText plainText))
             {
                 string[] splitText = plainText.Content.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
 
                 try
                 {
-                    if (splitText.Count() > 1 && int.TryParse(splitText[0], out int spaceNumber))
+                    if (splitText.Count() > 1 && int.TryParse(splitText[0], out int spaceNumber) && spaceNumber > 0)
                         e.Source.Send(string.Join(new string(' ', spaceNumber), splitText[1].ToCharArray()));
                     else
                         e.Source.Send(string.Join(new string(' ', 3), plainText.Content.ToCharArray()));
