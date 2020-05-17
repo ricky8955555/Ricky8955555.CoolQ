@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HuajiTech.CoolQ;
+using HuajiTech.QQ;
 using HuajiTech.CoolQ.Messaging;
+using HuajiTech.QQ.Events;
 
 namespace Ricky8955555.CoolQ.Apps
 {
@@ -14,22 +15,24 @@ namespace Ricky8955555.CoolQ.Apps
         public override string DisplayName { get; } = "空格化";
         public override string Command { get; } = "space";
         public override string Usage { get; } = "space [空格数量(缺省值 3)] <文本>";
-        public override bool IsParameterRequired { get; } = true;
+        public override ParameterRequiredOptions IsParameterRequired { get; } = ParameterRequiredOptions.Necessary;
 
         public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter)
         {
-            if (parameter.Count == 1 & parameter.TryDeconstruct(out PlainText plainText))
+            string plainText = parameter.GetPlainText();
+
+            if (!string.IsNullOrEmpty(plainText))
             {
-                string[] splitText = plainText.Content.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                string[] splitText = plainText.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
 
                 try
                 {
-                    if (splitText.Count() > 1 && int.TryParse(splitText[0], out int spaceNumber) && spaceNumber > 0)
+                    if (splitText.Length > 1 && int.TryParse(splitText[0], out int spaceNumber) && spaceNumber > 0)
                         e.Source.Send(string.Join(new string(' ', spaceNumber), splitText[1].ToCharArray()));
                     else
-                        e.Source.Send(string.Join(new string(' ', 3), plainText.Content.ToCharArray()));
+                        e.Source.Send(string.Join(new string(' ', 3), plainText.ToCharArray()));
                 }
-                catch (CoolQException)
+                catch (ApiException)
                 {
                     e.Source.Send("发送出错了呀 (；´д｀)ゞ");
                 }

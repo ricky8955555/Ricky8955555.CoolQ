@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HuajiTech.CoolQ;
+using HuajiTech.QQ;
 using HuajiTech.CoolQ.Messaging;
+using HuajiTech.QQ.Events;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -23,10 +24,11 @@ namespace Ricky8955555.CoolQ.Features
                     if (app.Command == command && // 判断指令是否匹配
                         app.IsEnabled) // 判断应用是否启用
                     {
-                        if (app.IsParameterRequired == splitMessage.HasParameter) // 判断指令中的参数有无与应用需求是否一致
+                        if (app.IsParameterRequired == App.ParameterRequiredOptions.Necessary == splitMessage.HasParameter ||
+                            app.IsParameterRequired == App.ParameterRequiredOptions.Dispensable) // 判断指令中的参数有无与应用需求是否一致
                             app.Run(e, splitMessage.Parameter); // 调用应用
-                        else
-                            e.Source.Send(app.IsParameterRequired ? $"{e.Sender.At()} 该程序（{app.DisplayName}）需要参数 (￣３￣)a ，具体用法：{app.Usage}" : $"{e.Sender.At()} 该程序（{app.DisplayName}）无需参数 (￣３￣)a ，具体用法：{app.Usage}"); // 提示指令错误
+                        else if (app.IsParameterRequired != App.ParameterRequiredOptions.Dispensable)
+                            e.Source.Send(app.IsParameterRequired == App.ParameterRequiredOptions.Necessary ? $"{e.Sender.At()} 该程序（{app.DisplayName}）需要参数 (￣３￣)a ，具体用法：{app.Usage}" : $"{e.Sender.At()} 该程序（{app.DisplayName}）无需参数 (￣３￣)a ，具体用法：{app.Usage}"); // 提示指令错误
 
                         e.Handled = true; // 该应用处理完毕，防止指令继续传递
                     }

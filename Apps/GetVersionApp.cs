@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.Diagnostics;
-using HuajiTech.CoolQ;
+using HuajiTech.QQ;
 using HuajiTech.CoolQ.Messaging;
+using HuajiTech.QQ.Events;
 
 namespace Ricky8955555.CoolQ.Apps
 {
@@ -17,6 +18,7 @@ namespace Ricky8955555.CoolQ.Apps
         public override string DisplayName { get; } = "获取插件版本";
         public override string Command { get; } = "version";
         public override string Usage { get; } = "version";
+        public override ParameterRequiredOptions IsParameterRequired { get; } = ParameterRequiredOptions.Unnecessary;
 
         public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter)
         {

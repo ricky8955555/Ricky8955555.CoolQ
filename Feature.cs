@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HuajiTech.CoolQ;
+using HuajiTech.QQ;
+using HuajiTech.QQ.Events;
 
 namespace Ricky8955555.CoolQ
 {
