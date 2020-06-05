@@ -15,7 +15,7 @@ namespace Ricky8955555.CoolQ.Apps
         public override string DisplayName { get; } = "应用开关";
         public override string Usage { get; } = "{0}switch <应用名称> <on/off>";
         public override bool CanDisable { get; } = false;
-        //public override bool IsForAdministrator { get; } = true;
+        public override bool IsForAdministrator { get; } = true;
 
         public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {

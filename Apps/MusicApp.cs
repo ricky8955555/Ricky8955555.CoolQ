@@ -29,7 +29,7 @@ namespace Ricky8955555.CoolQ.Apps
             {
                 var musicName = songName.Trim(); // 获取歌曲名，并去除其中前后多余的空格
                 var client = new HttpClient(); // 初始化 HttpClient
-                var res = client.GetAsync($"{BaseURL}/search?keywords={WebUtility.UrlEncode(musicName)}").Result; // 发送 Get 请求，并取得结果
+                var res = client.GetAsync(string.Format(BaseURL, WebUtility.UrlEncode(musicName))).Result; // 发送 Get 请求，并取得结果
                 if (res.IsSuccessStatusCode) // 判断是否返回成功
                 {
                     var json = JObject.Parse(res.Content.ReadAsStringAsync().Result); // 将返回的 json 信息转换为 JObject 类型
