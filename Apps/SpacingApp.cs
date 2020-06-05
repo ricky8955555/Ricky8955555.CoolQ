@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HuajiTech.QQ;
+using HuajiTech.CoolQ;
+using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
-using HuajiTech.QQ.Events;
 
 namespace Ricky8955555.CoolQ.Apps
 {
@@ -13,11 +13,10 @@ namespace Ricky8955555.CoolQ.Apps
     {
         public override string Name { get; } = "Spacing";
         public override string DisplayName { get; } = "空格化";
-        public override string Command { get; } = "space";
-        public override string Usage { get; } = "space [空格数量(缺省值 3)] <文本>";
+        public override string Usage { get; } = "{0}space [空格数量(缺省值 3)] <文本>";
         public override ParameterRequiredOptions IsParameterRequired { get; } = ParameterRequiredOptions.Necessary;
 
-        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter)
+        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
             string plainText = parameter.GetPlainText();
 
@@ -38,7 +37,7 @@ namespace Ricky8955555.CoolQ.Apps
                 }
             }
             else
-                e.Source.Send($"{e.Sender.At()} 参数错误 (￣３￣)a ，具体用法：{Usage}"); // 提示参数错误
+                NotifyIncorrectUsage(e); // 提示参数错误
         }
     }
 }

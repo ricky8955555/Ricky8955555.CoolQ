@@ -1,5 +1,5 @@
-﻿using HuajiTech.CoolQ.Messaging;
-using HuajiTech.QQ.Events;
+﻿using HuajiTech.CoolQ.Events;
+using HuajiTech.CoolQ.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +13,10 @@ namespace Ricky8955555.CoolQ.Apps
     {
         public override string Name { get; } = "Ping";
         public override string DisplayName { get; } = "Ping";
-        public override string Command { get; } = "ping";
-        public override string Usage { get; } = "ping <IP 地址或域名> [次数(缺省值 4)]>";
+        public override string Usage { get; } = "{0}ping <IP 地址或域名>";
         public override ParameterRequiredOptions IsParameterRequired { get; } = ParameterRequiredOptions.Necessary;
 
-        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter)
+        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
             var ping = new Ping();
             long totalRoundtripTime = 0;
@@ -62,7 +61,7 @@ namespace Ricky8955555.CoolQ.Apps
             //            e.Source.Send("失败：" + pingReply.Status.ToString());
             //    }
             else
-                e.Source.Send($"{e.Sender.At()} 参数错误 (￣３￣)a ，具体用法：{Usage}"); // 提示参数错误
+                NotifyIncorrectUsage(e); // 提示参数错误
         }
     }
 }

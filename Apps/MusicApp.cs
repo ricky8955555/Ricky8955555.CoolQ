@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HuajiTech.QQ;
+using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using HuajiTech.QQ.Events;
-using Ricky8955555.CoolQ.Tools;
+using System.Net.Http;
 
 namespace Ricky8955555.CoolQ.Apps
 {
@@ -18,22 +17,22 @@ namespace Ricky8955555.CoolQ.Apps
     {
         public override string Name { get; } = "Music";
         public override string DisplayName { get; } = "点歌";
-        public override string Command { get; } = "music";
-        public override string Usage { get; } = "music <歌曲名>";
+        public override string Usage { get; } = "{0}music <歌曲名>";
         public override ParameterRequiredOptions IsParameterRequired { get; } = ParameterRequiredOptions.Necessary;
 
-        static readonly string BaseURL = "http://192.168.0.233:3001"; // 定义 BaseURL(API 基础URL)
+        static readonly string BaseURL = "http://music.163.com/api/search/pc?s={0}&type=1"; // 定义 BaseURL(API 基础URL)
 
-        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter)
+        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
             string songName = parameter.GetPlainText();
             if (!string.IsNullOrEmpty(songName))
             {
                 var musicName = songName.Trim(); // 获取歌曲名，并去除其中前后多余的空格
-                var (isSuccessful, result) = HttpGetTool.GetAndCheckIsSuccessful($"{BaseURL}/search?keywords={WebUtility.UrlEncode(musicName)}"); // 发送 Get 请求，并取得结果
-                if (isSuccessful) // 判断是否返回成功
+                var client = new HttpClient(); // 初始化 HttpClient
+                var res = client.GetAsync($"{BaseURL}/search?keywords={WebUtility.UrlEncode(musicName)}").Result; // 发送 Get 请求，并取得结果
+                if (res.IsSuccessStatusCode) // 判断是否返回成功
                 {
-                    var json = JObject.Parse(result); // 将返回的 json 信息转换为 JObject 类型
+                    var json = JObject.Parse(res.Content.ReadAsStringAsync().Result); // 将返回的 json 信息转换为 JObject 类型
                     try
                     {
                         var musicJson = json["result"]["songs"][0]; // 选中搜索到的第一首歌曲
@@ -49,7 +48,7 @@ namespace Ricky8955555.CoolQ.Apps
                     e.Source.Send($"{e.Sender.At()} 请求失败了 (；´д｀)ゞ"); // 提示 HttpClient 请求失败
             }
             else
-                e.Source.Send($"{e.Sender.At()} 参数错误 (￣３￣)a ，具体用法：{Usage}"); // 提示参数错误
+                NotifyIncorrectUsage(e); // 提示参数错误
         }
     }
 }

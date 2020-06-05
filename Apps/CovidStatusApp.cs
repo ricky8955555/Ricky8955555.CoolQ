@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using HuajiTech.QQ;
+using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using HuajiTech.QQ.Events;
-using Ricky8955555.CoolQ.Tools;
 
 namespace Ricky8955555.CoolQ.Apps
 {
@@ -16,19 +15,19 @@ namespace Ricky8955555.CoolQ.Apps
     {
         public override string Name { get; } = "CovidStatus";
         public override string DisplayName { get; } = "疫情动态";
-        public override string Command { get; } = "covid-19";
-        public override string Usage { get; } = "COVID-19";
+        public override string Usage { get; } = "{0}COVID-19";
         public override ParameterRequiredOptions IsParameterRequired { get; } = ParameterRequiredOptions.Unnecessary;
 
         static readonly string URL = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
         public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter)
         {
-            var (isSuccessful, result) = HttpGetTool.GetAndCheckIsSuccessful(URL); // 发送 Get 请求，并取得结果
-            if (isSuccessful) // 判断是否返回成功
+            var client = new HttpClient(); // 初始化 HttpClient
+            var res = client.GetAsync(URL).Result; // 发送 Get 请求，并取得结果
+            if (res.IsSuccessStatusCode) // 判断是否返回成功
             {
                 try
                 {
-                    var json = JObject.Parse(result); // 将返回的 json 信息转换为 JObject 类型
+                    var json = JObject.Parse(res.Content.ReadAsStringAsync().Result); // 将返回的 json 信息转换为 JObject 类型
                     var dJson = JObject.Parse(json["data"].ToString()); // 将返回的 json 中 data 信息转换为 JObject 类型
                     var chinaTotal = dJson["chinaTotal"];
                     var chinaAdd = dJson["chinaAdd"];
