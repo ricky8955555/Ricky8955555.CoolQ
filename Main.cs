@@ -39,7 +39,9 @@ namespace Ricky8955555.CoolQ
                 new SpacingApp(),
                 new PingApp(),
                 new RichTextAutoParserApp(),
-                new SwitchApp()
+                new SwitchApp(),
+                //new TestApp(),
+                new BlacklistManagerApp()
             };
 
             // 初始化 Commands
@@ -51,7 +53,9 @@ namespace Ricky8955555.CoolQ
                 new CovidStatusCommand(),
                 new SpacingCommand(),
                 new PingCommand(),
-                new SwitchCommand()
+                new SwitchCommand(),
+                //new TestCommand(),
+                new BlacklistManagerCommand()
             };
 
             // 初始化 Feature
@@ -65,7 +69,8 @@ namespace Ricky8955555.CoolQ
             Configurations = new Configuration[]
             {
                 new PluginConfig(),
-                new AppConfig()
+                new AppConfig(),
+                new BlacklistConfig()
             };
         }
 
@@ -73,8 +78,9 @@ namespace Ricky8955555.CoolQ
         {
             try
             {
-                foreach (var feature in Features)
-                    feature.Invoke(e);
+                if (!Configs.BlacklistConfig.Config.ToObject<List<long>>().Contains(e.Sender.Number))
+                    foreach (var feature in Features)
+                        feature.Invoke(e);
             }
             catch (ApiException ex)
             {

@@ -25,7 +25,8 @@ namespace Ricky8955555.CoolQ.Apps
         public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
             string songName = parameter.GetPlainText();
-            if (!string.IsNullOrEmpty(songName))
+
+            if (parameter?[0] is PlainText && !string.IsNullOrEmpty(songName))
             {
                 var musicName = songName.Trim(); // 获取歌曲名，并去除其中前后多余的空格
                 var client = new HttpClient(); // 初始化 HttpClient

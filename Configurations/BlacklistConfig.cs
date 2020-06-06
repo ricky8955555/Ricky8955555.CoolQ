@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Ricky8955555.CoolQ.Configurations
 {
-    class AppConfig : Configuration
+    class BlacklistConfig : Configuration
     {
-        public override JToken InitInfo { get; } = new JObject();
-        public override string Name { get; } = "AppConfig";
+        public override string Name { get; } = "BlacklistConfig";
+        public override JToken InitInfo { get; } = new JArray();
     }
 }

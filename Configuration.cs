@@ -13,8 +13,8 @@ namespace Ricky8955555.CoolQ
     abstract class Configuration
     {
         public abstract string Name { get; }
-        public abstract JObject InitInfo { get; }
-        public JObject Config { get; set; }
+        public abstract JToken InitInfo { get; }
+        public JToken Config { get; private set; }
 
         readonly DirectoryInfo DataDirInfo = PluginContext.Current.Bot.DataDirectory;
         readonly string Suffix = ".json";
@@ -22,6 +22,12 @@ namespace Ricky8955555.CoolQ
         public Configuration()
         {
             Init();
+        }
+
+        public void SetValueAndSave(JToken jToken)
+        {
+            Config = jToken;
+            Save();
         }
 
         public void Save()
@@ -82,7 +88,7 @@ namespace Ricky8955555.CoolQ
         {
             try
             {
-                Config = JObject.Parse(content);
+                Config = JToken.Parse(content);
                 return true;
             }
             catch

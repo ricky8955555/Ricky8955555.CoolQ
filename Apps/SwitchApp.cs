@@ -16,12 +16,14 @@ namespace Ricky8955555.CoolQ.Apps
         public override string Usage { get; } = "{0}switch <应用名称> <on/off>";
         public override bool CanDisable { get; } = false;
         public override bool IsForAdministrator { get; } = true;
+        public override ParameterRequiredOptions IsParameterRequired { get; } = ParameterRequiredOptions.Necessary;
 
         public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
-            string plainText = parameter.GetPlainText();
-            string[] splitText = plainText.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
-            if (splitText.Length == 2)
+            string plainText = parameter?[0] as PlainText;
+            string[] splitText = plainText?.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+
+            if (splitText != null && splitText.Length == 2)
             {
                 try
                 {
@@ -34,19 +36,19 @@ namespace Ricky8955555.CoolQ.Apps
                         {
                             config.Config[e.Source.ToString()][app.Name] = true;
                             config.Save();
-                            e.Source.Send(e.Sender.At() + $" 已启用应用 {app.DisplayName}（{app.Name}）");
+                            e.Source.Send($"{e.Sender.At()} 已启用应用 {app.DisplayName}（{app.Name}） ✧(≖ ◡ ≖✿ ");
                         }
                         else if (splitText[1] == "off")
                         {
                             config.Config[e.Source.ToString()][app.Name] = false;
                             config.Save();
-                            e.Source.Send(e.Sender.At() + $" 已停用应用 {app.DisplayName}（{app.Name}）");
+                            e.Source.Send($"{e.Sender.At()} 已停用应用 {app.DisplayName}（{app.Name}） ✧(≖ ◡ ≖✿ ");
                         }
                         else
                             NotifyIncorrectUsage(e);
                     }
                     else
-                        e.Source.Send(e.Sender.At() + $" 该应用 {app.DisplayName}（{app.Name}）不允许被启用/停用");
+                        e.Source.Send($"{e.Sender.At()} 该应用 {app.DisplayName}（{app.Name}）不允许被启用/停用 o(ﾟДﾟ)っ！");
                 }
                 catch (ArgumentException)
                 {

@@ -21,11 +21,13 @@ namespace Ricky8955555.CoolQ.Apps
             var ping = new Ping();
             long totalRoundtripTime = 0;
             int packetLostCount = 0;
-            string plainText = parameter.GetPlainText();
-            string[] splitText = plainText.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string plainText = parameter?[0] as PlainText;
+            string[] splitText = plainText?.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             int pingCount = 4;
 
-            if ((splitText.Length == 2 && int.TryParse(splitText[1], out pingCount) && pingCount > 0) || splitText.Length == 1)
+            if (splitText != null &&
+                (splitText.Length == 2 && int.TryParse(splitText[1], out pingCount) && pingCount > 0) ||
+                splitText.Length == 1)
                 try
                 {
                     for (int i = 0; i < pingCount; i++)

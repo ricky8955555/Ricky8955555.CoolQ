@@ -8,7 +8,7 @@ namespace Ricky8955555.CoolQ.Commands
 {
     class SwitchCommand : Command
     {
-        public override string ResponseCommand => "switch";
-        public override App App => Main.Apps.Where(x => x.Name == "Switch").Single();
+        public override string ResponseCommand { get; } = "switch";
+        public override App App { get; } = Main.Apps.Where(x => x.Name == "Switch").Single();
     }
 }

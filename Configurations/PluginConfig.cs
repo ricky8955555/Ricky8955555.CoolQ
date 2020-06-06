@@ -9,7 +9,7 @@ namespace Ricky8955555.CoolQ.Configurations
 {
     class PluginConfig : Configuration
     {
-        public override JObject InitInfo { get; } = new JObject() 
+        public override JToken InitInfo { get; } = new JObject() 
         { 
             new JProperty("Prefix", "*"),
             new JProperty("Administrator", 0)

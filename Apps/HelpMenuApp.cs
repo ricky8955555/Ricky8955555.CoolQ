@@ -21,7 +21,9 @@ namespace Ricky8955555.CoolQ.Apps
         public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
             string prefix = Configs.PluginConfig.Config["Prefix"].ToString();
-            var appInfos = Main.Apps.Select(x => $"{$"{string.Format(x.Usage, Configs.PluginConfig.Config["Prefix"])}  ->  {x.DisplayName} ({x.Name})"}{(x.IsForAdministrator ? "【管理员应用】" : string.Empty)}"); // 生成应用列表
+            var appInfos = Main.Apps
+                .Select(x => $"{$"{string.Format(x.Usage, Configs.PluginConfig.Config["Prefix"])}  ->  {x.DisplayName} ({x.Name})"}{(x.IsForAdministrator ? "【管理员应用】" : string.Empty)}")
+                .OrderBy(x => x); // 生成应用列表
             int splitCount = (int)Math.Ceiling((float)appInfos.Count() / MaxCount); // 计算分开消息数量
 
             // for 循环发送多条消息

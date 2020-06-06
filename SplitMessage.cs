@@ -39,7 +39,7 @@ namespace Ricky8955555.CoolQ
             string msgStr = message.ToString().Trim();
             string prefix = Configs.PluginConfig.Config["Prefix"].ToString();
 
-            if (msgStr.StartsWith(prefix))
+            if (msgStr.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
             {
                 string str = msgStr.Substring(prefix.Length);
                 string[] splitStr = str.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);

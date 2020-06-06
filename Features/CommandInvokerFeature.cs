@@ -45,7 +45,7 @@ namespace Ricky8955555.CoolQ.Features
                                     e.Source.Send($"{e.Sender.At()} 该应用（{app.DisplayName}）仅限管理员使用 ┐(￣ヮ￣)┌");
                             }
                             else if (app.IsParameterRequired != App.ParameterRequiredOptions.Dispensable)
-                                e.Source.Send(app.IsParameterRequired == App.ParameterRequiredOptions.Necessary ? $"{e.Sender.At()} 该应用（{app.DisplayName}）需要参数 (￣３￣)a ，具体用法：{cmd.App.Usage}" : $"{e.Sender.At()} 该应用（{app.DisplayName}）无需参数 (￣３￣)a ，具体用法：{cmd.App.Usage}"); // 提示指令错误
+                                e.Source.Send($"该应用（{app.DisplayName}）{(app.IsParameterRequired == App.ParameterRequiredOptions.Necessary ? "需要参数" : "无需参数")} (｀・ω・´)"); // 提示指令错误
 
                             e.Handled = true; // 该应用处理完毕，防止指令继续传递
                         }
@@ -69,9 +69,10 @@ namespace Ricky8955555.CoolQ.Features
             {
                 string sourceStr = source.ToString();
                 var appConfig = Configs.AppConfig;
+                var config = (JObject)appConfig.Config;
 
-                if (!appConfig.Config.ContainsKey(sourceStr))
-                    appConfig.Config.Add(
+                if (!config.ContainsKey(sourceStr))
+                    config.Add(
                         new JProperty(
                             sourceStr,
                             new JObject()
@@ -83,7 +84,7 @@ namespace Ricky8955555.CoolQ.Features
                         );
                 else
                 {
-                    var sourceConfig = (JObject)appConfig.Config[sourceStr];
+                    var sourceConfig = (JObject)config[sourceStr];
 
                     foreach (App app in Main.Apps)
                     {
