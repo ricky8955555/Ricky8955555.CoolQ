@@ -16,10 +16,9 @@ namespace Ricky8955555.CoolQ.Apps
         public override string Name { get; } = "CovidStatus";
         public override string DisplayName { get; } = "疫情动态";
         public override string Usage { get; } = "{0}COVID-19";
-        public override ParameterRequiredOptions IsParameterRequired { get; } = ParameterRequiredOptions.Unnecessary;
 
         static readonly string URL = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
-        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter)
+        protected override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter)
         {
             var client = new HttpClient(); // 初始化 HttpClient
             var res = client.GetAsync(URL).Result; // 发送 Get 请求，并取得结果

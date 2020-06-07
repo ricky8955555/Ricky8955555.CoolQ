@@ -10,5 +10,6 @@ namespace Ricky8955555.CoolQ.Commands
     {
         public override string ResponseCommand { get; } = "help";
         public override App App { get; } = Main.Apps.Where(x => x.Name == "HelpMenu").Single();
+        public override ParameterRequiredOptions IsParameterRequired { get; } = ParameterRequiredOptions.Unnecessary;
     }
 }

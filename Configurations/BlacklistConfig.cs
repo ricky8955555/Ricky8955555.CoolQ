@@ -10,6 +10,6 @@ namespace Ricky8955555.CoolQ.Configurations
     class BlacklistConfig : Configuration
     {
         public override string Name { get; } = "BlacklistConfig";
-        public override JToken InitInfo { get; } = new JArray();
+        protected override JToken InitInfo { get; } = new JArray();
     }
 }

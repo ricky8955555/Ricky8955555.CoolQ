@@ -10,14 +10,15 @@ using Newtonsoft.Json.Linq;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class RichTextAutoParserFeature : Feature
+    class RichTextAutoParserFeature : AppFeature
     {
+        public override App App { get; } = Main.Apps.Where(x => x.Name == "RichTextAutoParser").Single();
 
-        public override void Invoke(MessageReceivedEventArgs e)
+        protected override void Invokes(MessageReceivedEventArgs e)
         {
             if (e.Message.Parse()[0] is RichText richText && // 尝试匹配第一个元素为富文本
             richText["content"] != null) // 确保富文本中 content 不为空
-                Main.Apps.Where(x => x.Name == "RichTextAutoParser").Single().Run(e, richText);
+                App.Run(e, richText);
         }
     }
 }

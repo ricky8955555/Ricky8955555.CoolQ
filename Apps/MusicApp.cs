@@ -18,11 +18,10 @@ namespace Ricky8955555.CoolQ.Apps
         public override string Name { get; } = "Music";
         public override string DisplayName { get; } = "点歌";
         public override string Usage { get; } = "{0}music <歌曲名>";
-        public override ParameterRequiredOptions IsParameterRequired { get; } = ParameterRequiredOptions.Necessary;
 
         static readonly string BaseURL = "http://music.163.com/api/search/pc?s={0}&type=1"; // 定义 BaseURL(API 基础URL)
 
-        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter = null)
+        protected override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
             string songName = parameter.GetPlainText();
 

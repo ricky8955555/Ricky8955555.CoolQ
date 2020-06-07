@@ -14,9 +14,8 @@ namespace Ricky8955555.CoolQ.Apps
         public override string Name { get; } = "Ping";
         public override string DisplayName { get; } = "Ping";
         public override string Usage { get; } = "{0}ping <IP 地址或域名>";
-        public override ParameterRequiredOptions IsParameterRequired { get; } = ParameterRequiredOptions.Necessary;
 
-        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter = null)
+        protected override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
             var ping = new Ping();
             long totalRoundtripTime = 0;

@@ -85,6 +85,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="AppFeature.cs" />
+    <Compile Include="Apps\AutoRepeaterApp.cs" />
     <Compile Include="Apps\BlacklistManagerApp.cs" />
     <Compile Include="Apps\CovidStatusApp.cs" />
     <Compile Include="Apps\GetVersionApp.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Apps\SwitchApp.cs" />
     <Compile Include="Apps\TestApp.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="Commands\AutoRepeaterCommand.cs" />
     <Compile Include="Commands\BlacklistManagerCommand.cs" />
     <Compile Include="Commands\CovidStatusCommand.cs" />
     <Compile Include="Commands\GetVersionCommand.cs" />
@@ -110,7 +113,9 @@
     <Compile Include="Configurations\AppConfig.cs" />
     <Compile Include="Configurations\BlacklistConfig.cs" />
     <Compile Include="Configurations\PluginConfig.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Feature.cs" />
+    <Compile Include="Features\AutoRepeaterFeature.cs" />
     <Compile Include="Features\CommandInvokerFeature.cs" />
     <Compile Include="Features\RichTextAutoParserFeature.cs" />
     <Compile Include="Main.cs" />

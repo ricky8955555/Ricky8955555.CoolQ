@@ -15,7 +15,7 @@ namespace Ricky8955555.CoolQ.Apps
         public override string DisplayName { get; } = "富文本自动解析器";
         public override string Usage { get; } = "发送富文本即可解析（只支持部分）";
 
-        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter = null)
+        protected override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
             var richText = parameter[0] as RichText;
 

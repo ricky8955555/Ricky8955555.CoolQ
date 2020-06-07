@@ -16,9 +16,8 @@ namespace Ricky8955555.CoolQ.Apps
         public override string Usage { get; } = "{0}switch <应用名称> <on/off>";
         public override bool CanDisable { get; } = false;
         public override bool IsForAdministrator { get; } = true;
-        public override ParameterRequiredOptions IsParameterRequired { get; } = ParameterRequiredOptions.Necessary;
 
-        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter = null)
+        protected override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
             string plainText = parameter?[0] as PlainText;
             string[] splitText = plainText?.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
@@ -34,13 +33,13 @@ namespace Ricky8955555.CoolQ.Apps
                     {
                         if (splitText[1] == "on")
                         {
-                            config.Config[e.Source.ToString()][app.Name] = true;
+                            config.Config[e.Source.ToString(true)][app.Name] = true;
                             config.Save();
                             e.Source.Send($"{e.Sender.At()} 已启用应用 {app.DisplayName}（{app.Name}） ✧(≖ ◡ ≖✿ ");
                         }
                         else if (splitText[1] == "off")
                         {
-                            config.Config[e.Source.ToString()][app.Name] = false;
+                            config.Config[e.Source.ToString(true)][app.Name] = false;
                             config.Save();
                             e.Source.Send($"{e.Sender.At()} 已停用应用 {app.DisplayName}（{app.Name}） ✧(≖ ◡ ≖✿ ");
                         }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
+using Newtonsoft.Json.Linq;
 using Ricky8955555.CoolQ.Apps;
 using Ricky8955555.CoolQ.Commands;
 using Ricky8955555.CoolQ.Configurations;
@@ -22,12 +23,18 @@ namespace Ricky8955555.CoolQ
         public static Feature[] Features { get; private set; } // 定义 Features 为 Feature 数组
         public static Configuration[] Configurations { get; private set; } // 定义 Configurations 为 Configuration 数组
         public static ILogger XLogger;
+        public static IBot XBot;
+        public static PluginContext XContext;
+
+        readonly static List<IChattable> InitdChattables = new List<IChattable>();
 
         public Main(INotifyMessageReceived notifyMessageReceived, ILogger logger)
         {
             // 添加处理程序
             notifyMessageReceived.MessageReceived += OnMessageReceived; // 接收信息事件
             XLogger = logger;
+            XBot = Bot;
+            XContext = Context;
 
             // 初始化 App
             Apps = new App[]
@@ -40,8 +47,9 @@ namespace Ricky8955555.CoolQ
                 new PingApp(),
                 new RichTextAutoParserApp(),
                 new SwitchApp(),
-                //new TestApp(),
-                new BlacklistManagerApp()
+                new TestApp(),
+                new BlacklistManagerApp(),
+                new AutoRepeaterApp()
             };
 
             // 初始化 Commands
@@ -54,15 +62,17 @@ namespace Ricky8955555.CoolQ
                 new SpacingCommand(),
                 new PingCommand(),
                 new SwitchCommand(),
-                //new TestCommand(),
-                new BlacklistManagerCommand()
+                new TestCommand(),
+                new BlacklistManagerCommand(),
+                new AutoRepeaterCommand()
             };
 
             // 初始化 Feature
             Features = new Feature[]
             {
                 new CommandInvokerFeature(),
-                new RichTextAutoParserFeature()
+                new RichTextAutoParserFeature(),
+                new AutoRepeaterFeature()
             };
 
             //初始化 Configuration
@@ -78,6 +88,7 @@ namespace Ricky8955555.CoolQ
         {
             try
             {
+                InitChattable(e.Source);
                 if (!Configs.BlacklistConfig.Config.ToObject<List<long>>().Contains(e.Sender.Number))
                     foreach (var feature in Features)
                         feature.Invoke(e);
@@ -97,6 +108,43 @@ namespace Ricky8955555.CoolQ
                 {
                     exa.LogAsWarning();
                 }
+            }
+        }
+
+        void InitChattable(IChattable source)
+        {
+            if (!InitdChattables.Contains(source))
+            {
+                string sourceStr = source.ToString(true);
+                var appConfig = Configs.AppConfig;
+                var config = (JObject)appConfig.Config;
+
+                if (!config.ContainsKey(sourceStr))
+                    config.Add(
+                        new JProperty(
+                            sourceStr,
+                            new JObject()
+                            {
+                                Apps
+                                .Where(x => x.CanDisable)
+                                .Select(x => new JProperty(x.Name, x.IsEnabledByDefault))
+                            })
+                        );
+                else
+                {
+                    var sourceConfig = (JObject)config[sourceStr];
+
+                    foreach (App app in Apps)
+                    {
+                        if (app.CanDisable && !sourceConfig.ContainsKey(app.Name))
+                            sourceConfig.Add(new JProperty(app.Name, app.IsEnabledByDefault));
+                        else if ((!app.CanDisable) && sourceConfig.ContainsKey(app.Name))
+                            sourceConfig.Remove(app.Name);
+                    }
+                }
+
+                appConfig.Save();
+                InitdChattables.Add(source);
             }
         }
     }

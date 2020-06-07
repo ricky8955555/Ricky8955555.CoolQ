@@ -15,16 +15,15 @@ namespace Ricky8955555.CoolQ.Apps
         public override string Name { get; } = "BlacklistManager";
         public override string DisplayName { get; } = "黑名单管理器";
         public override string Usage { get; } = "{0}blacklist <add/remove> <QQ号/At>";
+        public override bool CanDisable { get; } = false;
 
-        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter = null)
+        protected override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
             string plainText = parameter?[0] as PlainText;
             string[] splitText = plainText?.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
             var blacklistConfig = Configs.BlacklistConfig;
             var config = (JArray)blacklistConfig.Config;
 
-
-            var list = config.ToObject<List<long>>();
             long number = long.MinValue;
 
             if (splitText != null && splitText.Length == 2)
@@ -34,28 +33,27 @@ namespace Ricky8955555.CoolQ.Apps
 
             if (number > 0)
             {
-                if (number == Configs.PluginConfig.Config["Administrator"].ToObject<long>())
-                    e.Source.Send(e.Sender.At() + "无法将管理员加入到黑名单 ─=≡Σ(((つ•̀ω•́)つ");
+                if (number == Configs.PluginConfig.Config["Administrator"].ToObject<long>() || number == Main.XBot.CurrentUser.Number)
+                    e.Source.Send(e.Sender.At() + "无法将管理员或机器人加入到黑名单 ─=≡Σ(((つ•̀ω•́)つ");
                 else
                 {
                     if (splitText[0] == "add")
                     {
-                        if (list.Contains(number))
+                        if (config.Contains(number, true))
                             e.Source.Send($"{e.Sender.At()} {number} 已存在黑名单内 (ц｀ω´ц*)");
                         else
                         {
                             config.Add(number);
-                            e.Source.Send($"{e.Sender.At()} 已将 {number} 加入黑名单 ❥(ゝω・✿ฺ)");
                             blacklistConfig.Save();
+                            e.Source.Send($"{e.Sender.At()} 已将 {number} 加入黑名单 ❥(ゝω・✿ฺ)");
                         }
                     }
                     else if (splitText[0] == "remove")
                     {
-                        if (list.Contains(number))
+                        if (config.Contains(number, true))
                         {
-                            list.Remove(number);
+                            blacklistConfig.SetValueAndSave(config.Remove(number, true));
                             e.Source.Send($"{e.Sender.At()} 已将 {number} 移出黑名单 ❥(ゝω・✿ฺ)");
-                            blacklistConfig.SetValueAndSave(new JArray(list));
                         }
                         else
                             e.Source.Send($"{e.Sender.At()} {number} 不存在黑名单内 (ц｀ω´ц*)");

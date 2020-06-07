@@ -15,14 +15,13 @@ namespace Ricky8955555.CoolQ.Apps
         public override string DisplayName { get; } = "帮助菜单";
         public override string Usage { get; } = "{0}help";
         public override bool CanDisable { get; } = false;
-        public override ParameterRequiredOptions IsParameterRequired { get; } = ParameterRequiredOptions.Unnecessary;
 
         static readonly int MaxCount = 6; // 定义单消息内显示最大应用数量
-        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter = null)
+        protected override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
             string prefix = Configs.PluginConfig.Config["Prefix"].ToString();
             var appInfos = Main.Apps
-                .Select(x => $"{$"{string.Format(x.Usage, Configs.PluginConfig.Config["Prefix"])}  ->  {x.DisplayName} ({x.Name})"}{(x.IsForAdministrator ? "【管理员应用】" : string.Empty)}")
+                .Select(x => $"{$"{x.GetUsage()}  ->  {x.DisplayName} ({x.Name})"}{(x.IsForAdministrator ? "【管理员应用】" : string.Empty)}")
                 .OrderBy(x => x); // 生成应用列表
             int splitCount = (int)Math.Ceiling((float)appInfos.Count() / MaxCount); // 计算分开消息数量
 

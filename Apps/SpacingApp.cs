@@ -14,9 +14,8 @@ namespace Ricky8955555.CoolQ.Apps
         public override string Name { get; } = "Spacing";
         public override string DisplayName { get; } = "空格化";
         public override string Usage { get; } = "{0}space [空格数量(缺省值 3)] <文本>";
-        public override ParameterRequiredOptions IsParameterRequired { get; } = ParameterRequiredOptions.Necessary;
 
-        public override void Run(MessageReceivedEventArgs e, ComplexMessage parameter = null)
+        protected override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
             string plainText = parameter.GetPlainText();
 
