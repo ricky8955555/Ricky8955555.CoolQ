@@ -6,7 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using HuajiTech.CoolQ;
+using static HuajiTech.CoolQ.CurrentPluginContext;
 
 namespace Ricky8955555.CoolQ
 {
@@ -16,7 +16,7 @@ namespace Ricky8955555.CoolQ
         protected abstract JToken InitInfo { get; }
         public JToken Config { get; private set; }
 
-        readonly DirectoryInfo DataDirInfo = PluginContext.Current.Bot.DataDirectory;
+        readonly DirectoryInfo DataDirInfo = Bot.DataDirectory;
         readonly string Suffix = ".json";
 
         public Configuration()
@@ -56,7 +56,7 @@ namespace Ricky8955555.CoolQ
         void Write(string fileName, string content)
         {
             string filePath = DataDirInfo.FullName + "\\" + fileName;
-            System.IO.File.WriteAllText(filePath, content);
+            File.WriteAllText(filePath, content);
         }
 
         string Read(string fileName)
@@ -65,7 +65,7 @@ namespace Ricky8955555.CoolQ
 
             if (file.Exists)
             {
-                string fileContent = System.IO.File.ReadAllText(file.FullName);
+                string fileContent = File.ReadAllText(file.FullName);
                 return fileContent;
             }
             else
@@ -74,7 +74,7 @@ namespace Ricky8955555.CoolQ
 
         bool CreateFile(string fileName)
         {
-            if (System.IO.File.Exists(DataDirInfo.FullName + "\\" + fileName))
+            if (File.Exists(DataDirInfo.FullName + "\\" + fileName))
                 return true;
             else
             {
@@ -100,29 +100,27 @@ namespace Ricky8955555.CoolQ
 
         void Init(bool debugMode = false)
         {
-            var logger = Main.XLogger;
-
 #if DEBUG
-            logger.LogDebug("配置加载", $"开始加载配置（{Name}）");
+            Logger.LogDebug("配置加载", $"开始加载配置（{Name}）");
             if (CreateFile(Name + Suffix))
-                logger.LogDebug("配置加载", $"文件 {Name}.json 已存在，将不对其进行改动（{Name}）");
+                Logger.LogDebug("配置加载", $"文件 {Name}.json 已存在，将不对其进行改动（{Name}）");
             else
-                logger.LogDebug("配置加载", $"文件 {Name}.json 不存在，将会新建（{Name}）");
+                Logger.LogDebug("配置加载", $"文件 {Name}.json 不存在，将会新建（{Name}）");
 
             string fileContent = Read(Name + Suffix);
             if (fileContent != null)
-                logger.LogDebug("配置加载", $"加载配置成功（{Name}）");
+                Logger.LogDebug("配置加载", $"加载配置成功（{Name}）");
             else
-                logger.LogError("配置加载", $"加载配置失败（{Name}）");
+                Logger.LogError("配置加载", $"加载配置失败（{Name}）");
 
             if (WriteToConfig(fileContent))
-                logger.LogDebug("配置加载", $"解析配置成功（{Name}）");
+                Logger.LogDebug("配置加载", $"解析配置成功（{Name}）");
             else
-                logger.LogError("配置加载", $"解析配置失败（{Name}）");
+                Logger.LogError("配置加载", $"解析配置失败（{Name}）");
 #else
             CreateFile(Name + Suffix);
             if (!WriteToConfig(Read(Name + Suffix)))
-                logger.LogError("配置加载", $"解析配置失败（{Name}）");
+                Logger.LogError("配置加载", $"解析配置失败（{Name}）");
 #endif
         }
     }

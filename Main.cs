@@ -22,19 +22,13 @@ namespace Ricky8955555.CoolQ
         public static Command[] Commands { get; private set; } // 定义 Commands 为 Command 数组
         public static Feature[] Features { get; private set; } // 定义 Features 为 Feature 数组
         public static Configuration[] Configurations { get; private set; } // 定义 Configurations 为 Configuration 数组
-        public static ILogger XLogger;
-        public static IBot XBot;
-        public static PluginContext XContext;
 
         readonly static List<IChattable> InitdChattables = new List<IChattable>();
 
-        public Main(INotifyMessageReceived notifyMessageReceived, ILogger logger)
+        public Main(INotifyMessageReceived notifyMessageReceived)
         {
             // 添加处理程序
             notifyMessageReceived.MessageReceived += OnMessageReceived; // 接收信息事件
-            XLogger = logger;
-            XBot = Bot;
-            XContext = Context;
 
             // 初始化 App
             Apps = new App[]

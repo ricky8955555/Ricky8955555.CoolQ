@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static HuajiTech.CoolQ.CurrentPluginContext;
 
 namespace Ricky8955555.CoolQ.Apps
 {
@@ -33,7 +34,7 @@ namespace Ricky8955555.CoolQ.Apps
 
             if (number > 0)
             {
-                if (number == Configs.PluginConfig.Config["Administrator"].ToObject<long>() || number == Main.XBot.CurrentUser.Number)
+                if (number == Configs.PluginConfig.Config["Administrator"].ToObject<long>() || number == Bot.CurrentUser.Number)
                     e.Source.Send(e.Sender.At() + "无法将管理员或机器人加入到黑名单 ─=≡Σ(((つ•̀ω•́)つ");
                 else
                 {

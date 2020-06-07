@@ -7,7 +7,7 @@ using System.Reflection;
 using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using System.Diagnostics;
-using HuajiTech.CoolQ;
+using static HuajiTech.CoolQ.PluginContext;
 
 namespace Ricky8955555.CoolQ.Apps
 {
@@ -22,7 +22,7 @@ namespace Ricky8955555.CoolQ.Apps
         {
 #if DEBUG
             string fileVersion = FileVersionInfo.GetVersionInfo(typeof(Main).Assembly.Location).FileVersion; // 获取文件版本号
-            var sdkAssembly = Main.XContext.Packer.GetPackedAssemblies().Where(x => x.Name == "HuajiTech.CoolQ").Single(); // 获取 SDK 程序集
+            var sdkAssembly = Current.Packer.GetPackedAssemblies().Where(x => x.Name == "HuajiTech.CoolQ").Single(); // 获取 SDK 程序集
             e.Source.Send($"插件版本：{fileVersion}-debug\nSDK版本：{sdkAssembly.Version}"); // 发送版本号
 #else
             var assembly = Assembly.GetExecutingAssembly(); // 获取程序集
