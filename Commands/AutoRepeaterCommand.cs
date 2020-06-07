@@ -8,7 +8,7 @@ namespace Ricky8955555.CoolQ.Commands
 {
     class AutoRepeaterCommand : Command
     {
-        public override string ResponseCommand { get; } = "autorepeater";
+        public override string ResponseCommand { get; } = "autorepeat";
         public override App App { get; } = Main.Apps.Where(x => x.Name == "AutoRepeater").Single();
     }
 }
