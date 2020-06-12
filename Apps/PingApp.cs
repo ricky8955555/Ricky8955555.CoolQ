@@ -52,17 +52,17 @@ namespace Ricky8955555.CoolQ.Apps
                 {
                     e.Source.Send($"Ping {splitText[0]} 出错，错误原因：" + ex.Message);
                 }
-            //else if (splitText[1] == "forever")
-            //    while (true)
-            //    {
-            //        var pingReply = ping.Send(splitText[0]);
-            //        if (pingReply.Status == IPStatus.Success)
-            //            e.Source.Send($"延迟：{pingReply.RoundtripTime} ms");
-            //        else
-            //            e.Source.Send("失败：" + pingReply.Status.ToString());
-            //    }
+            
+            
+            
+            
+            
+            
+            
+            
+            
             else
-                NotifyIncorrectUsage(e); // 提示参数错误
+                NotifyIncorrectUsage(e); 
         }
     }
 }

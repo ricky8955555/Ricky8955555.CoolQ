@@ -16,8 +16,8 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override void Invokes(MessageReceivedEventArgs e)
         {
-            if (e.Message.Parse()[0] is RichText richText && // 尝试匹配第一个元素为富文本
-            richText["content"] != null) // 确保富文本中 content 不为空
+            if (e.Message.Parse()[0] is RichText richText && 
+            richText["content"] != null) 
                 App.Run(e, richText);
         }
     }

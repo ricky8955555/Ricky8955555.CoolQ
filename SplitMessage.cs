@@ -8,7 +8,7 @@ using HuajiTech.CoolQ.Messaging;
 
 namespace Ricky8955555.CoolQ
 {
-    // SplitMessage 类
+    
     class SplitMessage
     {
         SplitMessage(string command, ComplexMessage parameter)
@@ -29,10 +29,10 @@ namespace Ricky8955555.CoolQ
         {
         }
 
-        public readonly string Command = string.Empty; // Command(命令) 为 String【默认值为 string.Empty】
-        public readonly ComplexMessage Parameter = null; // Parameter(参数) 为 ComplexMessage【默认值为 null】
-        public readonly bool IsEmpty = true; // IsEmpty(是否为空) 为 Boolean【默认值为 true】
-        public readonly bool HasParameter = false; // HasParameter(是否有参数) 为 Boolean【默认值为 false】
+        public readonly string Command = string.Empty; 
+        public readonly ComplexMessage Parameter = null; 
+        public readonly bool IsEmpty = true; 
+        public readonly bool HasParameter = false; 
     
         public static SplitMessage Parse(IMessage message)
         {
@@ -48,7 +48,7 @@ namespace Ricky8955555.CoolQ
                 else if (splitStr.Length == 2)
                     return new SplitMessage(splitStr[0], ComplexMessage.Parse(splitStr[1]));
             }
-            return new SplitMessage(); // 返回空的 SplitMessage
+            return new SplitMessage(); 
         }
     }
 }

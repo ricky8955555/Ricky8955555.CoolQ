@@ -20,14 +20,14 @@ namespace Ricky8955555.CoolQ.Apps
         static readonly string URL = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
         protected override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter)
         {
-            var client = new HttpClient(); // 初始化 HttpClient
-            var res = client.GetAsync(URL).Result; // 发送 Get 请求，并取得结果
-            if (res.IsSuccessStatusCode) // 判断是否返回成功
+            var client = new HttpClient(); 
+            var res = client.GetAsync(URL).Result; 
+            if (res.IsSuccessStatusCode) 
             {
                 try
                 {
-                    var json = JObject.Parse(res.Content.ReadAsStringAsync().Result); // 将返回的 json 信息转换为 JObject 类型
-                    var dJson = JObject.Parse(json["data"].ToString()); // 将返回的 json 中 data 信息转换为 JObject 类型
+                    var json = JObject.Parse(res.Content.ReadAsStringAsync().Result); 
+                    var dJson = JObject.Parse(json["data"].ToString()); 
                     var chinaTotal = dJson["chinaTotal"];
                     var chinaAdd = dJson["chinaAdd"];
 
@@ -42,11 +42,11 @@ namespace Ricky8955555.CoolQ.Apps
                 }
                 catch
                 {
-                    e.Source.Send($"{e.Sender.At()} 信息处理失败了 (；´д｀)ゞ"); // 提示 Json 处理失败
+                    e.Source.Send($"{e.Sender.At()} 信息处理失败了 (；´д｀)ゞ"); 
                 }
             }
             else
-                e.Source.Send($"{e.Sender.At()} 请求失败了 (；´д｀)ゞ"); // 提示 HttpClient 请求失败
+                e.Source.Send($"{e.Sender.At()} 请求失败了 (；´д｀)ゞ"); 
         }
     }
 }

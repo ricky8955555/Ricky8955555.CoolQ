@@ -8,7 +8,6 @@ using HuajiTech.CoolQ.Messaging;
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    // HelpMenuApp 类 继承 App 类
     class HelpMenuApp : App
     {
         public override string Name { get; } = "HelpMenu";
@@ -16,22 +15,22 @@ namespace Ricky8955555.CoolQ.Apps
         public override string Usage { get; } = "{0}help";
         public override bool CanDisable { get; } = false;
 
-        static readonly int MaxCount = 6; // 定义单消息内显示最大应用数量
+        static readonly int MaxCount = 6; 
         protected override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
             string prefix = Configs.PluginConfig.Config["Prefix"].ToString();
             var appInfos = Main.Apps
                 .Select(x => $"{$"{x.GetUsage()}  ->  {x.DisplayName} ({x.Name})"}{(x.IsForAdministrator ? "【管理员应用】" : string.Empty)}")
-                .OrderBy(x => x); // 生成应用列表
-            int splitCount = (int)Math.Ceiling((float)appInfos.Count() / MaxCount); // 计算分开消息数量
+                .OrderBy(x => x); 
+            int splitCount = (int)Math.Ceiling((float)appInfos.Count() / MaxCount); 
 
-            // for 循环发送多条消息
+            
             for (int i = 0; i < splitCount; i++)
             {
-                int start = i * MaxCount; // 起始 Index
-                int count = i < splitCount - 1 ? MaxCount : appInfos.Count() - start; // 计算该条消息应用信息数量
-                var appInfosSplit = appInfos.Skip(start).Take(count); // 该条消息的应用列表
-                e.Source.Send(string.Join("\n", appInfosSplit)); // 发送消息
+                int start = i * MaxCount; 
+                int count = i < splitCount - 1 ? MaxCount : appInfos.Count() - start; 
+                var appInfosSplit = appInfos.Skip(start).Take(count); 
+                e.Source.Send(string.Join("\n", appInfosSplit)); 
             }
         }
     }

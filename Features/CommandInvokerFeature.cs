@@ -21,19 +21,19 @@ namespace Ricky8955555.CoolQ.Features
             {
                 string command = splitMessage.Command.ToLower();
 
-                foreach (Command cmd in Main.Commands) // 遍历所有 App
+                foreach (Command cmd in Main.Commands) 
                 {
                     var app = cmd.App;
 
-                    if (cmd.ResponseCommand == command) // 判断指令是否匹配
+                    if (cmd.ResponseCommand == command) 
                     {
                         if (cmd.IsParameterRequired == ParameterRequiredOptions.Necessary == splitMessage.HasParameter ||
-                        cmd.IsParameterRequired == ParameterRequiredOptions.Dispensable) // 判断指令中的参数有无与应用需求是否一致
+                        cmd.IsParameterRequired == ParameterRequiredOptions.Dispensable) 
                             app.Run(e, splitMessage.Parameter);
                         else if (cmd.IsParameterRequired != ParameterRequiredOptions.Dispensable)
-                            e.Source.Send($"{e.Sender.At()} 该应用 {app.Name}（{app.DisplayName}）{(cmd.IsParameterRequired == ParameterRequiredOptions.Necessary ? "需要参数" : "无需参数")}，具体用法：{app.GetUsage()} (｀・ω・´)"); // 提示指令错误
+                            e.Source.Send($"{e.Sender.At()} 该应用 {app.Name}（{app.DisplayName}）{(cmd.IsParameterRequired == ParameterRequiredOptions.Necessary ? "需要参数" : "无需参数")}，具体用法：{app.GetUsage()} (｀・ω・´)"); 
 
-                        e.Handled = true; // 该应用处理完毕，防止指令继续传递
+                        e.Handled = true; 
                     }
                 }
             }

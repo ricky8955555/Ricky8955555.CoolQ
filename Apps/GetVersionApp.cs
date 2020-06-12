@@ -11,7 +11,7 @@ using static HuajiTech.CoolQ.PluginContext;
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    // GetVersionApp 类 继承 App 类
+    
     class GetVersionApp : App
     {
         public override string Name { get; } = "GetVersion";
@@ -21,13 +21,13 @@ namespace Ricky8955555.CoolQ.Apps
         protected override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
 #if DEBUG
-            string fileVersion = FileVersionInfo.GetVersionInfo(typeof(Main).Assembly.Location).FileVersion; // 获取文件版本号
-            var sdkAssembly = Current.Packer.GetPackedAssemblies().Where(x => x.Name == "HuajiTech.CoolQ").Single(); // 获取 SDK 程序集
-            e.Source.Send($"插件版本：{fileVersion}-debug\nSDK版本：{sdkAssembly.Version}"); // 发送版本号
+            string fileVersion = FileVersionInfo.GetVersionInfo(typeof(Main).Assembly.Location).FileVersion; 
+            var sdkAssembly = Current.Packer.GetPackedAssemblies().Where(x => x.Name == "HuajiTech.CoolQ").Single(); 
+            e.Source.Send($"插件版本：{fileVersion}-debug\nSDK版本：{sdkAssembly.Version}"); 
 #else
-            var assembly = Assembly.GetExecutingAssembly(); // 获取程序集
-            var version = assembly.GetName().Version; // 获取程序集版本号
-            e.Source.Send($"插件版本：{version.ToString()}-release"); // 发送版本号
+            var assembly = Assembly.GetExecutingAssembly(); 
+            var version = assembly.GetName().Version; 
+            e.Source.Send($"插件版本：{version.ToString()}-release"); 
 #endif
 
         }

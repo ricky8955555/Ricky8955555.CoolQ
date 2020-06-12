@@ -21,16 +21,16 @@ namespace Ricky8955555.CoolQ.Apps
 
             try
             {
-                var content = JObject.Parse(richText["content"].Replace(";", "")); // 替换 content 中的 ; 为空，转换为 JObject
-                var firstList = content.First.First.ToList(); // 取 content 中第一组数据中的第一组数据，并转换为 List
-                var url = firstList.Find(x => ((JProperty)x).Name.ToLower() == "url"); // 在该 List 中寻找 url 参数
-                var inaccurateUrl = firstList.Find(x => ((JProperty)x).Name.ToLower().Contains("url")); // 在该 List 中寻找带有 url 参数
-                string title = richText["title"] ?? "无标题"; // 定义 title 为 richText 中的 title 参数，如果该 title 参数 null 则为无标题
+                var content = JObject.Parse(richText["content"].Replace(";", "")); 
+                var firstList = content.First.First.ToList(); 
+                var url = firstList.Find(x => ((JProperty)x).Name.ToLower() == "url"); 
+                var inaccurateUrl = firstList.Find(x => ((JProperty)x).Name.ToLower().Contains("url")); 
+                string title = richText["title"] ?? "无标题"; 
 
-                if (url != null) // 检测 url 是否为 null
-                    e.Source.Send(new Share() { Title = title, Url = new Uri(url.First.ToString()) }); // 发送【分享】CQ 码
-                else if (inaccurateUrl != null) // 检测 inaccurateUrl 是否为 null
-                    e.Source.Send(new Share() { Title = title, Url = new Uri(inaccurateUrl.First.ToString()) }); // 发送【分享】CQ 码
+                if (url != null) 
+                    e.Source.Send(new Share() { Title = title, Url = new Uri(url.First.ToString()) }); 
+                else if (inaccurateUrl != null) 
+                    e.Source.Send(new Share() { Title = title, Url = new Uri(inaccurateUrl.First.ToString()) }); 
             }
             catch { }
         }

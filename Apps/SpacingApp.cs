@@ -36,7 +36,7 @@ namespace Ricky8955555.CoolQ.Apps
                 }
             }
             else
-                NotifyIncorrectUsage(e); // 提示参数错误
+                NotifyIncorrectUsage(e); 
         }
     }
 }

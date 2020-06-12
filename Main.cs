@@ -14,23 +14,21 @@ using Ricky8955555.CoolQ.Features;
 
 namespace Ricky8955555.CoolQ
 {
-
-    // Main 类
     class Main : Plugin
     {
-        public static App[] Apps { get; private set; } // 定义 Apps 为 App 数组
-        public static Command[] Commands { get; private set; } // 定义 Commands 为 Command 数组
-        public static Feature[] Features { get; private set; } // 定义 Features 为 Feature 数组
-        public static Configuration[] Configurations { get; private set; } // 定义 Configurations 为 Configuration 数组
+        public static App[] Apps { get; private set; } 
+        public static Command[] Commands { get; private set; } 
+        public static Feature[] Features { get; private set; } 
+        public static Configuration[] Configurations { get; private set; } 
 
         readonly static List<IChattable> InitdChattables = new List<IChattable>();
 
         public Main(INotifyMessageReceived notifyMessageReceived)
         {
-            // 添加处理程序
-            notifyMessageReceived.MessageReceived += OnMessageReceived; // 接收信息事件
+            
+            notifyMessageReceived.MessageReceived += OnMessageReceived; 
 
-            // 初始化 App
+            
             Apps = new App[]
             {
                 new HelpMenuApp(),
@@ -46,7 +44,7 @@ namespace Ricky8955555.CoolQ
                 new AutoRepeaterApp()
             };
 
-            // 初始化 Commands
+            
             Commands = new Command[]
             {
                 new HelpMenuCommand(),
@@ -61,7 +59,7 @@ namespace Ricky8955555.CoolQ
                 new AutoRepeaterCommand()
             };
 
-            // 初始化 Feature
+            
             Features = new Feature[]
             {
                 new CommandInvokerFeature(),
@@ -69,7 +67,7 @@ namespace Ricky8955555.CoolQ
                 new AutoRepeaterFeature()
             };
 
-            //初始化 Configuration
+            
             Configurations = new Configuration[]
             {
                 new PluginConfig(),
