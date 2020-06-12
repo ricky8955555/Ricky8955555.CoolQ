@@ -11,24 +11,24 @@ namespace Ricky8955555.CoolQ
 {
     abstract class App
     {
-        public abstract string Name { get; } 
-        public abstract string DisplayName { get; } 
-        public abstract string Usage { get; } 
-        public virtual bool IsInternalEnabled { get; } = true; 
-        public virtual bool IsEnabledByDefault { get; } = true; 
-        public virtual bool IsForAdministrator { get; } = false; 
-        public virtual bool CanDisable { get; } = true;  
-        protected abstract void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter = null); 
+        public abstract string Name { get; }
+        public abstract string DisplayName { get; }
+        public abstract string Usage { get; }
+        public virtual bool IsInternalEnabled { get; } = true;
+        public virtual bool IsEnabledByDefault { get; } = true;
+        public virtual bool IsForAdministrator { get; } = false;
+        public virtual bool CanDisable { get; } = true;
+        protected abstract void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter = null);
 
         public void Run(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
-            if (IsInternalEnabled && 
-            ((!CanDisable) || 
-            Configs.AppConfig.Config[e.Source.ToString(true)][Name].ToObject<bool>())) 
+            if (IsInternalEnabled &&
+            ((!CanDisable) ||
+            Configs.AppConfig.Config[e.Source.ToString(true)][Name].ToObject<bool>()))
             {
                 if ((!IsForAdministrator) ||
-                    (IsForAdministrator && Configs.PluginConfig.Config["Administrator"].ToObject<long>() == e.Sender.Number)) 
-                    Invoke(e, parameter); 
+                    (IsForAdministrator && Configs.PluginConfig.Config["Administrator"].ToObject<long>() == e.Sender.Number))
+                    Invoke(e, parameter);
                 else
                     e.Source.Send($"{e.Sender.At()} 该应用 {Name}（{DisplayName}）仅限管理员使用 ┐(￣ヮ￣)┌");
             }

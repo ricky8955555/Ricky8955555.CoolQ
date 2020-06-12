@@ -16,19 +16,19 @@ namespace Ricky8955555.CoolQ
 {
     class Main : Plugin
     {
-        public static App[] Apps { get; private set; } 
-        public static Command[] Commands { get; private set; } 
-        public static Feature[] Features { get; private set; } 
-        public static Configuration[] Configurations { get; private set; } 
+        public static App[] Apps { get; private set; }
+        public static Command[] Commands { get; private set; }
+        public static Feature[] Features { get; private set; }
+        public static Configuration[] Configurations { get; private set; }
 
         readonly static List<IChattable> InitdChattables = new List<IChattable>();
 
         public Main(INotifyMessageReceived notifyMessageReceived)
         {
-            
-            notifyMessageReceived.MessageReceived += OnMessageReceived; 
+           
+            notifyMessageReceived.MessageReceived += OnMessageReceived;
 
-            
+           
             Apps = new App[]
             {
                 new HelpMenuApp(),
@@ -44,7 +44,7 @@ namespace Ricky8955555.CoolQ
                 new AutoRepeaterApp()
             };
 
-            
+           
             Commands = new Command[]
             {
                 new HelpMenuCommand(),
@@ -59,7 +59,7 @@ namespace Ricky8955555.CoolQ
                 new AutoRepeaterCommand()
             };
 
-            
+           
             Features = new Feature[]
             {
                 new CommandInvokerFeature(),
@@ -67,7 +67,7 @@ namespace Ricky8955555.CoolQ
                 new AutoRepeaterFeature()
             };
 
-            
+           
             Configurations = new Configuration[]
             {
                 new PluginConfig(),

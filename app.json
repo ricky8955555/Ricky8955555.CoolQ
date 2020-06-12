@@ -9,20 +9,20 @@
 
 {
   "$schema": "https:
-  "ret": 1, 
-  "apiver": 9, 
-  "name": "Ricky8955555's Addons", 
-  "version": "0.2.0", 
-  "version_id": 7, 
-  "author": "Ricky8955555", 
+  "ret": 1,
+  "apiver": 9,
+  "name": "Ricky8955555's Addons",
+  "version": "0.2.0",
+  "version_id": 7,
+  "author": "Ricky8955555",
   "description": "Ricky用的小插件",
-  "event": [ 
+  "event": [
     {
-      "id": 1, 
-      "type": 21, 
-      "name": "私聊消息处理", 
-      "function": "OnPrivateMessageReceived", 
-      "priority": 30000 
+      "id": 1,
+      "type": 21,
+      "name": "私聊消息处理",
+      "function": "OnPrivateMessageReceived",
+      "priority": 30000
     },
     {
       "id": 2,
@@ -36,37 +36,37 @@
       "type": 1001,
       "name": "酷Q启动事件",
       "priority": 30000,
-      "function": "OnStarted" 
+      "function": "OnStarted"
     },
     {
       "id": 1002,
       "type": 1002,
       "name": "酷Q关闭事件",
       "priority": 30000,
-      "function": "OnStopping" 
+      "function": "OnStopping"
     },
     {
       "id": 1003,
       "type": 1003,
       "name": "应用已被启用",
       "priority": 30000,
-      "function": "OnAppEnabled" 
+      "function": "OnAppEnabled"
     },
     {
       "id": 1004,
       "type": 1004,
       "name": "应用将被停用",
       "priority": 30000,
-      "function": "OnAppDisabling" 
+      "function": "OnAppDisabling"
     }
   ],
-  "menu": [ 
+  "menu": [
   ],
-  "status": [ 
+  "status": [
   ],
-  "auth": [ 
-    101, 
-    106, 
-    161 
+  "auth": [
+    101,
+    106,
+    161
   ]
 }

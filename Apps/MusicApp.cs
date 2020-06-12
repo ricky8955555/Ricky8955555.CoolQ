@@ -26,28 +26,28 @@ namespace Ricky8955555.CoolQ.Apps
 
             if (parameter?[0] is PlainText && !string.IsNullOrEmpty(songName))
             {
-                var musicName = songName.Trim(); 
-                var client = new HttpClient(); 
-                var res = client.GetAsync(string.Format(BaseURL, WebUtility.UrlEncode(musicName))).Result; 
-                if (res.IsSuccessStatusCode) 
+                var musicName = songName.Trim();
+                var client = new HttpClient();
+                var res = client.GetAsync(string.Format(BaseURL, WebUtility.UrlEncode(musicName))).Result;
+                if (res.IsSuccessStatusCode)
                 {
-                    var json = JObject.Parse(res.Content.ReadAsStringAsync().Result); 
+                    var json = JObject.Parse(res.Content.ReadAsStringAsync().Result);
                     try
                     {
-                        var musicJson = json["result"]["songs"][0]; 
-                        e.Source.Send($"{e.Sender.At()} 这是您点的歌曲哦 φ(>ω<*) ：{string.Join(" / ", musicJson["artists"].Select(x => x["name"]))} - {musicJson["name"]}"); 
-                        e.Source.Send(new Music { Id = musicJson["id"].ToObject<int>(), Platform = MusicPlatform.Netease }); 
+                        var musicJson = json["result"]["songs"][0];
+                        e.Source.Send($"{e.Sender.At()} 这是您点的歌曲哦 φ(>ω<*) ：{string.Join(" / ", musicJson["artists"].Select(x => x["name"]))} - {musicJson["name"]}");
+                        e.Source.Send(new Music { Id = musicJson["id"].ToObject<int>(), Platform = MusicPlatform.Netease });
                     }
                     catch
                     {
-                        e.Source.Send($"{e.Sender.At()} 没有叫 {musicName} 的歌曲哦 (๑＞ڡ＜)☆"); 
+                        e.Source.Send($"{e.Sender.At()} 没有叫 {musicName} 的歌曲哦 (๑＞ڡ＜)☆");
                     }
                 }
                 else
-                    e.Source.Send($"{e.Sender.At()} 请求失败了 (；´д｀)ゞ"); 
+                    e.Source.Send($"{e.Sender.At()} 请求失败了 (；´д｀)ゞ");
             }
             else
-                NotifyIncorrectUsage(e); 
+                NotifyIncorrectUsage(e);
         }
     }
 }

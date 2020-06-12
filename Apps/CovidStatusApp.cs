@@ -20,14 +20,14 @@ namespace Ricky8955555.CoolQ.Apps
         static readonly string URL = "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5";
         protected override void Invoke(MessageReceivedEventArgs e, ComplexMessage parameter)
         {
-            var client = new HttpClient(); 
-            var res = client.GetAsync(URL).Result; 
-            if (res.IsSuccessStatusCode) 
+            var client = new HttpClient();
+            var res = client.GetAsync(URL).Result;
+            if (res.IsSuccessStatusCode)
             {
                 try
                 {
-                    var json = JObject.Parse(res.Content.ReadAsStringAsync().Result); 
-                    var dJson = JObject.Parse(json["data"].ToString()); 
+                    var json = JObject.Parse(res.Content.ReadAsStringAsync().Result);
+                    var dJson = JObject.Parse(json["data"].ToString());
                     var chinaTotal = dJson["chinaTotal"];
                     var chinaAdd = dJson["chinaAdd"];
 
@@ -42,11 +42,11 @@ namespace Ricky8955555.CoolQ.Apps
                 }
                 catch
                 {
-                    e.Source.Send($"{e.Sender.At()} 信息处理失败了 (；´д｀)ゞ"); 
+                    e.Source.Send($"{e.Sender.At()} 信息处理失败了 (；´д｀)ゞ");
                 }
             }
             else
-                e.Source.Send($"{e.Sender.At()} 请求失败了 (；´д｀)ゞ"); 
+                e.Source.Send($"{e.Sender.At()} 请求失败了 (；´д｀)ゞ");
         }
     }
 }
