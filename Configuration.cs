@@ -98,7 +98,7 @@ namespace Ricky8955555.CoolQ
             }
         }
 
-        void Init(bool debugMode = false)
+        void Init()
         {
 #if DEBUG
             Logger.LogDebug("配置加载", $"开始加载配置（{Name}）");
