@@ -1,4 +1,5 @@
-﻿using HuajiTech.CoolQ.Events;
+﻿using HuajiTech.CoolQ;
+using HuajiTech.CoolQ.Events;
 using Ricky8955555.CoolQ.Apps;
 using System;
 using System.Collections.Generic;
@@ -9,14 +10,16 @@ using static Ricky8955555.CoolQ.Apps.AutoRepeaterApp;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class AutoRepeaterFeature : AppFeature
+    class AutoRepeaterFeature : Feature
     {
-        public override App App { get; } = Main.Apps.Where(x => x.Name == "AutoRepeater").Single();
-
-        protected override void Invokes(MessageReceivedEventArgs e)
+        public override void Invoke(MessageReceivedEventArgs e)
         {
             if (Chattables.Contains(e.Source))
-                ExtRun(e);
+                try
+                {
+                    e.Source.Send(e.Message);
+                }
+                catch (ApiException) { }
         }
     }
 }

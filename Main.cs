@@ -8,7 +8,6 @@ using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using Newtonsoft.Json.Linq;
 using Ricky8955555.CoolQ.Apps;
-using Ricky8955555.CoolQ.Commands;
 using Ricky8955555.CoolQ.Configurations;
 using Ricky8955555.CoolQ.Features;
 
@@ -17,8 +16,6 @@ namespace Ricky8955555.CoolQ
     class Main : Plugin
     {
         public static App[] Apps { get; private set; }
-        public static Command[] Commands { get; private set; }
-        public static Feature[] Features { get; private set; }
         public static Configuration[] Configurations { get; private set; }
 
         readonly static List<IChattable> InitdChattables = new List<IChattable>();
@@ -28,7 +25,6 @@ namespace Ricky8955555.CoolQ
            
             notifyMessageReceived.MessageReceived += OnMessageReceived;
 
-           
             Apps = new App[]
             {
                 new HelpMenuApp(),
@@ -39,35 +35,10 @@ namespace Ricky8955555.CoolQ
                 new PingApp(),
                 new RichTextAutoParserApp(),
                 new SwitchApp(),
-                new TestApp(),
                 new BlacklistManagerApp(),
                 new AutoRepeaterApp()
             };
 
-           
-            Commands = new Command[]
-            {
-                new HelpMenuCommand(),
-                new MusicCommand(),
-                new GetVersionCommand(),
-                new CovidStatusCommand(),
-                new SpacingCommand(),
-                new PingCommand(),
-                new SwitchCommand(),
-                new TestCommand(),
-                new BlacklistManagerCommand(),
-                new AutoRepeaterCommand()
-            };
-
-           
-            Features = new Feature[]
-            {
-                new CommandInvokerFeature(),
-                new RichTextAutoParserFeature(),
-                new AutoRepeaterFeature()
-            };
-
-           
             Configurations = new Configuration[]
             {
                 new PluginConfig(),
@@ -81,9 +52,9 @@ namespace Ricky8955555.CoolQ
             try
             {
                 InitChattable(e.Source);
-                if (!Configs.BlacklistConfig.Config.ToObject<List<long>>().Contains(e.Sender.Number))
-                    foreach (var feature in Features)
-                        feature.Invoke(e);
+                if (!Common.BlacklistConfig.Config.ToObject<List<long>>().Contains(e.Sender.Number))
+                    foreach (var app in Apps)
+                        app.Run(e);
             }
             catch (ApiException ex)
             {
@@ -108,7 +79,7 @@ namespace Ricky8955555.CoolQ
             if (!InitdChattables.Contains(source))
             {
                 string sourceStr = source.ToString(true);
-                var appConfig = Configs.AppConfig;
+                var appConfig = Common.AppConfig;
                 var config = (JObject)appConfig.Config;
 
                 if (!config.ContainsKey(sourceStr))

@@ -10,15 +10,30 @@ using Newtonsoft.Json.Linq;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class RichTextAutoParserFeature : AppFeature
+    class RichTextAutoParserFeature : Feature
     {
-        public override App App { get; } = Main.Apps.Where(x => x.Name == "RichTextAutoParser").Single();
+        public override string Usage { get; } = "发送富文本即可解析（只支持部分）";
 
-        protected override void Invokes(MessageReceivedEventArgs e)
+        public override void Invoke(MessageReceivedEventArgs e)
         {
-            if (e.Message.Parse()[0] is RichText richText && 
-            richText["content"] != null) 
-                App.Run(e, richText);
+            var elements = e.Message.Parse();
+            var richText = elements[0] as RichText;
+
+            if (richText != null)
+            try
+            {
+                var content = JObject.Parse(richText["content"].Replace(";", ""));
+                var firstList = content.First.First.ToList();
+                var url = firstList.Find(x => ((JProperty)x).Name.ToLower() == "url");
+                var inaccurateUrl = firstList.Find(x => ((JProperty)x).Name.ToLower().Contains("url"));
+                string title = richText["title"] ?? "无标题";
+
+                if (url != null)
+                    e.Source.Send(new Share() { Title = title, Url = new Uri(url.First.ToString()) });
+                else if (inaccurateUrl != null)
+                    e.Source.Send(new Share() { Title = title, Url = new Uri(inaccurateUrl.First.ToString()) });
+            }
+            catch { }
         }
     }
 }
