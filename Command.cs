@@ -69,6 +69,8 @@ namespace Ricky8955555.CoolQ
 
                 if (elements.Count == 1 && elements.TryDeconstruct(out T ele))
                     Invoking(e, ele);
+                else
+                    NotifyIncorrectUsage(e);
             }
         }
     }
@@ -90,6 +92,8 @@ namespace Ricky8955555.CoolQ
 
                 if (elements.Count == 2 && elements.TryDeconstruct(out T1 ele1, out T2 ele2))
                     Invoking(e, ele1, ele2);
+                else
+                    NotifyIncorrectUsage(e);
             }
         }
     }
