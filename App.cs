@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HuajiTech.CoolQ;
-using HuajiTech.CoolQ.Events;
-using HuajiTech.CoolQ.Messaging;
-using static Ricky8955555.CoolQ.Common;
+﻿using HuajiTech.CoolQ.Events;
+using static Ricky8955555.CoolQ.Commons;
 
 namespace Ricky8955555.CoolQ
 {

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Ricky8955555.CoolQ.Features

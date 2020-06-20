@@ -1,12 +1,8 @@
-﻿using HuajiTech.CoolQ.Events;
+﻿using HuajiTech.CoolQ;
+using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static HuajiTech.CoolQ.PluginContext;
+using static Ricky8955555.CoolQ.FeatureResources.GetVersionResources;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -18,14 +14,15 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
+            string sdkVersion = SdkInfo.Version;
+
 #if DEBUG
             string fileVersion = FileVersionInfo.GetVersionInfo(typeof(Main).Assembly.Location).FileVersion;
-            var sdkAssembly = Current.Packer.GetPackedAssemblies().Where(x => x.Name == "HuajiTech.CoolQ").Single();
-            e.Source.Send($"插件版本：{fileVersion}-debug\nSDK版本：{sdkAssembly.Version}");
+            e.Source.Send(string.Format(Debugging, fileVersion, sdkVersion));
 #else
-                    var assembly = Assembly.GetExecutingAssembly(); 
-                    var version = assembly.GetName().Version; 
-                    e.Source.Send($"插件版本：{version.ToString()}-release"); 
+            var assembly = Assembly.GetExecutingAssembly(); 
+            var version = assembly.GetName().Version;
+            e.Source.Send(string.Format(Released, version, sdkVersion)); 
 #endif
 
         }

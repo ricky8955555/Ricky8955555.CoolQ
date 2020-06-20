@@ -1,12 +1,4 @@
-﻿using HuajiTech.CoolQ.Events;
-using HuajiTech.CoolQ.Messaging;
-using Ricky8955555.CoolQ.Features;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ricky8955555.CoolQ.Features;
 
 namespace Ricky8955555.CoolQ.Apps
 {

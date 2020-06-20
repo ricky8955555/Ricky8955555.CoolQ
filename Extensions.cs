@@ -1,14 +1,9 @@
 ﻿using HuajiTech.CoolQ;
-using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ricky8955555.CoolQ
 {
@@ -54,11 +49,6 @@ namespace Ricky8955555.CoolQ
             }
             else
                 throw new ArgumentException();
-        }
-
-        public static void Send(this ISendee sendee, IMessage message)
-        {
-            sendee.Send(message.ToString());
         }
 
         public static string ToString(this IChattable chattable, bool useExtension)

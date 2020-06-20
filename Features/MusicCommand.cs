@@ -1,13 +1,10 @@
 ﻿using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+using static Ricky8955555.CoolQ.FeatureResources.MusicResources;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -16,8 +13,6 @@ namespace Ricky8955555.CoolQ.Features
         public override string ResponseCommand { get; } = "music";
 
         protected override string CommandUsage { get; } = "{0}music <歌曲名>";
-
-        static readonly string BaseURL = "http://music.163.com/api/search/pc?s={0}&type=1";
 
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
@@ -34,16 +29,16 @@ namespace Ricky8955555.CoolQ.Features
                     try
                     {
                         var musicJson = json["result"]["songs"][0];
-                        e.Source.Send($"{e.Sender.At()} 这是您点的歌曲哦 φ(>ω<*) ：{string.Join(" / ", musicJson["artists"].Select(x => x["name"]))} - {musicJson["name"]}");
+                        e.Reply(string.Format(Notification, string.Join(" / ", musicJson["artists"].Select(x => x["name"])), musicJson["name"]));
                         e.Source.Send(new Music { Id = musicJson["id"].ToObject<int>(), Platform = MusicPlatform.Netease });
                     }
                     catch
                     {
-                        e.Source.Send($"{e.Sender.At()} 没有叫 {musicName} 的歌曲哦 (๑＞ڡ＜)☆");
+                        e.Reply(string.Format(DoesNotExist, songName));
                     }
                 }
                 else
-                    e.Source.Send($"{e.Sender.At()} 请求失败了 (；´д｀)ゞ");
+                    e.Reply(NoResponse);
             }
             else
                 NotifyIncorrectUsage(e);

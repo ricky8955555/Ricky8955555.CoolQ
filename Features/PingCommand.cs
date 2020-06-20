@@ -1,11 +1,8 @@
 ﻿using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
+using static Ricky8955555.CoolQ.FeatureResources.PingResources;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -24,33 +21,38 @@ namespace Ricky8955555.CoolQ.Features
             int pingCount = 4;
 
             if (splitText != null &&
-                (splitText.Length == 2 && int.TryParse(splitText[1], out pingCount) && pingCount > 0) ||
+                splitText.Length == 2 && int.TryParse(splitText[1], out pingCount) && pingCount > 0 ||
                 splitText.Length == 1)
+            {
+                string address = splitText[0];
+
                 try
                 {
+
                     for (int i = 0; i < pingCount; i++)
                     {
-                        var pingReply = ping.Send(splitText[0]);
+                        var pingReply = ping.Send(address);
                         if (pingReply.Status == IPStatus.Success)
                             totalRoundtripTime += pingReply.RoundtripTime;
                         else if (pingReply.Status == IPStatus.TimedOut)
                             packetLostCount += 1;
                         else
                         {
-                            e.Source.Send($"Ping {splitText[0]} 失败，失败原因：" + pingReply.Status.ToString());
+                            e.Source.Send(string.Format(Failed, address, pingReply.Status.ToString()));
                             return;
                         }
                     }
 
                     if (packetLostCount < pingCount)
-                        e.Source.Send($"Ping {splitText[0]} 结果：\n延迟：{totalRoundtripTime / pingCount} ms\n丢包率：{packetLostCount / pingCount * 100} %");
+                        e.Source.Send(string.Format(Success, address, totalRoundtripTime / pingCount, packetLostCount / pingCount * 100));
                     else
-                        e.Source.Send($"Ping {splitText[0]} 超时");
+                        e.Source.Send(string.Format(TimedOut, address));
                 }
                 catch (Exception ex)
                 {
-                    e.Source.Send($"Ping {splitText[0]} 出错，错误原因：" + ex.Message);
+                    e.Source.Send(string.Format(Error, address, ex.Message));
                 }
+            }
             else
                 NotifyIncorrectUsage(e);
         }

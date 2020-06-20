@@ -1,10 +1,8 @@
 ﻿using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static Ricky8955555.CoolQ.FeatureResources.HelpMenuResources;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -18,9 +16,9 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements = null)
         {
-            string prefix = Common.PluginConfig.Config["Prefix"].ToString();
-            var appInfos = Main.Apps
-                .Select(x => $"{x.DisplayName} ({x.Name}){(x.IsForAdministrator ? "【管理员应用】" : string.Empty)}:\n" + 
+            string prefix = Commons.PluginConfig.Config["Prefix"].ToString();
+            var appInfos = Commons.Apps
+                .Select(x => $"{x.DisplayName} ({x.Name}){(x.IsForAdministrator ? AppForAdministrator : string.Empty)}:\n" + 
                 string.Join("\n",
                     x.Features
                     .Where(f => f.Usage != null)

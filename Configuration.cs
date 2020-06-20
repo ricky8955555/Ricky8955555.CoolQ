@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using System.IO;
 using Newtonsoft.Json.Linq;
 using static HuajiTech.CoolQ.CurrentPluginContext;
 
@@ -16,12 +10,14 @@ namespace Ricky8955555.CoolQ
         protected abstract JToken InitInfo { get; }
         public JToken Config { get; private set; }
 
-        readonly DirectoryInfo DataDirInfo = Bot.DataDirectory;
+        readonly DirectoryInfo DataDirInfo = Bot.AppDirectory;
         readonly string Suffix = ".json";
 
         public Configuration()
         {
-            Init();
+            CreateFile(Name + Suffix);
+            if (!WriteToConfig(Read(Name + Suffix)))
+                Logger.LogError(Resources.ConfigurationLoading, string.Format(Resources.ConfigurationCannotBeLoaded, Name));
         }
 
         public void SetValueAndSave(JToken jToken)
@@ -96,32 +92,6 @@ namespace Ricky8955555.CoolQ
                 Config = null;
                 return false;
             }
-        }
-
-        void Init()
-        {
-#if DEBUG
-            Logger.LogDebug("配置加载", $"开始加载配置（{Name}）");
-            if (CreateFile(Name + Suffix))
-                Logger.LogDebug("配置加载", $"文件 {Name}.json 已存在，将不对其进行改动（{Name}）");
-            else
-                Logger.LogDebug("配置加载", $"文件 {Name}.json 不存在，将会新建（{Name}）");
-
-            string fileContent = Read(Name + Suffix);
-            if (fileContent != null)
-                Logger.LogDebug("配置加载", $"加载配置成功（{Name}）");
-            else
-                Logger.LogError("配置加载", $"加载配置失败（{Name}）");
-
-            if (WriteToConfig(fileContent))
-                Logger.LogDebug("配置加载", $"解析配置成功（{Name}）");
-            else
-                Logger.LogError("配置加载", $"解析配置失败（{Name}）");
-#else
-            CreateFile(Name + Suffix);
-            if (!WriteToConfig(Read(Name + Suffix)))
-                Logger.LogError("配置加载", $"解析配置失败（{Name}）");
-#endif
         }
     }
 }
