@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ConfigurationCannotBeLoaded" xml:space="preserve">
-    <value>解析配置失败（{0）</value>
+    <value>解析配置失败（{0}）</value>
   </data>
   <data name="ConfigurationLoading" xml:space="preserve">
     <value>配置加载</value>

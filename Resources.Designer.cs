@@ -61,7 +61,7 @@ namespace Ricky8955555.CoolQ {
         }
         
         /// <summary>
-        ///   查找类似 解析配置失败（{0） 的本地化字符串。
+        ///   查找类似 解析配置失败（{0}） 的本地化字符串。
         /// </summary>
         internal static string ConfigurationCannotBeLoaded {
             get {
