@@ -1,5 +1,4 @@
-﻿using HuajiTech.CoolQ;
-using HuajiTech.CoolQ.Events;
+﻿using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using System;
 using System.Linq;
