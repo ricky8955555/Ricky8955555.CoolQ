@@ -11,7 +11,7 @@ namespace Ricky8955555.CoolQ.Features
 
         public override void Invoke(MessageReceivedEventArgs e)
         {
-            string message = e.Message.Content;
+            string message = PlainText.Unescape(e.Message);
 
             if (message.Contains("@"))
             {

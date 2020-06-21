@@ -15,7 +15,6 @@ namespace Ricky8955555.CoolQ.Plugins
 
         public AppRunnerPlugin (IMessageEventSource messageEventSource)
         {
-
             messageEventSource.AddMessageReceivedEventHandler(MessageReceived);
         }
 
