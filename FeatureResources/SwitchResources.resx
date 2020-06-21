@@ -126,4 +126,7 @@
   <data name="NotAllowed" xml:space="preserve">
     <value>该应用 {0}（{1}）不允许被启用/停用 o(ﾟДﾟ)っ！</value>
   </data>
+  <data name="NotExist" xml:space="preserve">
+    <value>该应用不存在</value>
+  </data>
 </root>

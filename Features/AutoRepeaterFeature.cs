@@ -8,7 +8,7 @@ namespace Ricky8955555.CoolQ.Features
 {
     class AutoRepeaterFeature : Feature
     {
-        private static readonly List<(IChattable Source, string Message)> Messages = new List<(IChattable Source, string Message)>();
+        static readonly List<(IChattable Source, string Message)> Messages = new List<(IChattable Source, string Message)>();
 
         public override void Invoke(MessageReceivedEventArgs e)
         {

@@ -12,7 +12,8 @@ namespace Ricky8955555.CoolQ.Apps
 
         public override bool IsForAdministrator { get; } = true;
 
-        public override Feature[] Features { get; } = new Feature[] {
+        public override Feature[] Features { get; } = new Feature[]
+        {
             new SwitchCommand()
         };
     }

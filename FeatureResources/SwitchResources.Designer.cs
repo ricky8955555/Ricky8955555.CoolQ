@@ -86,5 +86,14 @@ namespace Ricky8955555.CoolQ.FeatureResources {
                 return ResourceManager.GetString("NotAllowed", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似 该应用不存在 的本地化字符串。
+        /// </summary>
+        internal static string NotExist {
+            get {
+                return ResourceManager.GetString("NotExist", resourceCulture);
+            }
+        }
     }
 }

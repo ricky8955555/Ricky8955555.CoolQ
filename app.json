@@ -65,6 +65,8 @@
   ],
   "auth": [ // 应用权限【发布前请删除无用权限】
     101, // 发送群消息           IGroup.Send
-    106 // 发送私聊消息         IUser.Send
+    106, // 发送私聊消息         IUser.Send
+    130, // 取群成员信息         IMember.*.get
+    160 // 取群成员列表         IGroup.GetMembers
   ]
 }

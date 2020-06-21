@@ -8,7 +8,8 @@ namespace Ricky8955555.CoolQ.Apps
 
         public override string DisplayName { get; } = "疫情动态";
 
-        public override Feature[] Features { get; } = new Feature[] {
+        public override Feature[] Features { get; } = new Feature[]
+        {
             new CovidStatusCommand()
         };
     }

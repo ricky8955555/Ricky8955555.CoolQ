@@ -5,7 +5,7 @@ namespace Ricky8955555.CoolQ
 {
     static class Commons
     {
-        public readonly static App[] Apps = new App[]
+        public readonly static AppBase[] Apps = new AppBase[]
         {
             new HelpMenuApp(),
             new MusicApp(),
@@ -16,7 +16,8 @@ namespace Ricky8955555.CoolQ
             new RichTextAutoParserApp(),
             new SwitchApp(),
             new BlacklistManagerApp(),
-            new AutoRepeaterApp()
+            new AutoRepeaterApp(),
+            new FakeAtParserApp()
         };
 
         public readonly static Configuration PluginConfig = new PluginConfig();

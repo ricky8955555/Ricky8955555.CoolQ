@@ -8,7 +8,8 @@ namespace Ricky8955555.CoolQ.Apps
 
         public override string DisplayName { get; } = "富文本自动解析器";
 
-        public override Feature[] Features { get; } = new Feature[] {
+        public override Feature[] Features { get; } = new Feature[]
+        {
             new RichTextAutoParserFeature()
         };
     }

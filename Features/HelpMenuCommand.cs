@@ -1,8 +1,10 @@
-﻿using HuajiTech.CoolQ.Events;
+﻿using HuajiTech.CoolQ;
+using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using System;
 using System.Linq;
 using static Ricky8955555.CoolQ.FeatureResources.HelpMenuResources;
+using static Ricky8955555.CoolQ.Utilities;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -17,16 +19,8 @@ namespace Ricky8955555.CoolQ.Features
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements = null)
         {
             string prefix = Commons.PluginConfig.Config["Prefix"].ToString();
-            var appInfos = Commons.Apps
-                .Select(x => $"{x.DisplayName} ({x.Name}){(x.IsForAdministrator ? AppForAdministrator : string.Empty)}:\n" + 
-                string.Join("\n",
-                    x.Features
-                    .Where(f => f.Usage != null)
-                    .Select(f => f.Usage)
-                    .OrderBy(f => f)))
-                .OrderBy(x => x);
+            var appInfos = GetApps(e.Source).Select(x => $"{x.DisplayName} ({x.Name}){(x.IsForAdministrator ? AppForAdministrator : string.Empty)}:\n" + string.Join("\n", x.Features.Where(f => f.Usage != null).Select(f => f.Usage).OrderBy(f => f))).OrderBy(x => x);
             int splitCount = (int)Math.Ceiling((float)appInfos.Count() / MaxCount);
-
 
             for (int i = 0; i < splitCount; i++)
             {

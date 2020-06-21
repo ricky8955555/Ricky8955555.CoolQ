@@ -3,6 +3,7 @@ using HuajiTech.CoolQ.Messaging;
 using System;
 using System.Linq;
 using static Ricky8955555.CoolQ.FeatureResources.SwitchResources;
+using static Ricky8955555.CoolQ.Utilities;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -21,7 +22,7 @@ namespace Ricky8955555.CoolQ.Features
                 try
                 {
                     var config = Commons.AppConfig;
-                    var app = Commons.Apps.Where(x => x.Name == splitText[0]).Single();
+                    var app = GetApps(e.Source).Where(x => x.Name == splitText[0]).Single();
 
                     if (app.CanDisable)
                     {
@@ -45,11 +46,11 @@ namespace Ricky8955555.CoolQ.Features
                 }
                 catch (ArgumentException)
                 {
-                    NotifyIncorrectUsage(e);
+                    e.Source.Send(NotExist);
                 }
                 catch (InvalidOperationException)
                 {
-                    NotifyIncorrectUsage(e);
+                    e.Source.Send(NotExist);
                 }
             }
             else

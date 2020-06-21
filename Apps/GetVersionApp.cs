@@ -9,7 +9,8 @@ namespace Ricky8955555.CoolQ.Apps
 
         public override string DisplayName { get; } = "获取插件版本";
 
-        public override Feature[] Features { get; } = new Feature[] {
+        public override Feature[] Features { get; } = new Feature[]
+        {
             new GetVersionCommand()
         };
     }

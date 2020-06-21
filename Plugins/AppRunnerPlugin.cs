@@ -43,20 +43,12 @@ namespace Ricky8955555.CoolQ.Plugins
 
                 if (!config.ContainsKey(sourceStr))
                     config.Add(
-                        new JProperty(
-                            sourceStr,
-                            new JObject()
-                            {
-                                Commons.Apps
-                                .Where(x => x.CanDisable)
-                                .Select(x => new JProperty(x.Name, x.IsEnabledByDefault))
-                            })
-                        );
+                        new JProperty(sourceStr, new JObject() { Commons.Apps.Where(x => x.CanDisable).Select(x => new JProperty(x.Name, x.IsEnabledByDefault)) }));
                 else
                 {
                     var sourceConfig = (JObject)config[sourceStr];
 
-                    foreach (App app in Commons.Apps)
+                    foreach (AppBase app in Commons.Apps)
                     {
                         if (app.CanDisable && !sourceConfig.ContainsKey(app.Name))
                             sourceConfig.Add(new JProperty(app.Name, app.IsEnabledByDefault));

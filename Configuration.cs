@@ -7,10 +7,13 @@ namespace Ricky8955555.CoolQ
     abstract class Configuration
     {
         public abstract string Name { get; }
+
         protected abstract JToken InitInfo { get; }
+
         public JToken Config { get; private set; }
 
         readonly DirectoryInfo DataDirInfo = Bot.AppDirectory;
+
         readonly string Suffix = ".json";
 
         public Configuration()

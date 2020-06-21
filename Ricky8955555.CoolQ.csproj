@@ -88,6 +88,7 @@
     <Compile Include="Apps\AutoRepeaterApp.cs" />
     <Compile Include="Apps\BlacklistManagerApp.cs" />
     <Compile Include="Apps\CovidStatusApp.cs" />
+    <Compile Include="Apps\FakeAtParserApp.cs" />
     <Compile Include="Apps\GetVersionApp.cs" />
     <Compile Include="Apps\HelpMenuApp.cs" />
     <Compile Include="Apps\MusicApp.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Feature.cs" />
     <Compile Include="Features\AutoRepeaterFeature.cs" />
     <Compile Include="Features\CovidStatusCommand.cs" />
+    <Compile Include="Features\FakeAtParserFeature.cs" />
     <Compile Include="Features\GetVersionCommand.cs" />
     <Compile Include="Features\HelpMenuCommand.cs" />
     <Compile Include="Features\MusicCommand.cs" />
@@ -168,6 +170,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.json" />

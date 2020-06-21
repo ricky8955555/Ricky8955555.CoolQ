@@ -9,7 +9,8 @@ namespace Ricky8955555.CoolQ.Apps
         public override string Name { get; } = "AutoRepeater";
         public override string DisplayName { get; } = "自动复读";
         public override bool IsEnabledByDefault { get; } = false;
-        public override Feature[] Features { get; } = new Feature[] {
+        public override Feature[] Features { get; } = new Feature[]
+        {
             new AutoRepeaterCommand(),
             new AutoRepeaterFeature()
         };
