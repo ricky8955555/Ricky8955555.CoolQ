@@ -43,13 +43,9 @@ namespace Ricky8955555.CoolQ.Features
                     else
                         e.Reply($"该应用 {app.DisplayName}（{app.Name}）不允许被启用/停用 o(ﾟДﾟ)っ！");
                 }
-                catch (ArgumentException)
-                {
-                    NotifyIncorrectUsage(e);
-                }
                 catch (InvalidOperationException)
                 {
-                    NotifyIncorrectUsage(e);
+                    e.Reply($"应用 {splitText[0]} 不存在");
                 }
             }
             else
