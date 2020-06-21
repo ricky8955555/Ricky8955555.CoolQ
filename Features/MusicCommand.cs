@@ -4,7 +4,6 @@ using Newtonsoft.Json.Linq;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using static Ricky8955555.CoolQ.FeatureResources.MusicResources;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -22,23 +21,23 @@ namespace Ricky8955555.CoolQ.Features
             {
                 var musicName = songName.Trim();
                 var client = new HttpClient();
-                var res = client.GetAsync(string.Format(BaseURL, WebUtility.UrlEncode(musicName))).Result;
+                var res = client.GetAsync(string.Format(Resources.MusicApiURL, WebUtility.UrlEncode(musicName))).Result;
                 if (res.IsSuccessStatusCode)
                 {
                     var json = JObject.Parse(res.Content.ReadAsStringAsync().Result);
                     try
                     {
                         var musicJson = json["result"]["songs"][0];
-                        e.Reply(string.Format(Notification, string.Join(" / ", musicJson["artists"].Select(x => x["name"])), musicJson["name"]));
+                        e.Reply($"这是您点的歌曲哦 φ(>ω<*) ：{string.Join(" / ", musicJson["artists"].Select(x => x["name"]))} - {musicJson["name"]}");
                         e.Source.Send(new Music { Id = musicJson["id"].ToObject<int>(), Platform = MusicPlatform.Netease });
                     }
                     catch
                     {
-                        e.Reply(string.Format(DoesNotExist, songName));
+                        e.Reply($"没有叫 {musicName} 的歌曲哦 (๑＞ڡ＜)☆");
                     }
                 }
                 else
-                    e.Reply(NoResponse);
+                    e.Reply($"请求失败了 (；´д｀)ゞ");
             }
             else
                 NotifyIncorrectUsage(e);

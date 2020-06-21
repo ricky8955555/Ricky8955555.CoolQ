@@ -79,11 +79,29 @@ namespace Ricky8955555.CoolQ {
         }
         
         /// <summary>
+        ///   查找类似 https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5 的本地化字符串。
+        /// </summary>
+        internal static string CovidStatusApiURL {
+            get {
+                return ResourceManager.GetString("CovidStatusApiURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 参数错误 (￣３￣)a ，具体用法：{0} 的本地化字符串。
         /// </summary>
-        internal static string IncorrectUsage {
+        internal static string FeatureIncorrectUsage {
             get {
-                return ResourceManager.GetString("IncorrectUsage", resourceCulture);
+                return ResourceManager.GetString("FeatureIncorrectUsage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://music.163.com/api/search/pc?s={0}&amp;type=1 的本地化字符串。
+        /// </summary>
+        internal static string MusicApiURL {
+            get {
+                return ResourceManager.GetString("MusicApiURL", resourceCulture);
             }
         }
     }

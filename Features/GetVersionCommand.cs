@@ -2,7 +2,6 @@
 using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using System.Diagnostics;
-using static Ricky8955555.CoolQ.FeatureResources.GetVersionResources;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -18,11 +17,11 @@ namespace Ricky8955555.CoolQ.Features
 
 #if DEBUG
             string fileVersion = FileVersionInfo.GetVersionInfo(typeof(Main).Assembly.Location).FileVersion;
-            e.Source.Send(string.Format(Debugging, fileVersion, sdkVersion));
+            e.Source.Send($"插件版本：{fileVersion}-debug\nSDK版本：{sdkVersion}");
 #else
             var assembly = Assembly.GetExecutingAssembly(); 
             var version = assembly.GetName().Version;
-            e.Source.Send(string.Format(Released, version, sdkVersion)); 
+            e.Source.Send($"插件版本：{version.ToString()}-release\nSDK版本：{sdkVersion}"); 
 #endif
 
         }

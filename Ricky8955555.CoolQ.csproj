@@ -97,51 +97,6 @@
     <Compile Include="Apps\SpacingApp.cs" />
     <Compile Include="Apps\SwitchApp.cs" />
     <Compile Include="Commons.cs" />
-    <Compile Include="FeatureResources\AutoRepeaterResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AutoRepeaterResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="FeatureResources\BlacklistManagerResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BlacklistManagerResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="FeatureResources\CovidStatusResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CovidStatusResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="FeatureResources\GetVersionResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GetVersionResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="FeatureResources\HelpMenuResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HelpMenuResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="FeatureResources\MusicResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MusicResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="FeatureResources\PingResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PingResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="FeatureResources\SpacingResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SpacingResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="FeatureResources\SwitchResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SwitchResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Features\AutoRepeaterCommand.cs" />
     <Compile Include="Features\BlacklistManagerCommand.cs" />
     <Compile Include="Command.cs" />
@@ -177,42 +132,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FeatureResources\AutoRepeaterResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AutoRepeaterResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FeatureResources\BlacklistManagerResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>BlacklistManagerResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FeatureResources\CovidStatusResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>CovidStatusResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FeatureResources\GetVersionResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>GetVersionResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FeatureResources\HelpMenuResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>HelpMenuResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FeatureResources\MusicResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>MusicResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FeatureResources\PingResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>PingResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FeatureResources\SpacingResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SpacingResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FeatureResources\SwitchResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SwitchResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

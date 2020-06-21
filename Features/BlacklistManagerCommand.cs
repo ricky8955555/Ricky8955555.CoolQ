@@ -3,7 +3,6 @@ using HuajiTech.CoolQ.Messaging;
 using Newtonsoft.Json.Linq;
 using static HuajiTech.CoolQ.CurrentPluginContext;
 using static Ricky8955555.CoolQ.Commons;
-using static Ricky8955555.CoolQ.FeatureResources.BlacklistManagerResources;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -15,23 +14,23 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText, At at)
         {
-            string operating = plainText.ToString().Trim().ToLower();
+            string operating = plainText.ToString().Trim();
             var config = (JArray)BlacklistConfig.Config;
             long number = at.TargetNumber;
 
             if (number == Administrator || number == Bot.CurrentUser.Number)
-                e.Reply(AdministratorOrRobotCannotBeListInBlacklist);
+                e.Reply("无法将管理员或机器人加入到黑名单 ─=≡Σ(((つ•̀ω•́)つ");
             else
             {
                 if (operating == "add")
                 {
                     if (config.Contains(number, true))
-                        e.Reply(string.Format(Existed, number));
+                        e.Reply($"{number} 已存在黑名单内 (ц｀ω´ц*)");
                     else
                     {
                         config.Add(number);
                         BlacklistConfig.Save();
-                        e.Reply(string.Format(Added, number));
+                        e.Reply($"已将 {number} 加入黑名单 ❥(ゝω・✿ฺ)");
                     }
                 }
                 else if (operating == "remove")
@@ -39,10 +38,10 @@ namespace Ricky8955555.CoolQ.Features
                     if (config.Contains(number, true))
                     {
                         BlacklistConfig.SetValueAndSave(config.Remove(number, true));
-                        e.Reply(string.Format(Removed, number));
+                        e.Reply($"已将 {number} 移出黑名单 ❥(ゝω・✿ฺ)");
                     }
                     else
-                        e.Reply(string.Format(DoesNotExist, number));
+                        e.Reply($"{number} 不存在黑名单内 (ц｀ω´ц*)");
                 }
                 else
                     NotifyIncorrectUsage(e);

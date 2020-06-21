@@ -11,7 +11,7 @@ namespace Ricky8955555.CoolQ
 
         public void NotifyIncorrectUsage(MessageReceivedEventArgs e)
         {
-            e.Reply(string.Format(Resources.IncorrectUsage, Usage));
+            e.Reply(string.Format(Resources.FeatureIncorrectUsage, Usage));
         }
     }
 }

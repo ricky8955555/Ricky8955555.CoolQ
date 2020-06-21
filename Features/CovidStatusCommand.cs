@@ -2,7 +2,6 @@
 using HuajiTech.CoolQ.Messaging;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
-using static Ricky8955555.CoolQ.FeatureResources.CovidStatusResources;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -15,7 +14,7 @@ namespace Ricky8955555.CoolQ.Features
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements = null)
         {
             var client = new HttpClient();
-            var res = client.GetAsync(URL).Result;
+            var res = client.GetAsync(Resources.CovidStatusApiURL).Result;
             if (res.IsSuccessStatusCode)
             {
                 try
@@ -25,21 +24,22 @@ namespace Ricky8955555.CoolQ.Features
                     var chinaTotal = dJson["chinaTotal"];
                     var chinaAdd = dJson["chinaAdd"];
 
-                    e.Source.Send(string.Format(DataUpdatingTime, dJson["lastUpdateTime"]) + "\n" +
-                        string.Format(Confirmed, chinaTotal["confirm"]) + string.Format(CompareToYesterday, chinaAdd["confirm"]) + "\n" +
-                        string.Format(Healed, chinaTotal["heal"]) + string.Format(CompareToYesterday, chinaAdd["heal"]) + "\n" +
-                        string.Format(Dead, chinaTotal["dead"]) + string.Format(CompareToYesterday, chinaAdd["dead"]) + "\n" +
-                        string.Format(NowConfirmed, chinaTotal["nowConfirm"]) + string.Format(CompareToYesterday, chinaAdd["nowConfirm"]) + "\n" +
-                        string.Format(NowSuspected, chinaTotal["suspect"]) + string.Format(CompareToYesterday, chinaAdd["suspect"]) + "\n" +
-                        string.Format(NowSevere, chinaTotal["nowSevere"]) + string.Format(CompareToYesterday, chinaAdd["nowSevere"]) + "\n");
+                    e.Source.Send($"数据截至：{dJson["lastUpdateTime"]}\n" +
+                        $"累计确诊：{chinaTotal["confirm"]}（较昨日：{chinaAdd["confirm"].ToObject<int>():+#;-#;0}）\n" +
+                        $"累计治愈：{chinaTotal["heal"]}（较昨日：{chinaAdd["heal"].ToObject<int>():+#;-#;0}）\n" +
+                        $"累计死亡：{chinaTotal["dead"]}（较昨日：{chinaAdd["dead"].ToObject<int>():+#;-#;0}）\n" +
+                        $"现有确诊：{chinaTotal["nowConfirm"]}（较昨日：{chinaAdd["nowConfirm"].ToObject<int>():+#;-#;0}）\n" +
+                        $"现有疑似：{chinaTotal["suspect"]}（较昨日：{chinaAdd["suspect"].ToObject<int>():+#;-#;0}）\n" +
+                        $"现有重症：{chinaTotal["nowSevere"]}（较昨日：{chinaAdd["nowSevere"].ToObject<int>():+#;-#;0}）\n" +
+                        "（数据来源：腾讯新闻）");
                 }
                 catch
                 {
-                    e.Reply(IncorrectInfo);
+                    e.Reply($"信息处理失败了 (；´д｀)ゞ");
                 }
             }
             else
-                e.Reply(NoResponse);
+                e.Reply($"请求失败了 (；´д｀)ゞ");
         }
     }
 }

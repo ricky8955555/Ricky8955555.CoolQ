@@ -2,7 +2,6 @@
 using HuajiTech.CoolQ.Messaging;
 using System;
 using System.Linq;
-using static Ricky8955555.CoolQ.FeatureResources.SwitchResources;
 using static Ricky8955555.CoolQ.Utilities;
 
 namespace Ricky8955555.CoolQ.Features
@@ -30,27 +29,27 @@ namespace Ricky8955555.CoolQ.Features
                         {
                             config.Config[e.Source.ToString(true)][app.Name] = true;
                             config.Save();
-                            e.Reply(string.Format(Enabled, app.DisplayName, app.Name));
+                            e.Reply($"已启用应用 {app.DisplayName}（{app.Name}） ✧(≖ ◡ ≖✿ ");
                         }
                         else if (splitText[1] == "off")
                         {
                             config.Config[e.Source.ToString(true)][app.Name] = false;
                             config.Save();
-                            e.Reply(string.Format(Disabled, app.DisplayName, app.Name));
+                            e.Reply($"已停用应用 {app.DisplayName}（{app.Name}） ✧(≖ ◡ ≖✿ ");
                         }
                         else
                             NotifyIncorrectUsage(e);
                     }
                     else
-                        e.Reply(string.Format(NotAllowed, app.DisplayName, app.Name));
+                        e.Reply($"该应用 {app.DisplayName}（{app.Name}）不允许被启用/停用 o(ﾟДﾟ)っ！");
                 }
                 catch (ArgumentException)
                 {
-                    e.Source.Send(NotExist);
+                    NotifyIncorrectUsage(e);
                 }
                 catch (InvalidOperationException)
                 {
-                    e.Source.Send(NotExist);
+                    NotifyIncorrectUsage(e);
                 }
             }
             else

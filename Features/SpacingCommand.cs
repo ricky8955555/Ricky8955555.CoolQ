@@ -2,7 +2,6 @@
 using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using System;
-using static Ricky8955555.CoolQ.FeatureResources.SpacingResources;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -29,7 +28,7 @@ namespace Ricky8955555.CoolQ.Features
                 }
                 catch (ApiException)
                 {
-                    e.Reply(Error);
+                    e.Source.Send("发送出错了呀 (；´д｀)ゞ");
                 }
             }
             else
