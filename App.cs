@@ -1,6 +1,5 @@
 ﻿using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
-using System.ComponentModel;
 using static Ricky8955555.CoolQ.Commons;
 
 namespace Ricky8955555.CoolQ
@@ -28,20 +27,17 @@ namespace Ricky8955555.CoolQ
             foreach (var feature in Features)
                 feature.Invoke(e);
         }
+
+        public bool IsEnabled(IChattable source) => CanDisable ? AppConfig.Config[source.ToString(true)][Name].ToObject<bool>() : true;
     }
 
     abstract class App : AppBase
     {
         public override void Run(MessageReceivedEventArgs e)
         {
-            if (IsInternalEnabled &&
-            ((!CanDisable) ||
-            AppConfig.Config[e.Source.ToString(true)][Name].ToObject<bool>()))
-            {
-                if ((!IsForAdministrator) ||
-                    (IsForAdministrator && Administrator == e.Sender.Number))
+            if (IsInternalEnabled && ((!CanDisable) || IsEnabled(e.Source)) && 
+                ((!IsForAdministrator) || (IsForAdministrator && Administrator == e.Sender.Number)))
                     FeatureInvoker(e);
-            }
         }
     }
 
@@ -49,15 +45,9 @@ namespace Ricky8955555.CoolQ
     {
         public override void Run(MessageReceivedEventArgs e)
         {
-            if (e.Source is IGroup &&
-                IsInternalEnabled &&
-                ((!CanDisable) ||
-                AppConfig.Config[e.Source.ToString(true)][Name].ToObject<bool>()))
-            {
-                if ((!IsForAdministrator) ||
-                    (IsForAdministrator && Administrator == e.Sender.Number))
+            if (e.Source is IGroup && IsInternalEnabled && ((!CanDisable) || IsEnabled(e.Source)) &&
+                ((!IsForAdministrator) || (IsForAdministrator && Administrator == e.Sender.Number)))
                     FeatureInvoker(e);
-            }
         }
     }
 
@@ -65,15 +55,9 @@ namespace Ricky8955555.CoolQ
     {
         public override void Run(MessageReceivedEventArgs e)
         {
-            if (e.Source is IUser &&
-                IsInternalEnabled &&
-                ((!CanDisable) ||
-                AppConfig.Config[e.Source.ToString(true)][Name].ToObject<bool>()))
-            {
-                if ((!IsForAdministrator) ||
-                    (IsForAdministrator && Administrator == e.Sender.Number))
+            if (e.Source is IUser && IsInternalEnabled && ((!CanDisable) || IsEnabled(e.Source)) && 
+                ((!IsForAdministrator) || (IsForAdministrator && Administrator == e.Sender.Number)))
                     FeatureInvoker(e);
-            }
         }
     }
 }
