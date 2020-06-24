@@ -17,7 +17,7 @@ namespace Ricky8955555.CoolQ
             new SwitchApp(),
             new BlacklistManagerApp(),
             new AutoRepeaterApp(),
-            new FakeAtParserApp()
+            new FakeMentionParserApp()
         };
 
         public readonly static Configuration PluginConfig = new PluginConfig();

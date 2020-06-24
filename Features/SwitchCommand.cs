@@ -22,22 +22,23 @@ namespace Ricky8955555.CoolQ.Features
                 {
                     var config = Commons.AppConfig;
                     var app = GetApps(e.Source, e.Sender).Where(x => x.Name == splitText[0]).Single();
+                    bool? operation = splitText[1].ToLower().ToBool("on", "off");
 
                     if (app.CanDisable)
                     {
-                        if (splitText[1] == "on")
+                        if (operation == true)
                         {
                             config.Config[e.Source.ToString(true)][app.Name] = true;
                             config.Save();
                             e.Reply($"已启用应用 {app.DisplayName}（{app.Name}） ✧(≖ ◡ ≖✿ ");
                         }
-                        else if (splitText[1] == "off")
+                        else if (operation == false)
                         {
                             config.Config[e.Source.ToString(true)][app.Name] = false;
                             config.Save();
                             e.Reply($"已停用应用 {app.DisplayName}（{app.Name}） ✧(≖ ◡ ≖✿ ");
                         }
-                        else
+                        else if (operation == null)
                             NotifyIncorrectUsage(e);
                     }
                     else

@@ -6,23 +6,23 @@ using static Ricky8955555.CoolQ.Commons;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class BlacklistManagerCommand : Command<PlainText, At>
+    class BlacklistManagerCommand : Command<PlainText, Mention>
     {
         public override string ResponseCommand { get; } = "blacklist";
 
-        protected override string CommandUsage { get; } = "{0}blacklist <add/remove> <At>";
+        protected override string CommandUsage { get; } = "{0}blacklist <add/remove> <Mention>";
 
-        protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText, At at)
+        protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText, Mention mention)
         {
-            string operating = plainText.ToString().Trim();
             var config = (JArray)BlacklistConfig.Config;
-            long number = at.TargetNumber;
+            long number = mention.TargetNumber;
+            bool? operation = plainText.ToString().Trim().ToLower().ToBool("add", "remove");
 
             if (number == Administrator || number == Bot.CurrentUser.Number)
                 e.Reply("无法将管理员或机器人加入到黑名单 ─=≡Σ(((つ•̀ω•́)つ");
             else
             {
-                if (operating == "add")
+                if (operation == true)
                 {
                     if (config.Contains(number, true))
                         e.Reply($"{number} 已存在黑名单内 (ц｀ω´ц*)");
@@ -33,7 +33,7 @@ namespace Ricky8955555.CoolQ.Features
                         e.Reply($"已将 {number} 加入黑名单 ❥(ゝω・✿ฺ)");
                     }
                 }
-                else if (operating == "remove")
+                else if (operation == false)
                 {
                     if (config.Contains(number, true))
                     {
@@ -43,7 +43,7 @@ namespace Ricky8955555.CoolQ.Features
                     else
                         e.Reply($"{number} 不存在黑名单内 (ц｀ω´ц*)");
                 }
-                else
+                else if (operation == null)
                     NotifyIncorrectUsage(e);
             }
         }

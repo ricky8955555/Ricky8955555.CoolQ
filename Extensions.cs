@@ -59,6 +59,20 @@ namespace Ricky8955555.CoolQ
                 return chattable.ToString();
         }
 
+        public static bool ToBool(this string str, string str1) => str == str1;
+
+        public static bool? ToBool(this string str, string str1, string str2)
+        {
+            if (str == str1)
+                return true;
+            else if (str == str2)
+                return false;
+            else
+                return null;
+        }
+
+        public static bool Contains(this string str, string value, StringComparison comparisonType) => str.IndexOf(value, comparisonType) >= 0;
+
         public static bool TryDeconstruct<T>(this ComplexMessage elements, out T element)
             where T : MessageElement
         {

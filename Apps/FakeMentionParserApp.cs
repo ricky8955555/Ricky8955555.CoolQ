@@ -3,17 +3,17 @@ using Ricky8955555.CoolQ.Features;
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    class FakeAtParserApp : GroupApp
+    class FakeMentionParserApp : GroupApp
     {
-        public override string Name { get; } = "FakeAtParser";
+        public override string Name { get; } = "FakeMentionParser";
 
-        public override string DisplayName { get; } = "假At解析器";
+        public override string DisplayName { get; } = "假Mention解析器";
 
         public override bool IsEnabledByDefault { get; } = false;
 
         public override Feature[] Features { get; } = new Feature[]
         {
-            new FakeAtParserFeature()
+            new FakeMentionParserFeature()
         };
     }
 }
