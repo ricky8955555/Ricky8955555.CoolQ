@@ -10,7 +10,7 @@ namespace Ricky8955555.CoolQ.Apps
 
         public override bool CanDisable { get; } = false;
 
-        public override bool IsForAdministrator { get; } = true;
+        public override Permission Permission { get; } = Permission.Administrator;
 
         public override Feature[] Features { get; } = new Feature[]
         {

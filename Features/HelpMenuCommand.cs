@@ -18,7 +18,7 @@ namespace Ricky8955555.CoolQ.Features
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements = null)
         {
             string prefix = PluginConfig.Config["Prefix"].ToString();
-            var appInfos = GetApps(e.Source).Select(x => $"{(x.IsEnabled(e.Source) ? string.Empty : "【已停用】")}{x.DisplayName} ({x.Name}){(x.IsForAdministrator ? "【管理员应用】" : string.Empty)}:\n" + string.Join("\n", x.Features.Where(f => f.Usage != null).Select(f => f.Usage).OrderBy(f => f))).OrderBy(x => x);
+            var appInfos = GetApps(e.Source, e.Sender).Select(x => $"{(x.IsEnabled(e.Source) ? string.Empty : "【已停用】")}{x.DisplayName} ({x.Name}):\n" + string.Join("\n", x.Features.Where(f => f.Usage != null).Select(f => f.Usage).OrderBy(f => f))).OrderBy(x => x);
             int splitCount = (int)Math.Ceiling((float)appInfos.Count() / MaxCount);
 
             for (int i = 0; i < splitCount; i++)

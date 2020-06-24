@@ -14,9 +14,9 @@ namespace Ricky8955555.CoolQ
 
         public virtual bool IsEnabledByDefault { get; } = true;
 
-        public virtual bool IsForAdministrator { get; } = false;
-
         public virtual bool CanDisable { get; } = true;
+
+        public virtual Permission Permission { get; } = Permission.Everyone;
 
         public virtual Feature[] Features { get; } = new Feature[] { };
 
@@ -29,15 +29,29 @@ namespace Ricky8955555.CoolQ
         }
 
         public bool IsEnabled(IChattable source) => CanDisable ? AppConfig.Config[source.ToString(true)][Name].ToObject<bool>() : true;
+
+        public bool IsAllowed(IUser user)
+        {
+            switch (Permission)
+            {
+                case Permission.Everyone:
+                    return true;
+                case Permission.Administrator:
+                    return user is IMember member ? (member.IsAdministrator || user.Number == Administrator) : true;
+                case Permission.Owner:
+                    return user.Number == Administrator;
+                default:
+                    return false;
+            }
+        }
     }
 
     abstract class App : AppBase
     {
         public override void Run(MessageReceivedEventArgs e)
         {
-            if (IsInternalEnabled && ((!CanDisable) || IsEnabled(e.Source)) && 
-                ((!IsForAdministrator) || (IsForAdministrator && Administrator == e.Sender.Number)))
-                    FeatureInvoker(e);
+            if (IsInternalEnabled && IsEnabled(e.Source) && IsAllowed(e.Sender))
+                FeatureInvoker(e);
         }
     }
 
@@ -45,9 +59,8 @@ namespace Ricky8955555.CoolQ
     {
         public override void Run(MessageReceivedEventArgs e)
         {
-            if (e.Source is IGroup && IsInternalEnabled && ((!CanDisable) || IsEnabled(e.Source)) &&
-                ((!IsForAdministrator) || (IsForAdministrator && Administrator == e.Sender.Number)))
-                    FeatureInvoker(e);
+            if (e.Source is IGroup && IsInternalEnabled && IsEnabled(e.Source) && IsAllowed(e.Sender))
+                FeatureInvoker(e);
         }
     }
 
@@ -55,9 +68,15 @@ namespace Ricky8955555.CoolQ
     {
         public override void Run(MessageReceivedEventArgs e)
         {
-            if (e.Source is IUser && IsInternalEnabled && ((!CanDisable) || IsEnabled(e.Source)) && 
-                ((!IsForAdministrator) || (IsForAdministrator && Administrator == e.Sender.Number)))
-                    FeatureInvoker(e);
+            if (e.Source is IUser && IsInternalEnabled && IsEnabled(e.Source) && IsAllowed(e.Sender))
+                FeatureInvoker(e);
         }
+    }
+
+    enum Permission
+    {
+        Everyone,
+        Administrator,
+        Owner
     }
 }

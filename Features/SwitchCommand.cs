@@ -21,7 +21,7 @@ namespace Ricky8955555.CoolQ.Features
                 try
                 {
                     var config = Commons.AppConfig;
-                    var app = GetApps(e.Source).Where(x => x.Name == splitText[0]).Single();
+                    var app = GetApps(e.Source, e.Sender).Where(x => x.Name == splitText[0]).Single();
 
                     if (app.CanDisable)
                     {
