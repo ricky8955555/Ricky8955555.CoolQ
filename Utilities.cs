@@ -8,9 +8,13 @@ namespace Ricky8955555.CoolQ
     {
         public static IEnumerable<AppBase> GetApps(IChattable source, IUser user)
         {
-            bool isGroup = source is IGroup;
-            bool isUser = source is IUser;
-            return Commons.Apps.Where(x => x is App || (isGroup ? x is GroupApp : (isUser ? x is UserApp : false)) && x.IsAllowed(user));
+            var apps = Commons.Apps.Where(x => x is App && x.IsAllowed(user));
+            if (source is IGroup)
+                return apps.Concat(Commons.Apps.Where(x => x is GroupApp && x.IsAllowed(user)));
+            else if (source is IUser)
+                return apps.Concat(Commons.Apps.Where(x => x is UserApp && x.IsAllowed(user)));
+            else
+                return apps;
         }
     }
 }
