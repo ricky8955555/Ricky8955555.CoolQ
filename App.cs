@@ -37,9 +37,9 @@ namespace Ricky8955555.CoolQ
                 case Permission.Everyone:
                     return true;
                 case Permission.Administrator:
-                    return !(user is IMember member) || (member.IsAdministrator || user.Number == Administrator);
+                    return !(user is IMember member) || (member.IsAdministrator || user.Number == Owner);
                 case Permission.Owner:
-                    return user.Number == Administrator;
+                    return user.Number == Owner;
                 default:
                     return false;
             }

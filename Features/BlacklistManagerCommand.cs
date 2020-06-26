@@ -18,8 +18,8 @@ namespace Ricky8955555.CoolQ.Features
             long number = mention.TargetNumber;
             bool? operation = plainText.ToString().Trim().ToLower().ToBool("add", "remove");
 
-            if (number == Administrator || number == Bot.CurrentUser.Number)
-                e.Reply("无法将管理员或机器人加入到黑名单 ─=≡Σ(((つ•̀ω•́)つ");
+            if (number == Owner || number == Bot.CurrentUser.Number)
+                e.Reply("无法将主人或机器人加入到黑名单 ─=≡Σ(((つ•̀ω•́)つ");
             else
             {
                 if (operation == true)

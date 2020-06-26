@@ -29,6 +29,6 @@ namespace Ricky8955555.CoolQ
 
         public static string Prefix => PluginConfig.Config["Prefix"].ToString();
 
-        public static long Administrator => PluginConfig.Config["Administrator"].ToObject<long>();
+        public static long Owner => PluginConfig.Config["Owner"].ToObject<long>();
     }
 }

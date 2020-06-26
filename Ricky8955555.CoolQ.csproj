@@ -119,7 +119,6 @@
     <Compile Include="Features\SpacingCommand.cs" />
     <Compile Include="Features\SwitchCommand.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="Plugins\AppRunnerPlugin.cs" />
     <Compile Include="Properties\AppInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
