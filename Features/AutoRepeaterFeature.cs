@@ -27,11 +27,8 @@ namespace Ricky8955555.CoolQ.Features
 
                 if (messages.FindAll(x => x.Message == e.Message).Count == messages.Count)
                 {
-                    if (messages.Count == 3)
-                    {
+                    if (messages.Count > 2)
                         e.Source.Send(e.Message.Content);
-                        Messages.RemoveAll(x => x.Source.Equals(e.Source));
-                    }
                 }
                 else
                     Messages.RemoveAll(x => x.Source.Equals(e.Source) && x.Message != e.Message);
