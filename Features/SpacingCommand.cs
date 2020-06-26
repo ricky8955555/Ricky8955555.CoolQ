@@ -13,7 +13,7 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText)
         {
-            string str = plainText.ToString();
+            string str = plainText;
 
             if (!string.IsNullOrEmpty(str))
             {

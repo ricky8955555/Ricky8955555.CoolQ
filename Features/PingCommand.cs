@@ -16,7 +16,7 @@ namespace Ricky8955555.CoolQ.Features
             var ping = new Ping();
             long totalRoundtripTime = 0;
             int packetLostCount = 0;
-            string[] splitText = plainText.ToString().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] splitText = plainText.Content.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             int pingCount = 4;
 
             if (splitText != null &&

@@ -7,17 +7,17 @@ using System.Net.Http;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class MusicCommand : Command
+    class MusicCommand : Command<PlainText>
     {
         public override string ResponseCommand { get; } = "music";
 
         protected override string CommandUsage { get; } = "{0}music <歌曲名>";
 
-        protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage parameter = null)
+        protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText)
         {
-            string songName = parameter.GetPlainText();
+            string songName = plainText;
 
-            if (parameter?[0] is PlainText && !string.IsNullOrEmpty(songName))
+            if (!string.IsNullOrWhiteSpace(songName))
             {
                 var musicName = songName.Trim();
                 var client = new HttpClient();

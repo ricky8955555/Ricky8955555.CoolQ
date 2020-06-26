@@ -16,7 +16,7 @@ namespace Ricky8955555.CoolQ.Features
         {
             var config = (JArray)BlacklistConfig.Config;
             long number = mention.TargetNumber;
-            bool? operation = plainText.ToString().Trim().ToLower().ToBool("add", "remove");
+            bool? operation = plainText.Content.Trim().ToLower().ToBool("add", "remove");
 
             if (number == Owner || number == Bot.CurrentUser.Number)
                 e.Reply("无法将主人或机器人加入到黑名单 ─=≡Σ(((つ•̀ω•́)つ");

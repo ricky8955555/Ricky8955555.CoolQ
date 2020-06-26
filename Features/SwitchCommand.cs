@@ -14,7 +14,7 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText)
         {
-            string[] splitText = plainText.ToString().Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+            string[] splitText = plainText.Content.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
 
             if (splitText != null && splitText.Length == 2)
             {
