@@ -28,7 +28,7 @@ namespace Ricky8955555.CoolQ
                 feature.Invoke(e);
         }
 
-        public bool IsEnabled(IChattable source) => CanDisable ? AppConfig.Config[source.ToString(true)][Name].ToObject<bool>() : true;
+        public bool IsEnabled(IChattable source) => !CanDisable || AppConfig.Config[source.ToString(true)][Name].ToObject<bool>();
 
         public bool IsAllowed(IUser user)
         {
@@ -37,7 +37,7 @@ namespace Ricky8955555.CoolQ
                 case Permission.Everyone:
                     return true;
                 case Permission.Administrator:
-                    return user is IMember member ? (member.IsAdministrator || user.Number == Administrator) : true;
+                    return !(user is IMember member) || (member.IsAdministrator || user.Number == Administrator);
                 case Permission.Owner:
                     return user.Number == Administrator;
                 default:
