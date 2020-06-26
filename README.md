@@ -1,8 +1,20 @@
 # Ricky8955555.CoolQ
 
-使用 HuajiTech.CoolQ 开发的 酷Q 应用
+一款基于 酷Q 的机器人插件
 
-目前 Ricky8955555.CoolQ 带有以下应用：
+## 简介
+
+基于 CoolQ (智能机器人软件) & HuajiTech.CoolQ (SDK) 开发的一款插件
+
+感谢 CoolQ 提供软件支持 和 SYC 提供 SDK 支持
+
+### 链接：
+
+- HuajiTech.CoolQ (SDK) 项目 (GitHub): https://github.com/huajitech/coolq-dotnet-sdk
+- 酷Q 官网: https://cqp.cc
+
+## 应用
+
 - Ping
 - 帮助菜单
 - 点歌
