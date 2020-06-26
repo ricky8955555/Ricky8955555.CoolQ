@@ -9,7 +9,7 @@ namespace Ricky8955555.CoolQ.Features
     {
         public override string ResponseCommand { get; } = "ping";
 
-        protected override string CommandUsage { get; } = "{0}ping <IP 地址或域名>";
+        protected override string CommandUsage { get; } = "{0}ping <IP 地址或域名> [次数 (缺省值 3)]";
 
         protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText)
         {
@@ -20,7 +20,7 @@ namespace Ricky8955555.CoolQ.Features
             int pingCount = 4;
 
             if (splitText != null &&
-                (splitText.Length == 2 && int.TryParse(splitText[1], out pingCount) && pingCount > 0) ||
+                splitText.Length == 2 && int.TryParse(splitText[1], out pingCount) && pingCount > 0 ||
                 splitText.Length == 1)
                 try
                 {
