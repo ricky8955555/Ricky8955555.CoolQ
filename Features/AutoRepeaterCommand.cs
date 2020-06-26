@@ -12,10 +12,15 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements = null)
         {
-            if (Chattables.Switchs(e.Source))
-                e.Source.Send("已开启自动复读 ヾ(^Д^*)/");
+            if (elements == null)
+            {
+                if (Chattables.Switchs(e.Source))
+                    e.Source.Send("已开启自动复读 ヾ(^Д^*)/");
+                else
+                    e.Source.Send("已关闭自动复读 ヾ(^Д^*)/");
+            }
             else
-                e.Source.Send("已关闭自动复读 ヾ(^Д^*)/");
+                NotifyIncorrectUsage(e);
         }
     }
 }
