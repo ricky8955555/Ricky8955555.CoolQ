@@ -89,7 +89,7 @@
     <Compile Include="Apps\BlacklistManagerApp.cs" />
     <Compile Include="Apps\CovidStatusApp.cs" />
     <Compile Include="Apps\FakeMentionParserApp.cs" />
-    <Compile Include="Apps\GetVersionApp.cs" />
+    <Compile Include="Apps\AboutApp.cs" />
     <Compile Include="Apps\HelpMenuApp.cs" />
     <Compile Include="Apps\MarketingApp.cs" />
     <Compile Include="Apps\MusicApp.cs" />
@@ -111,7 +111,7 @@
     <Compile Include="Features\AutoRepeaterFeature.cs" />
     <Compile Include="Features\CovidStatusCommand.cs" />
     <Compile Include="Features\FakeMentionParserFeature.cs" />
-    <Compile Include="Features\GetVersionCommand.cs" />
+    <Compile Include="Features\AboutCommand.cs" />
     <Compile Include="Features\HelpMenuCommand.cs" />
     <Compile Include="Features\MarketingCommand.cs" />
     <Compile Include="Features\MusicCommand.cs" />

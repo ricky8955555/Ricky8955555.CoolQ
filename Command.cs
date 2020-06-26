@@ -35,6 +35,8 @@ namespace Ricky8955555.CoolQ
 
     abstract class Command : CommandBase
     {
+        protected virtual bool CanHaveParameter { get; } = false;
+
         protected abstract void Invoking(MessageReceivedEventArgs e, ComplexMessage elements = null);
 
         public override void Invoke(MessageReceivedEventArgs e)
@@ -45,7 +47,12 @@ namespace Ricky8955555.CoolQ
             if (message?.Trim().ToLower() == ResponseCommand)
                 Invoking(e);
             else if (parameter != null)
-                Invoking(e, ComplexMessage.Parse(parameter));
+            {
+                if (CanHaveParameter)
+                    Invoking(e, ComplexMessage.Parse(parameter));
+                else
+                    NotifyIncorrectUsage(e);
+            }
         }
     }
 

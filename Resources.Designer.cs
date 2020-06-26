@@ -61,6 +61,23 @@ namespace Ricky8955555.CoolQ {
         }
         
         /// <summary>
+        ///   查找类似 Ricky8955555.CoolQ
+        ///By Ricky8955555
+        ///基于 CoolQ (智能机器人软件) &amp; HuajiTech.CoolQ (SDK) 开发的一款插件
+        ///
+        ///感谢 CoolQ 提供软件支持 和 SYC 提供 SDK 支持
+        ///
+        ///Ricky8955555.CoolQ 项目 (GitHub): {0}
+        ///HuajiTech.CoolQ (SDK) 项目 (GitHub): {1}
+        ///酷Q 官网: {2} 的本地化字符串。
+        /// </summary>
+        internal static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 解析配置失败（{0}） 的本地化字符串。
         /// </summary>
         internal static string ConfigurationCannotBeLoaded {
@@ -75,6 +92,15 @@ namespace Ricky8955555.CoolQ {
         internal static string ConfigurationLoading {
             get {
                 return ResourceManager.GetString("ConfigurationLoading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 https://cqp.cc 的本地化字符串。
+        /// </summary>
+        internal static string CoolQURL {
+            get {
+                return ResourceManager.GetString("CoolQURL", resourceCulture);
             }
         }
         
@@ -113,6 +139,24 @@ namespace Ricky8955555.CoolQ {
         internal static string MusicApiURL {
             get {
                 return ResourceManager.GetString("MusicApiURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 https://github.com/ricky8955555/Ricky8955555.CoolQ 的本地化字符串。
+        /// </summary>
+        internal static string ProjectURL {
+            get {
+                return ResourceManager.GetString("ProjectURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 https://github.com/huajitech/coolq-dotnet-sdk 的本地化字符串。
+        /// </summary>
+        internal static string SDKProjectURL {
+            get {
+                return ResourceManager.GetString("SDKProjectURL", resourceCulture);
             }
         }
     }

@@ -9,7 +9,7 @@ namespace Ricky8955555.CoolQ
         {
             new HelpMenuApp(),
             new MusicApp(),
-            new GetVersionApp(),
+            new AboutApp(),
             new CovidStatusApp(),
             new SpacingApp(),
             new PingApp(),
