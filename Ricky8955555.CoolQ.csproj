@@ -41,19 +41,19 @@
       <HintPath>packages\HtmlAgilityPack.1.11.23\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="HuajiTech.CoolQ, Version=0.3.2.0, Culture=neutral, PublicKeyToken=51c187ed1cdbe1fa, processorArchitecture=MSIL">
-      <HintPath>packages\HuajiTech.CoolQ.0.3.2-alpha.internal.4\lib\net461\HuajiTech.CoolQ.dll</HintPath>
+      <HintPath>packages\HuajiTech.CoolQ.0.3.2-alpha.internal.4.1\lib\net461\HuajiTech.CoolQ.dll</HintPath>
     </Reference>
     <Reference Include="HuajiTech.CoolQ.Abstractions, Version=0.3.2.0, Culture=neutral, PublicKeyToken=8ba6ecd4bafd8dad, processorArchitecture=MSIL">
-      <HintPath>packages\HuajiTech.CoolQ.Abstractions.0.3.2-alpha.internal.4\lib\net461\HuajiTech.CoolQ.Abstractions.dll</HintPath>
+      <HintPath>packages\HuajiTech.CoolQ.Abstractions.0.3.2-alpha.internal.4.1\lib\net461\HuajiTech.CoolQ.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="HuajiTech.CoolQ.Core, Version=0.3.2.0, Culture=neutral, PublicKeyToken=0c359f77d3d00a9d, processorArchitecture=MSIL">
-      <HintPath>packages\HuajiTech.CoolQ.Core.0.3.2-alpha.internal.4\lib\net461\HuajiTech.CoolQ.Core.dll</HintPath>
+      <HintPath>packages\HuajiTech.CoolQ.Core.0.3.2-alpha.internal.4.2\lib\net461\HuajiTech.CoolQ.Core.dll</HintPath>
     </Reference>
     <Reference Include="HuajiTech.CoolQ.Loaders.Autofac, Version=0.3.2.0, Culture=neutral, PublicKeyToken=4d9b718a914968af, processorArchitecture=MSIL">
       <HintPath>packages\HuajiTech.CoolQ.Loaders.Autofac.0.3.2-alpha.internal.4\lib\net461\HuajiTech.CoolQ.Loaders.Autofac.dll</HintPath>
     </Reference>
     <Reference Include="HuajiTech.CoolQ.Messaging, Version=0.3.2.0, Culture=neutral, PublicKeyToken=93d39f819b8987ca, processorArchitecture=MSIL">
-      <HintPath>packages\HuajiTech.CoolQ.Messaging.0.3.2-alpha.internal.4\lib\net461\HuajiTech.CoolQ.Messaging.dll</HintPath>
+      <HintPath>packages\HuajiTech.CoolQ.Messaging.0.3.2-alpha.internal.4.1\lib\net461\HuajiTech.CoolQ.Messaging.dll</HintPath>
     </Reference>
     <Reference Include="HuajiTech.CoolQ.Packing.ILRepack, Version=0.3.2.0, Culture=neutral, PublicKeyToken=93cf1aec42844af0, processorArchitecture=MSIL">
       <HintPath>packages\HuajiTech.CoolQ.Packing.ILRepack.0.3.2-alpha.internal.4\lib\net461\HuajiTech.CoolQ.Packing.ILRepack.dll</HintPath>

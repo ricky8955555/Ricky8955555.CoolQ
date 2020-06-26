@@ -1,5 +1,5 @@
 // 用于 HuajiTech.CoolQ 应用的配置文件。
-// 最后更新于 2020-6-18 21:39。
+// 最后更新于 2020-6-26 13:23。
 //
 // 酷Q的 Json 文件支持以 // 开头的注释。
 // 开发模式下，应用的 app.dll 及 app.json 文件须放在 dev/[appid]/ 目录下，且必须向 AppIdAttribute 传入正确的 AppId。
@@ -60,13 +60,24 @@
     }
   ],
   "menu": [ // 设置菜单【发布前请删除无用菜单，如果无需设置菜单请全部删除】
+    {
+      "name": "菜单项", // 菜单名称
+      "function": "OnMenuItemClicked" // 菜单对应函数
+    }
   ],
   "status": [ // 悬浮窗状态【发布前请删除无用悬浮窗状态，如果无需悬浮窗状态请全部删除】
+    {
+      "id": 1, // 悬浮窗ID
+      "name": "悬浮窗", // 名称
+      "title": "FLOAT", // 英文名称
+      "function": "OnStatusUpdating", // 数据更新对应函数
+      "period": "1000" // 更新间隔（单位ms（毫秒），目前仅支持1000ms（1秒））
+    }
   ],
   "auth": [ // 应用权限【发布前请删除无用权限】
     101, // 发送群消息           IGroup.Send
     106, // 发送私聊消息         IUser.Send
-    130, // 取群成员信息         IMember.*.get
+    130, // 取群成员信息         IMember.Request / IMember.Refresh / IMember.*.get
     160 // 取群成员列表         IGroup.GetMembers
   ]
 }
