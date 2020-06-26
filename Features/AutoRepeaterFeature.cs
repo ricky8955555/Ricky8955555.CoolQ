@@ -1,6 +1,9 @@
 ﻿using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
+using HuajiTech.CoolQ.Messaging;
 using System.Collections.Generic;
+using System.Linq;
+using static HuajiTech.CoolQ.CurrentPluginContext;
 using static Ricky8955555.CoolQ.Apps.AutoRepeaterApp;
 using static Ricky8955555.CoolQ.Commons;
 
@@ -28,7 +31,15 @@ namespace Ricky8955555.CoolQ.Features
                 if (messages.FindAll(x => x.Message == e.Message).Count == messages.Count)
                 {
                     if (messages.Count > 2)
-                        e.Source.Send(e.Message.Content);
+                    {
+                        var complexMessage = e.Message.Parse();
+                        int imageCount = complexMessage.OfType<Image>().Count();
+                        int recordCount = complexMessage.OfType<Record>().Count();
+
+                        if ((imageCount == 0 || imageCount > 0 && Bot.CanSendImage) &&
+                            (recordCount == 0 || recordCount > 0 && Bot.CanSendRecord))
+                            e.Source.Send(e.Message.Content);
+                    }
                 }
                 else
                     Messages.RemoveAll(x => x.Source.Equals(e.Source) && x.Message != e.Message);
