@@ -44,7 +44,7 @@
       <HintPath>..\packages\HuajiTech.CoolQ.Abstractions.0.4.0-beta\lib\net461\HuajiTech.CoolQ.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="HuajiTech.CoolQ.Core, Version=0.4.0.0, Culture=neutral, PublicKeyToken=0c359f77d3d00a9d, processorArchitecture=MSIL">
-      <HintPath>..\packages\HuajiTech.CoolQ.Core.0.4.0-beta\lib\net461\HuajiTech.CoolQ.Core.dll</HintPath>
+      <HintPath>..\packages\HuajiTech.CoolQ.Core.0.4.0-beta.1\lib\net461\HuajiTech.CoolQ.Core.dll</HintPath>
     </Reference>
     <Reference Include="HuajiTech.CoolQ.Loaders.Autofac, Version=0.4.0.0, Culture=neutral, PublicKeyToken=4d9b718a914968af, processorArchitecture=MSIL">
       <HintPath>..\packages\HuajiTech.CoolQ.Loaders.Autofac.0.4.0-beta\lib\net461\HuajiTech.CoolQ.Loaders.Autofac.dll</HintPath>
