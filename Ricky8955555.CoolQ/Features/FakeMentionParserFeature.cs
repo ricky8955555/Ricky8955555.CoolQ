@@ -8,7 +8,7 @@ namespace Ricky8955555.CoolQ.Features
 {
     class FakeMentionParserFeature : Feature
     {
-        public override string Usage { get; } = "当消息中存在假Mention，则返回真Mention";
+        public override string Usage { get; } = "当消息中存在纯文本形式的假提及，则发送提及";
 
         public override void Invoke(MessageReceivedEventArgs e)
         {
