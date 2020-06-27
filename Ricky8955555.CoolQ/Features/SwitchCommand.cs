@@ -28,17 +28,10 @@ namespace Ricky8955555.CoolQ.Features
                     {
                         if (!operation.HasValue)
                             NotifyIncorrectUsage(e);
-                        else if (operation.Value)
-                        {
-                            config.Config[e.Source.ToString(true)][app.Name] = true;
-                            config.Save();
-                            e.Reply($"已启用应用 {app.DisplayName}（{app.Name}） ✧(≖ ◡ ≖✿ ");
-                        }
                         else
                         {
-                            config.Config[e.Source.ToString(true)][app.Name] = false;
-                            config.Save();
-                            e.Reply($"已停用应用 {app.DisplayName}（{app.Name}） ✧(≖ ◡ ≖✿ ");
+                            config.Config[e.Source.ToString(true)][app.Name] = operation.Value;
+                            e.Reply($"已{(operation.Value ? "启用" : "停用")}应用 {app.DisplayName}（{app.Name}） ✧(≖ ◡ ≖✿ ");
                         }
                     }
                     else
