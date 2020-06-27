@@ -26,20 +26,20 @@ namespace Ricky8955555.CoolQ.Features
 
                     if (app.CanDisable)
                     {
-                        if (operation == true)
+                        if (!operation.HasValue)
+                            NotifyIncorrectUsage(e);
+                        else if (operation.Value)
                         {
                             config.Config[e.Source.ToString(true)][app.Name] = true;
                             config.Save();
                             e.Reply($"已启用应用 {app.DisplayName}（{app.Name}） ✧(≖ ◡ ≖✿ ");
                         }
-                        else if (operation == false)
+                        else
                         {
                             config.Config[e.Source.ToString(true)][app.Name] = false;
                             config.Save();
                             e.Reply($"已停用应用 {app.DisplayName}（{app.Name}） ✧(≖ ◡ ≖✿ ");
                         }
-                        else if (operation == null)
-                            NotifyIncorrectUsage(e);
                     }
                     else
                         e.Reply($"该应用 {app.DisplayName}（{app.Name}）不允许被启用/停用 o(ﾟДﾟ)っ！");

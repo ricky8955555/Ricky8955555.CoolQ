@@ -22,7 +22,9 @@ namespace Ricky8955555.CoolQ.Features
                 e.Reply("无法将主人或机器人加入到黑名单 ─=≡Σ(((つ•̀ω•́)つ");
             else
             {
-                if (operation == true)
+                if (!operation.HasValue)
+                    NotifyIncorrectUsage(e);
+                if (operation.Value)
                 {
                     if (config.Contains(number, true))
                         e.Reply($"{number} 已存在黑名单内 (ц｀ω´ц*)");
@@ -33,7 +35,7 @@ namespace Ricky8955555.CoolQ.Features
                         e.Reply($"已将 {number} 加入黑名单 ❥(ゝω・✿ฺ)");
                     }
                 }
-                else if (operation == false)
+                else
                 {
                     if (config.Contains(number, true))
                     {
@@ -43,8 +45,6 @@ namespace Ricky8955555.CoolQ.Features
                     else
                         e.Reply($"{number} 不存在黑名单内 (ц｀ω´ц*)");
                 }
-                else if (operation == null)
-                    NotifyIncorrectUsage(e);
             }
         }
     }

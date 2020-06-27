@@ -1,7 +1,7 @@
 ﻿using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
-using System.Diagnostics;
+using System.Reflection;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -13,14 +13,15 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
-            string fileVersion = FileVersionInfo.GetVersionInfo(typeof(Main).Assembly.Location).FileVersion;
+            var assembly = Assembly.GetExecutingAssembly();
+            var version = assembly.GetName().Version;
             string sdkVersion = SdkInfo.Version;
 #if DEBUG
-            string version = fileVersion + "-debug";
+            string versionStr = version + " (Debug)";
 #else
-            string version = fileVersion + "-release";
+            string versionStr = version + " (Release)";
 #endif
-            e.Source.Send(string.Format(Resources.About, Resources.ProjectURL, Resources.SDKProjectURL, Resources.CoolQURL) + $"\n\n插件版本：{version}\nSDK版本：{sdkVersion}");
+            e.Source.Send(string.Format(Resources.About, Resources.ProjectURL, Resources.SDKProjectURL, Resources.CoolQURL) + $"\n\n插件版本：{versionStr}\nSDK版本：{sdkVersion}");
         }
     }
 }

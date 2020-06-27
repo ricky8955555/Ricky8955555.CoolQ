@@ -51,6 +51,28 @@ namespace Ricky8955555.CoolQ
                 throw new ArgumentException();
         }
 
+        public static void Add(this JObject jObject, JProperty content, bool canOverwrite)
+        {
+            if (canOverwrite || !jObject.ContainsKey(content.Name))
+                jObject.Add(content);
+        }
+
+        public static void Operate(this JObject jObject, JProperty content, bool isAdding)
+        {
+            if (isAdding)
+                jObject.Add(content);
+            else
+                jObject.Remove(content.Name);
+        }
+
+        public static void Operate(this JObject jObject, JProperty content, bool canOverwrite, bool isAdding)
+        {
+            if (isAdding)
+                jObject.Add(content, canOverwrite);
+            else
+                jObject.Remove(content.Name);
+        }
+
         public static string ToString(this IChattable chattable, bool useExtension)
         {
             if (chattable is IUser user && useExtension)

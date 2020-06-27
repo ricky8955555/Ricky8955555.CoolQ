@@ -8,17 +8,11 @@ using static Ricky8955555.CoolQ.Commons;
 
 namespace Ricky8955555.CoolQ
 {
-    [Plugin((int)AppLifecycle.Enabled)]
-    class Main : Plugin
+    public static partial class Main
     {
-        readonly static List<IChattable> InitdChattables = new List<IChattable>();
+        private readonly static List<IChattable> InitdChattables = new List<IChattable>();
 
-        public Main(IMessageEventSource messageEventSource)
-        {
-            messageEventSource.AddMessageReceivedEventHandler(MessageReceived);
-        }
-
-        private void MessageReceived(object sender, MessageReceivedEventArgs e)
+        private static void MessageReceived(object sender, MessageReceivedEventArgs e)
         {
             try
             {
@@ -27,33 +21,30 @@ namespace Ricky8955555.CoolQ
                     foreach (var app in Commons.Apps)
                         app.Run(e);
             }
+            catch (ApiException ex)
+            {
+                ex.LogAsWarning();
+            }
             catch (Exception ex)
             {
                 ex.LogAsError().SendTo(e.Source);
             }
         }
 
-        void InitChattable(IChattable source)
+        private static void InitChattable(IChattable source)
         {
             if (!InitdChattables.Contains(source))
             {
                 string sourceStr = source.ToString(true);
+
                 var config = (JObject)AppConfig.Config;
+                config.Add(new JProperty(sourceStr, new JObject()), false);
 
-                if (!config.ContainsKey(sourceStr))
-                    config.Add(
-                        new JProperty(sourceStr, new JObject() { Commons.Apps.Where(x => x.CanDisable).Select(x => new JProperty(x.Name, x.IsEnabledByDefault)) }));
-                else
+                var sourceConfig = (JObject)config[sourceStr];
+
+                foreach (AppBase app in Commons.Apps)
                 {
-                    var sourceConfig = (JObject)config[sourceStr];
-
-                    foreach (AppBase app in Commons.Apps)
-                    {
-                        if (app.CanDisable && !sourceConfig.ContainsKey(app.Name))
-                            sourceConfig.Add(new JProperty(app.Name, app.IsEnabledByDefault));
-                        else if ((!app.CanDisable) && sourceConfig.ContainsKey(app.Name))
-                            sourceConfig.Remove(app.Name);
-                    }
+                    sourceConfig.Operate(new JProperty(app.Name, app.IsEnabledByDefault), false, app.CanDisable);
                 }
 
                 AppConfig.Save();

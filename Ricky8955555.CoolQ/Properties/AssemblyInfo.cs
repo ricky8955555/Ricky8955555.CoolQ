@@ -23,13 +23,13 @@ using System.Runtime.InteropServices;
 
 // 程序集的版本信息由下列四个值组成: 
 //
-//      主版本 - Release 版本
-//      次版本 - 结构修改 ...
-//      生成号 - 新增 App、功能 ...
-//      修订号 - Bug 修复 ...
+//      主版本 - 结构性更改，完全不兼容以前的版本
+//      次版本 - 增加功能，但兼容以前的版本
+//      生成号 - 2000 年 1 月 1 日 到编译日期的总天数
+//      修订号 - 当天从 0 点到当前时间的总刻度数
 //
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值
 //通过使用 "*"，如下所示:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.3.0.0")]
-[assembly: AssemblyFileVersion("0.3.0.4")]
+[assembly: AssemblyVersion("1.0.*")]
+// [assembly: AssemblyFileVersion("*")]

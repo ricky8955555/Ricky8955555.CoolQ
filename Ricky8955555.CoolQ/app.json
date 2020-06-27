@@ -10,11 +10,11 @@
   "$schema": "https://raw.githubusercontent.com/cqmoe/awesome-coolq/master/schema/app/v9/app-schema.json",
   "ret": 1, // 返回码，固定为1
   "apiver": 9, // Api版本，本SDK为9
-  "name": "Ricky8955555's Addons", // 应用名称
-  "version": "0.2.1", // 应用版本
-  "version_id": 7, // 应用顺序版本（每次发布时至少+1）
+  "name": "Minop Bot", // 应用名称
+  "version": "1.0.0", // 应用版本
+  "version_id": 1, // 应用顺序版本（每次发布时至少+1）
   "author": "Ricky8955555", // 应用作者
-  "description": "Ricky用的小插件",
+  "description": "Ricky 的一款实用性 酷Q 插件",
   "event": [ // 事件列表【发布前请删除无用事件】[注意：如果插件在非 AppLifecycle.Initializing 阶段加载，删除对应事件将导致插件将不被加载。]
     {
       "id": 1, // 事件ID
