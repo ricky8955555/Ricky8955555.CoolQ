@@ -41,7 +41,7 @@
       <HintPath>..\packages\HuajiTech.CoolQ.Abstractions.0.4.0-beta\lib\net461\HuajiTech.CoolQ.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="HuajiTech.CoolQ.Core, Version=0.4.0.0, Culture=neutral, PublicKeyToken=0c359f77d3d00a9d, processorArchitecture=MSIL">
-      <HintPath>..\packages\HuajiTech.CoolQ.Core.0.4.0-beta.1\lib\net461\HuajiTech.CoolQ.Core.dll</HintPath>
+      <HintPath>..\packages\HuajiTech.CoolQ.Core.0.4.0-beta.2\lib\net461\HuajiTech.CoolQ.Core.dll</HintPath>
     </Reference>
     <Reference Include="HuajiTech.CoolQ.Messaging, Version=0.4.0.0, Culture=neutral, PublicKeyToken=93d39f819b8987ca, processorArchitecture=MSIL">
       <HintPath>..\packages\HuajiTech.CoolQ.Messaging.0.4.0-beta\lib\net461\HuajiTech.CoolQ.Messaging.dll</HintPath>

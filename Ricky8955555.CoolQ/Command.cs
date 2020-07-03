@@ -45,13 +45,18 @@ namespace Ricky8955555.CoolQ
             string parameter = GetParameter(message);
 
             if (message?.Trim().ToLower() == ResponseCommand)
+            {
                 Invoking(e);
+                Handled = true;
+            }
             else if (parameter != null)
             {
                 if (CanHaveParameter)
                     Invoking(e, ComplexMessage.Parse(parameter));
                 else
                     NotifyIncorrectUsage(e);
+
+                Handled = true;
             }
         }
     }
@@ -74,6 +79,8 @@ namespace Ricky8955555.CoolQ
                     Invoking(e, ele);
                 else
                     NotifyIncorrectUsage(e);
+
+                Handled = true;
             }
         }
     }
@@ -97,6 +104,8 @@ namespace Ricky8955555.CoolQ
                     Invoking(e, ele1, ele2);
                 else
                     NotifyIncorrectUsage(e);
+
+                Handled = true;
             }
         }
     }

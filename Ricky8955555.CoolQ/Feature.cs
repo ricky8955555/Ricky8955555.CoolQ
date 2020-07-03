@@ -9,6 +9,8 @@ namespace Ricky8955555.CoolQ
 
         public abstract void Invoke(MessageReceivedEventArgs e);
 
+        public bool Handled { get; set; } = false;
+
         public void NotifyIncorrectUsage(MessageReceivedEventArgs e)
         {
             e.Reply(string.Format(Resources.FeatureIncorrectUsage, Usage));

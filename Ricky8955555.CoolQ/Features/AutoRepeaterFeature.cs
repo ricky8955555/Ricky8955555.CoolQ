@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using static HuajiTech.CoolQ.CurrentPluginContext;
 using static Ricky8955555.CoolQ.Apps.AutoRepeaterApp;
-using static Ricky8955555.CoolQ.Commons;
 
 namespace Ricky8955555.CoolQ.Features
 {
     class AutoRepeaterFeature : Feature
     {
+
         static readonly List<(IChattable Source, string Message)> Messages = new List<(IChattable Source, string Message)>();
 
         public override void Invoke(MessageReceivedEventArgs e)
@@ -18,8 +18,7 @@ namespace Ricky8955555.CoolQ.Features
             if (Chattables.Contains(e.Source))
                 try
                 {
-                    if (!e.Message.ToString().StartsWith(Prefix))
-                        e.Source.Send(e.Message.Content);
+                    e.Source.Send(e.Message.Content);
                 }
                 catch (ApiException) { }
             else

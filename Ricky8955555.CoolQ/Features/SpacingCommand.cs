@@ -26,7 +26,7 @@ namespace Ricky8955555.CoolQ.Features
                     else
                         e.Source.Send(string.Join(new string(' ', 3), str.ToCharArray()));
                 }
-                catch (ApiException)
+                catch (ApiException ex) when (ex.ErrorCode == -26)
                 {
                     e.Source.Send("发送出错了呀 (；´д｀)ゞ");
                 }

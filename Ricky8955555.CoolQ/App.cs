@@ -1,5 +1,6 @@
 ﻿using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
+using System.Linq;
 using static Ricky8955555.CoolQ.Commons;
 
 namespace Ricky8955555.CoolQ
@@ -16,7 +17,9 @@ namespace Ricky8955555.CoolQ
 
         public virtual bool CanDisable { get; } = true;
 
-        public virtual Permission Permission { get; } = Permission.Everyone;
+        public virtual AppPermission Permission { get; } = AppPermission.Everyone;
+
+        public virtual AppPriority Priority { get; } = AppPriority.Normal;
 
         public virtual Feature[] Features { get; } = new Feature[] { };
 
@@ -25,8 +28,18 @@ namespace Ricky8955555.CoolQ
         protected void FeatureInvoker(MessageReceivedEventArgs e)
         {
             foreach (var feature in Features)
+            {
                 feature.Invoke(e);
+                if (feature.Handled)
+                {
+                    Handled = true;
+                    feature.Handled = false;
+                    break;
+                }
+            }
         }
+
+        public bool Handled { get; set; } = false;
 
         public bool IsEnabled(IChattable source) => !CanDisable || AppConfig.Config[source.ToString(true)][Name].ToObject<bool>();
 
@@ -34,11 +47,11 @@ namespace Ricky8955555.CoolQ
         {
             switch (Permission)
             {
-                case Permission.Everyone:
+                case AppPermission.Everyone:
                     return true;
-                case Permission.Administrator:
+                case AppPermission.Administrator:
                     return !(user is IMember member) || (member.IsAdministrator || user.Number == Owner);
-                case Permission.Owner:
+                case AppPermission.Owner:
                     return user.Number == Owner;
                 default:
                     return false;
@@ -73,10 +86,19 @@ namespace Ricky8955555.CoolQ
         }
     }
 
-    enum Permission
+    enum AppPermission
     {
         Everyone,
         Administrator,
         Owner
+    }
+
+    enum AppPriority
+    {
+        Highest,
+        Higher,
+        Normal,
+        Lower,
+        Lowest
     }
 }

@@ -10,7 +10,7 @@ namespace Ricky8955555.CoolQ.Apps
 
         public override bool CanDisable { get; } = false;
 
-        public override Permission Permission { get; } = Permission.Owner;
+        public override AppPermission Permission { get; } = AppPermission.Owner;
 
         public override Feature[] Features { get; } = new Feature[]
         {

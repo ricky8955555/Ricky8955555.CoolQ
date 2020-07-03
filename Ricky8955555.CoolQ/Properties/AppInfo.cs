@@ -10,7 +10,7 @@ using Ricky8955555.CoolQ;
 // 指定应用的初始化器。
 // 应用初始化器必须包含一个名为 Init 的无参数静态方法。
 // 注意：必须使用字符串指定初始化器。
-[assembly: Initializer(typeof(Main))]
+[assembly: Initializer("Ricky8955555.CoolQ.Main")]
 
 // 指定应用的 AppID。必须更改此项。
 // dev 目录下存放应用的目录名必须与 AppID 匹配。

@@ -12,6 +12,8 @@ namespace Ricky8955555.CoolQ.Apps
 
         public override bool IsEnabledByDefault { get; } = false;
 
+        public override AppPriority Priority { get; } = AppPriority.Lowest;
+
         public override Feature[] Features { get; } = new Feature[]
         {
             new AutoRepeaterCommand(),

@@ -18,8 +18,14 @@ namespace Ricky8955555.CoolQ
             {
                 InitChattable(e.Source);
                 if (!BlacklistConfig.Config.ToObject<List<long>>().Contains(e.Sender.Number))
-                    foreach (var app in Commons.Apps)
+                    foreach (var app in Commons.Apps.OrderBy(x => (int)x.Priority))
+                    {
                         app.Run(e);
+                        if (app.Handled) {
+                            app.Handled = false;
+                            break;
+                        }
+                    }
             }
             catch (ApiException ex)
             {
