@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace Ricky8955555.CoolQ
 {
-    static class Utilities
+    internal static class Utilities
     {
-        public static IEnumerable<AppBase> GetApps(IChattable source, IUser user)
+        internal static IEnumerable<AppBase> GetApps(IChattable source, IUser user)
         {
             var apps = Commons.Apps.Where(x => x is App && x.IsAllowed(user));
             if (source is IGroup)

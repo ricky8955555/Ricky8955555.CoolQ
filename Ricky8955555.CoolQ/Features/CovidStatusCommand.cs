@@ -7,7 +7,7 @@ namespace Ricky8955555.CoolQ.Features
 {
     class CovidStatusCommand : Command
     {
-        public override string ResponseCommand { get; } = "covid-19";
+        internal override string ResponseCommand { get; } = "covid-19";
 
         protected override string CommandUsage { get; } = "{0}COVID-19";
 

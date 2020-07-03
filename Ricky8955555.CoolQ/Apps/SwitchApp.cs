@@ -4,15 +4,15 @@ namespace Ricky8955555.CoolQ.Apps
 {
     class SwitchApp : App
     {
-        public override string Name { get; } = "Switch";
+        internal override string Name { get; } = "Switch";
 
-        public override string DisplayName { get; } = "应用开关";
+        internal override string DisplayName { get; } = "应用开关";
 
-        public override bool CanDisable { get; } = false;
+        internal override bool CanDisable { get; } = false;
 
-        public override AppPermission Permission { get; } = AppPermission.Administrator;
+        internal override AppPermission Permission { get; } = AppPermission.Administrator;
 
-        public override Feature[] Features { get; } = new Feature[]
+        internal override Feature[] Features { get; } = new Feature[]
         {
             new SwitchCommand()
         };

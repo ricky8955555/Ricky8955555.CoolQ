@@ -4,11 +4,11 @@ namespace Ricky8955555.CoolQ.Apps
 {
     class MarketingApp : App
     {
-        public override string Name { get; } = "Marketing";
+        internal override string Name { get; } = "Marketing";
 
-        public override string DisplayName { get; } = "营销号文章生成器";
+        internal override string DisplayName { get; } = "营销号文章生成器";
 
-        public override Feature[] Features { get; } = new Feature[]
+        internal override Feature[] Features { get; } = new Feature[]
         {
             new MarketingCommand()
         };

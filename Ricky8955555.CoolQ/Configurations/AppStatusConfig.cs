@@ -2,9 +2,9 @@
 
 namespace Ricky8955555.CoolQ.Configurations
 {
-    class AppConfig : Configuration
+    class AppStatusConfig : Configuration
     {
-        public override string Name { get; } = "AppConfig";
+        internal override string Name { get; } = "AppStatusConfig";
         protected override JToken InitInfo { get; } = new JObject();
     }
 }

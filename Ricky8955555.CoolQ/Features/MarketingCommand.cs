@@ -6,7 +6,7 @@ namespace Ricky8955555.CoolQ.Features
 {
     class MarketingCommand : Command<PlainText>
     {
-        public override string ResponseCommand { get; } = "marketing";
+        internal override string ResponseCommand { get; } = "marketing";
 
         protected override string CommandUsage { get; } = "{0}marketing <主体> <事件> <另一种说法>";
 

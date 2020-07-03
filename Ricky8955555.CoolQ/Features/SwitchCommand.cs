@@ -8,7 +8,7 @@ namespace Ricky8955555.CoolQ.Features
 {
     class SwitchCommand : Command<PlainText>
     {
-        public override string ResponseCommand { get; } = "switch";
+        internal override string ResponseCommand { get; } = "switch";
 
         protected override string CommandUsage { get; } = "{0}switch <应用名称> <on/off>";
 
@@ -20,7 +20,7 @@ namespace Ricky8955555.CoolQ.Features
             {
                 try
                 {
-                    var config = Commons.AppConfig;
+                    var config = Commons.AppStatusConfig;
                     var app = GetApps(e.Source, e.Sender).Where(x => x.Name == splitText[0]).Single();
                     bool? operation = splitText[1].ToLower().ToBool("on", "off");
 
@@ -32,6 +32,7 @@ namespace Ricky8955555.CoolQ.Features
                         {
                             config.Config[e.Source.ToString(true)][app.Name] = operation.Value;
                             e.Reply($"已{(operation.Value ? "启用" : "停用")}应用 {app.DisplayName}（{app.Name}） ✧(≖ ◡ ≖✿ ");
+                            config.Save();
                         }
                     }
                     else

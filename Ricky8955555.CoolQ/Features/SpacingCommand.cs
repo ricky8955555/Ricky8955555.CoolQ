@@ -7,7 +7,7 @@ namespace Ricky8955555.CoolQ.Features
 {
     class SpacingCommand : Command<PlainText>
     {
-        public override string ResponseCommand { get; } = "space";
+        internal override string ResponseCommand { get; } = "space";
 
         protected override string CommandUsage { get; } = "{0}space [空格数量(缺省值 3)] <文本>";
 

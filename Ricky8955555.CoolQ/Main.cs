@@ -8,9 +8,14 @@ using static Ricky8955555.CoolQ.Commons;
 
 namespace Ricky8955555.CoolQ
 {
-    public static partial class Main
+    internal class Main
     {
         private readonly static List<IChattable> InitdChattables = new List<IChattable>();
+
+        internal Main(ICurrentUserEventSource currentUserEventSource)
+        {
+            currentUserEventSource.AddMessageReceivedEventHandler(MessageReceived);
+        }
 
         private static void MessageReceived(object sender, MessageReceivedEventArgs e)
         {
@@ -43,7 +48,7 @@ namespace Ricky8955555.CoolQ
             {
                 string sourceStr = source.ToString(true);
 
-                var config = (JObject)AppConfig.Config;
+                var config = (JObject)AppStatusConfig.Config;
                 config.Add(new JProperty(sourceStr, new JObject()), false);
 
                 var sourceConfig = (JObject)config[sourceStr];
@@ -53,7 +58,7 @@ namespace Ricky8955555.CoolQ
                     sourceConfig.Operate(new JProperty(app.Name, app.IsEnabledByDefault), false, app.CanDisable);
                 }
 
-                AppConfig.Save();
+                AppStatusConfig.Save();
                 InitdChattables.Add(source);
             }
         }

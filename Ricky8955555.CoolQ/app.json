@@ -67,6 +67,7 @@
     101, // 发送群消息           IGroup.Send
     106, // 发送私聊消息         IUser.Send
     130, // 取群成员信息         IMember.Request / IMember.Refresh / IMember.*.get
+    131, // 取陌生人信息         IUser.Request / IUser.Refresh / IUser.*.get
     160 // 取群成员列表         IGroup.GetMembers
   ]
 }

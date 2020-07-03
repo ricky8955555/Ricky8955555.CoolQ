@@ -4,11 +4,11 @@ namespace Ricky8955555.CoolQ.Apps
 {
     class CovidStatusApp : App
     {
-        public override string Name { get; } = "CovidStatus";
+        internal override string Name { get; } = "CovidStatus";
 
-        public override string DisplayName { get; } = "疫情动态";
+        internal override string DisplayName { get; } = "疫情动态";
 
-        public override Feature[] Features { get; } = new Feature[]
+        internal override Feature[] Features { get; } = new Feature[]
         {
             new CovidStatusCommand()
         };

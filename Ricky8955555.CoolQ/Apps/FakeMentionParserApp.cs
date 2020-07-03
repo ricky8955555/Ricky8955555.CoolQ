@@ -5,13 +5,13 @@ namespace Ricky8955555.CoolQ.Apps
 {
     class FakeMentionParserApp : GroupApp
     {
-        public override string Name { get; } = "FakeMentionParser";
+        internal override string Name { get; } = "FakeMentionParser";
 
-        public override string DisplayName { get; } = "假提及解析器";
+        internal override string DisplayName { get; } = "假提及解析器";
 
-        public override bool IsEnabledByDefault { get; } = false;
+        internal override bool IsEnabledByDefault { get; } = false;
 
-        public override Feature[] Features { get; } = new Feature[]
+        internal override Feature[] Features { get; } = new Feature[]
         {
             new FakeMentionParserFeature()
         };

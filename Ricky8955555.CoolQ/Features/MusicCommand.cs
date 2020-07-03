@@ -9,7 +9,7 @@ namespace Ricky8955555.CoolQ.Features
 {
     class MusicCommand : Command<PlainText>
     {
-        public override string ResponseCommand { get; } = "music";
+        internal override string ResponseCommand { get; } = "music";
 
         protected override string CommandUsage { get; } = "{0}music <歌曲名>";
 

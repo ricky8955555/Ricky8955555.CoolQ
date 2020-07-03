@@ -4,11 +4,11 @@ namespace Ricky8955555.CoolQ.Apps
 {
     class SpacingApp : App
     {
-        public override string Name { get; } = "Spacing";
+        internal override string Name { get; } = "Spacing";
 
-        public override string DisplayName { get; } = "空格化";
+        internal override string DisplayName { get; } = "空格化";
 
-        public override Feature[] Features { get; } = new Feature[]
+        internal override Feature[] Features { get; } = new Feature[]
         {
             new SpacingCommand()
         };

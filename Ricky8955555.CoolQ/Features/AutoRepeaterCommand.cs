@@ -6,7 +6,7 @@ namespace Ricky8955555.CoolQ.Features
 {
     class AutoRepeaterCommand : Command
     {
-        public override string ResponseCommand { get; } = "autorepeat";
+        internal override string ResponseCommand { get; } = "autorepeat";
 
         protected override string CommandUsage { get; } = "{0}autorepeat";
 

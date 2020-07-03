@@ -11,9 +11,9 @@ namespace Ricky8955555.CoolQ.Features
     class AutoRepeaterFeature : Feature
     {
 
-        static readonly List<(IChattable Source, string Message)> Messages = new List<(IChattable Source, string Message)>();
+        private static readonly List<(IChattable Source, string Message)> Messages = new List<(IChattable Source, string Message)>();
 
-        public override void Invoke(MessageReceivedEventArgs e)
+        internal override void Invoke(MessageReceivedEventArgs e)
         {
             if (Chattables.Contains(e.Source))
                 try

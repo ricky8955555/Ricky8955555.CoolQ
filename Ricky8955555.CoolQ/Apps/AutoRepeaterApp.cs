@@ -6,20 +6,20 @@ namespace Ricky8955555.CoolQ.Apps
 {
     class AutoRepeaterApp : App
     {
-        public override string Name { get; } = "AutoRepeater";
+        internal override string Name { get; } = "AutoRepeater";
 
-        public override string DisplayName { get; } = "自动复读";
+        internal override string DisplayName { get; } = "自动复读";
 
-        public override bool IsEnabledByDefault { get; } = false;
+        internal override bool IsEnabledByDefault { get; } = false;
 
-        public override AppPriority Priority { get; } = AppPriority.Lowest;
+        internal override AppPriority Priority { get; } = AppPriority.Lowest;
 
-        public override Feature[] Features { get; } = new Feature[]
+        internal override Feature[] Features { get; } = new Feature[]
         {
             new AutoRepeaterCommand(),
             new AutoRepeaterFeature()
         };
 
-        public readonly static List<IChattable> Chattables = new List<IChattable>();
+        internal readonly static List<IChattable> Chattables = new List<IChattable>();
     }
 }

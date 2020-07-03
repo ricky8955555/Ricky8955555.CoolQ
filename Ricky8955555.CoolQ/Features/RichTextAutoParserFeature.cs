@@ -8,9 +8,9 @@ namespace Ricky8955555.CoolQ.Features
 {
     class RichTextAutoParserFeature : Feature
     {
-        public override string Usage { get; } = "发送富文本即可解析（只支持部分）";
+        internal override string Usage { get; } = "发送富文本即可解析（只支持部分）";
 
-        public override void Invoke(MessageReceivedEventArgs e)
+        internal override void Invoke(MessageReceivedEventArgs e)
         {
             var elements = e.Message.Parse();
             var richText = elements[0] as RichText;

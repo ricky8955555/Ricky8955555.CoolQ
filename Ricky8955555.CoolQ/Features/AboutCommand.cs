@@ -2,14 +2,19 @@
 using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using System.Reflection;
+using static HuajiTech.CoolQ.CurrentPluginContext;
 
 namespace Ricky8955555.CoolQ.Features
 {
     class AboutCommand : Command
     {
-        public override string ResponseCommand { get; } = "about";
+        internal override string ResponseCommand { get; } = "about";
 
         protected override string CommandUsage { get; } = "{0}about";
+
+        private readonly long RickyNumber = 397050061;
+
+        private readonly long SYCNumber = 2761729667;
 
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
@@ -21,7 +26,30 @@ namespace Ricky8955555.CoolQ.Features
 #else
             string versionStr = version + " (Release)";
 #endif
-            e.Source.Send(string.Format(Resources.About, Resources.ProjectURL, Resources.SDKProjectURL, Resources.CoolQURL) + $"\n\n插件版本：{versionStr}\nSDK版本：{sdkVersion}");
+            string ricky = "Ricky8955555";
+            string syc = "SYC";
+
+            if (e.Source is IGroup group)
+            {
+                var rickyMember = Member(RickyNumber, group);
+                var sycMember = Member(SYCNumber, group);
+
+                try
+                {
+                    ((IRequestable<IMember>)rickyMember).Request();
+                    ricky = rickyMember.Mention().ToSendableString();
+                }
+                catch {}
+
+                try
+                {
+                    ((IRequestable<IMember>)sycMember).Request();
+                    syc = sycMember.Mention().ToSendableString();
+                }
+                catch {}
+            }
+
+            e.Source.Send(string.Format(Resources.About, Resources.ProjectURL, Resources.SDKProjectURL, Resources.CoolQURL, ricky, syc) + $"\n\n插件版本：{versionStr}\nSDK版本：{sdkVersion}");
         }
     }
 }

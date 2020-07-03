@@ -9,13 +9,13 @@ namespace Ricky8955555.CoolQ.Features
 {
     class HelpMenuCommand : Command
     {
-        public override string ResponseCommand { get; } = "help";
+        internal override string ResponseCommand { get; } = "help";
 
         protected override string CommandUsage { get; } = "{0}help [页码 (缺省值 1)]";
 
         protected override bool CanHaveParameter { get; } = true;
 
-        static readonly int MaxCount = 6;
+        private static readonly int MaxCount = 6;
 
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements = null)
         {

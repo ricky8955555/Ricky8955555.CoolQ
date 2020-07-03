@@ -3,9 +3,9 @@ using Ricky8955555.CoolQ.Configurations;
 
 namespace Ricky8955555.CoolQ
 {
-    static class Commons
+    internal static class Commons
     {
-        public readonly static AppBase[] Apps = new AppBase[]
+        internal readonly static AppBase[] Apps = new AppBase[]
         {
             new HelpMenuApp(),
             new MusicApp(),
@@ -22,14 +22,14 @@ namespace Ricky8955555.CoolQ
             new MarketingApp()
         };
 
-        public readonly static Configuration PluginConfig = new PluginConfig();
+        internal readonly static Configuration PluginConfig = new PluginConfig();
 
-        public readonly static Configuration AppConfig = new AppConfig();
+        internal readonly static Configuration AppStatusConfig = new AppStatusConfig();
 
-        public readonly static Configuration BlacklistConfig = new BlacklistConfig();
+        internal readonly static Configuration BlacklistConfig = new BlacklistConfig();
 
-        public static string Prefix => PluginConfig.Config["Prefix"].ToString();
+        internal static string Prefix => PluginConfig.Config["Prefix"].ToString();
 
-        public static long Owner => PluginConfig.Config["Owner"].ToObject<long>();
+        internal static long Owner => PluginConfig.Config["Owner"].ToObject<long>();
     }
 }

@@ -4,37 +4,37 @@ using static HuajiTech.CoolQ.CurrentPluginContext;
 
 namespace Ricky8955555.CoolQ
 {
-    abstract class Configuration
+    internal abstract class Configuration
     {
-        public abstract string Name { get; }
+        internal abstract string Name { get; }
 
         protected abstract JToken InitInfo { get; }
 
-        public JToken Config { get; private set; }
+        internal JToken Config { get; private set; }
 
-        readonly DirectoryInfo DataDirInfo = Bot.AppDirectory;
+        private readonly DirectoryInfo DataDirInfo = Bot.AppDirectory;
 
-        readonly string Suffix = ".json";
+        private readonly string Suffix = ".json";
 
-        public Configuration()
+        internal Configuration()
         {
             CreateFile(Name + Suffix);
             if (!WriteToConfig(Read(Name + Suffix)))
                 Logger.LogError(Resources.ConfigurationLoading, string.Format(Resources.ConfigurationCannotBeLoaded, Name));
         }
 
-        public void SetValueAndSave(JToken jToken)
+        internal void SetValueAndSave(JToken jToken)
         {
             Config = jToken;
             Save();
         }
 
-        public void Save()
+        internal void Save()
         {
             Write(Name + Suffix, Config.ToString());
         }
 
-        public bool Reload()
+        internal bool Reload()
         {
             string fileName = Name + Suffix;
             if (CreateFile(fileName))
@@ -46,19 +46,19 @@ namespace Ricky8955555.CoolQ
             }
         }
 
-        public void Rebuild()
+        internal void Rebuild()
         {
             Write(Name + Suffix, InitInfo.ToString());
             Config = InitInfo;
         }
 
-        void Write(string fileName, string content)
+        private void Write(string fileName, string content)
         {
             string filePath = DataDirInfo.FullName + "\\" + fileName;
             File.WriteAllText(filePath, content);
         }
 
-        string Read(string fileName)
+        private string Read(string fileName)
         {
             var file = new FileInfo(DataDirInfo.FullName + "\\" + fileName);
 
@@ -71,7 +71,7 @@ namespace Ricky8955555.CoolQ
                 return null;
         }
 
-        bool CreateFile(string fileName)
+        private bool CreateFile(string fileName)
         {
             if (File.Exists(DataDirInfo.FullName + "\\" + fileName))
                 return true;
@@ -83,7 +83,7 @@ namespace Ricky8955555.CoolQ
             }
         }
 
-        bool WriteToConfig(string content)
+        private bool WriteToConfig(string content)
         {
             try
             {

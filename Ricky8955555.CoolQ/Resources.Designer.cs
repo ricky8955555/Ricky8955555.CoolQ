@@ -62,10 +62,10 @@ namespace Ricky8955555.CoolQ {
         
         /// <summary>
         ///   查找类似 Minop Bot (项目名：Ricky8955555.CoolQ)
-        ///By Ricky8955555
+        ///By {3}
         ///基于 CoolQ (智能机器人软件) &amp; HuajiTech.CoolQ (SDK) 开发的一款插件
         ///
-        ///感谢 CoolQ 提供软件支持 和 SYC 提供 SDK 支持
+        ///感谢 CoolQ 提供软件支持 和 {4} 提供 SDK 支持
         ///
         ///Ricky8955555.CoolQ 项目 (GitHub): {0}
         ///HuajiTech.CoolQ (SDK) 项目 (GitHub): {1}

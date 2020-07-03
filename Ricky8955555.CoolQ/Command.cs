@@ -5,13 +5,13 @@ using static Ricky8955555.CoolQ.Commons;
 
 namespace Ricky8955555.CoolQ
 {
-    abstract class CommandBase : Feature
+    internal abstract class CommandBase : Feature
     {
-        public abstract string ResponseCommand { get; }
+        internal abstract string ResponseCommand { get; }
 
         protected abstract string CommandUsage { get; }
 
-        public override string Usage => string.Format(CommandUsage, Prefix);
+        internal override string Usage => string.Format(CommandUsage, Prefix);
 
         protected string GetMessage(string message)
         {
@@ -33,13 +33,13 @@ namespace Ricky8955555.CoolQ
         }
     }
 
-    abstract class Command : CommandBase
+    internal abstract class Command : CommandBase
     {
         protected virtual bool CanHaveParameter { get; } = false;
 
         protected abstract void Invoking(MessageReceivedEventArgs e, ComplexMessage elements = null);
 
-        public override void Invoke(MessageReceivedEventArgs e)
+        internal override void Invoke(MessageReceivedEventArgs e)
         {
             string message = GetMessage(e.Message.ToString());
             string parameter = GetParameter(message);
@@ -61,12 +61,12 @@ namespace Ricky8955555.CoolQ
         }
     }
 
-    abstract class Command<T> : CommandBase
+    internal abstract class Command<T> : CommandBase
         where T : MessageElement
     {
         protected abstract void Invoking(MessageReceivedEventArgs e, T arg);
 
-        public override void Invoke(MessageReceivedEventArgs e)
+        internal override void Invoke(MessageReceivedEventArgs e)
         {
             string message = GetMessage(e.Message.ToString());
             string parameter = GetParameter(message);
@@ -85,13 +85,13 @@ namespace Ricky8955555.CoolQ
         }
     }
 
-    abstract class Command<T1, T2> : CommandBase
+    internal abstract class Command<T1, T2> : CommandBase
         where T1 : MessageElement
         where T2 : MessageElement
     {
         protected abstract void Invoking(MessageReceivedEventArgs e, T1 arg1, T2 arg2);
 
-        public override void Invoke(MessageReceivedEventArgs e)
+        internal override void Invoke(MessageReceivedEventArgs e)
         {
             string message = GetMessage(e.Message.ToString());
             string parameter = GetParameter(message);

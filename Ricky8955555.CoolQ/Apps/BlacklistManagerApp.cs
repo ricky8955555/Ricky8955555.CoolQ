@@ -4,15 +4,15 @@ namespace Ricky8955555.CoolQ.Apps
 {
     class BlacklistManagerApp : App
     {
-        public override string Name { get; } = "BlacklistManager";
+        internal override string Name { get; } = "BlacklistManager";
 
-        public override string DisplayName { get; } = "黑名单管理器";
+        internal override string DisplayName { get; } = "黑名单管理器";
 
-        public override bool CanDisable { get; } = false;
+        internal override bool CanDisable { get; } = false;
 
-        public override AppPermission Permission { get; } = AppPermission.Owner;
+        internal override AppPermission Permission { get; } = AppPermission.Owner;
 
-        public override Feature[] Features { get; } = new Feature[]
+        internal override Feature[] Features { get; } = new Feature[]
         {
             new BlacklistManagerCommand()
         };

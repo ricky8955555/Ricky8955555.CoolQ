@@ -7,7 +7,7 @@ namespace Ricky8955555.CoolQ.Features
 {
     class PingCommand : Command<PlainText>
     {
-        public override string ResponseCommand { get; } = "ping";
+        internal override string ResponseCommand { get; } = "ping";
 
         protected override string CommandUsage { get; } = "{0}ping <IP 地址或域名> [次数 (缺省值 4)]";
 

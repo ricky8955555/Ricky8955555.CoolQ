@@ -4,11 +4,11 @@ namespace Ricky8955555.CoolQ.Apps
 {
     class SlappingApp : GroupApp
     {
-        public override string Name { get; } = "Slapping";
+        internal override string Name { get; } = "Slapping";
 
-        public override string DisplayName { get; } = "拍一拍";
+        internal override string DisplayName { get; } = "拍一拍";
 
-        public override Feature[] Features { get; } = new Feature[]
+        internal override Feature[] Features { get; } = new Feature[]
         {
             new SlappingFeature()
         };
