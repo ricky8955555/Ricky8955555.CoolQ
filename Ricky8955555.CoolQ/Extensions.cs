@@ -60,22 +60,6 @@ namespace Ricky8955555.CoolQ
             }
         }
 
-        internal static void Operate(this JObject jObject, JProperty content, bool isAdding)
-        {
-            if (isAdding)
-                jObject.Add(content);
-            else
-                jObject.Remove(content.Name);
-        }
-
-        internal static void Operate(this JObject jObject, JProperty content, bool canOverwrite, bool isAdding)
-        {
-            if (isAdding)
-                jObject.Add(content, canOverwrite);
-            else
-                jObject.Remove(content.Name);
-        }
-
         internal static string ToString(this IChattable chattable, bool useExtension)
         {
             if (chattable is IUser user && useExtension)

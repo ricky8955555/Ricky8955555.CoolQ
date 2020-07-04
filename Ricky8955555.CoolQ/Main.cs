@@ -23,6 +23,7 @@ namespace Ricky8955555.CoolQ
             try
             {
                 InitChattable(e.Source);
+
                 if (!BlacklistConfig.Config.ToObject<List<long>>().Contains(e.Sender.Number))
                     foreach (var app in Commons.Apps.OrderBy(x => (int)x.Priority))
                     {
@@ -57,7 +58,8 @@ namespace Ricky8955555.CoolQ
 
                 foreach (AppBase app in GetApps(source))
                 {
-                    newConfig.Operate(sourceConfig.ContainsKey(app.Name) ? new JProperty(app.Name, sourceConfig[app.Name]) : new JProperty(app.Name, app.IsEnabledByDefault), app.CanDisable);
+                    if (app.CanDisable)
+                        newConfig.Add(sourceConfig.ContainsKey(app.Name) ? new JProperty(app.Name, sourceConfig[app.Name]) : new JProperty(app.Name, app.IsEnabledByDefault));
                 }
 
                 sourceConfig.Replace(newConfig);
