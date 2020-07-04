@@ -53,11 +53,14 @@ namespace Ricky8955555.CoolQ
                 config.Add(new JProperty(sourceStr, new JObject()), false);
 
                 var sourceConfig = (JObject)config[sourceStr];
+                var newConfig = new JObject();
 
                 foreach (AppBase app in GetApps(source))
                 {
-                    sourceConfig.Operate(new JProperty(app.Name, app.IsEnabledByDefault), false, app.CanDisable);
+                    newConfig.Operate(sourceConfig.ContainsKey(app.Name) ? new JProperty(app.Name, sourceConfig[app.Name]) : new JProperty(app.Name, app.IsEnabledByDefault), app.CanDisable);
                 }
+
+                sourceConfig.Replace(newConfig);
 
                 AppStatusConfig.Save();
                 InitdChattables.Add(source);

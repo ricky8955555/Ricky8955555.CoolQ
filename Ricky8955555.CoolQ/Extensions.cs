@@ -54,7 +54,10 @@ namespace Ricky8955555.CoolQ
         internal static void Add(this JObject jObject, JProperty content, bool canOverwrite)
         {
             if (canOverwrite || !jObject.ContainsKey(content.Name))
+            {
+                jObject.Remove(content.Name);
                 jObject.Add(content);
+            }
         }
 
         internal static void Operate(this JObject jObject, JProperty content, bool isAdding)
