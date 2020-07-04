@@ -1,6 +1,5 @@
 ﻿using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
-using System.Linq;
 using static Ricky8955555.CoolQ.Commons;
 
 namespace Ricky8955555.CoolQ

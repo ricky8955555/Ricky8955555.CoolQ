@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using HuajiTech.CoolQ.Events;
 
 namespace Ricky8955555.CoolQ
