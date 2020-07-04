@@ -1,4 +1,5 @@
 ﻿using HuajiTech.CoolQ;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -27,5 +28,7 @@ namespace Ricky8955555.CoolQ
             else
                 return apps;
         }
+
+        internal static DateTime ToDateTime(Version version) => new DateTime(2000, 1, 1) + TimeSpan.FromDays(version.Build) + TimeSpan.FromSeconds(version.Revision * 2);
     }
 }
