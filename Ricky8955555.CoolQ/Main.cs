@@ -5,6 +5,7 @@ using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
 using Newtonsoft.Json.Linq;
 using static Ricky8955555.CoolQ.Commons;
+using static Ricky8955555.CoolQ.Utilities;
 
 namespace Ricky8955555.CoolQ
 {
@@ -53,7 +54,7 @@ namespace Ricky8955555.CoolQ
 
                 var sourceConfig = (JObject)config[sourceStr];
 
-                foreach (AppBase app in Commons.Apps)
+                foreach (AppBase app in GetApps(source))
                 {
                     sourceConfig.Operate(new JProperty(app.Name, app.IsEnabledByDefault), false, app.CanDisable);
                 }
