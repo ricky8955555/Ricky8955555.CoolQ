@@ -10,8 +10,6 @@ namespace Ricky8955555.CoolQ
 
         internal abstract string DisplayName { get; }
 
-        internal virtual bool IsInternalEnabled { get; } = true;
-
         internal virtual bool IsEnabledByDefault { get; } = true;
 
         internal virtual bool CanDisable { get; } = true;
@@ -62,7 +60,7 @@ namespace Ricky8955555.CoolQ
     {
         internal override void Run(MessageReceivedEventArgs e)
         {
-            if (IsInternalEnabled && IsEnabled(e.Source) && IsAllowed(e.Sender))
+            if (IsEnabled(e.Source) && IsAllowed(e.Sender))
                 FeatureInvoker(e);
         }
     }
@@ -71,7 +69,7 @@ namespace Ricky8955555.CoolQ
     {
         internal override void Run(MessageReceivedEventArgs e)
         {
-            if (e.Source is IGroup && IsInternalEnabled && IsEnabled(e.Source) && IsAllowed(e.Sender))
+            if (e.Source is IGroup && IsEnabled(e.Source) && IsAllowed(e.Sender))
                 FeatureInvoker(e);
         }
     }
@@ -80,7 +78,7 @@ namespace Ricky8955555.CoolQ
     {
         internal override void Run(MessageReceivedEventArgs e)
         {
-            if (e.Source is IUser && IsInternalEnabled && IsEnabled(e.Source) && IsAllowed(e.Sender))
+            if (e.Source is IUser && IsEnabled(e.Source) && IsAllowed(e.Sender))
                 FeatureInvoker(e);
         }
     }
