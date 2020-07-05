@@ -1,5 +1,9 @@
 # Ricky8955555.CoolQ
 
+![GitHub](https://img.shields.io/github/license/ricky8955555/Ricky8955555.CoolQ)
+![GitHub last commit](https://img.shields.io/github/last-commit/ricky8955555/Ricky8955555.CoolQ)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ricky8955555/Ricky8955555.CoolQ)
+
 一款基于 酷Q 的机器人插件
 
 ## 简介
