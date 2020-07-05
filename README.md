@@ -1,4 +1,6 @@
 # Ricky8955555.CoolQ
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fricky8955555%2FRicky8955555.CoolQ.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fricky8955555%2FRicky8955555.CoolQ?ref=badge_shield)
+
 
 一款基于 酷Q 的机器人插件
 
@@ -28,3 +30,6 @@
 - 拍一拍
 - 营销号文章生成器
 - 关于本插件
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fricky8955555%2FRicky8955555.CoolQ.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fricky8955555%2FRicky8955555.CoolQ?ref=badge_large)
