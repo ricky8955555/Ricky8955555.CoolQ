@@ -68,12 +68,22 @@ namespace Ricky8955555.CoolQ {
         ///感谢 CoolQ 提供软件支持 和 {1} 提供 SDK 支持
         ///
         ///Ricky8955555.CoolQ 项目 (GitHub): {2}
-        ///HuajiTech.CoolQ (SDK) 项目 (GitHub): {3}
-        ///酷Q 官网: {4} 的本地化字符串。
+        ///Minop Bot (酷Q社区): {3}
+        ///HuajiTech.CoolQ (SDK) 项目 (GitHub): {4}
+        ///酷Q 官网: {5} 的本地化字符串。
         /// </summary>
         internal static string About {
             get {
                 return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 https://cqp.cc/t/51291 的本地化字符串。
+        /// </summary>
+        internal static string CommunityURL {
+            get {
+                return ResourceManager.GetString("CommunityURL", resourceCulture);
             }
         }
         
