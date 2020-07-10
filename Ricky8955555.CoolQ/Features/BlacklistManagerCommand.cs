@@ -3,7 +3,7 @@ using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using Newtonsoft.Json.Linq;
 using static HuajiTech.CoolQ.CurrentPluginContext;
-using static Ricky8955555.CoolQ.Commons;
+using static Ricky8955555.CoolQ.Commons.Configs;
 
 namespace Ricky8955555.CoolQ.Features
 {

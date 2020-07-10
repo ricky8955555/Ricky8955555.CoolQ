@@ -1,6 +1,6 @@
 ﻿using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
-using static Ricky8955555.CoolQ.Commons;
+using static Ricky8955555.CoolQ.Commons.Configs;
 
 namespace Ricky8955555.CoolQ
 {

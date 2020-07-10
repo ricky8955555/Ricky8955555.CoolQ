@@ -20,7 +20,7 @@ namespace Ricky8955555.CoolQ.Features
             {
                 try
                 {
-                    var config = Commons.AppStatusConfig;
+                    var config = Commons.Configs.AppStatusConfig;
                     var app = GetApps(e.Source, e.Sender).Where(x => x.Name == splitText[0]).Single();
                     bool? operation = splitText[1].ToLower().ToBool("on", "off");
 

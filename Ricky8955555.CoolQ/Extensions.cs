@@ -51,13 +51,17 @@ namespace Ricky8955555.CoolQ
                 throw new ArgumentException();
         }
 
-        internal static void Add(this JObject jObject, JProperty content, bool canOverwrite)
+        internal static bool Add(this JObject jObject, JProperty content, bool canOverwrite)
         {
-            if (canOverwrite || !jObject.ContainsKey(content.Name))
+            bool contains = jObject.ContainsKey(content.Name);
+
+            if (canOverwrite || !contains)
             {
                 jObject.Remove(content.Name);
                 jObject.Add(content);
             }
+
+            return !contains;
         }
 
         internal static string ToString(this IChattable chattable, bool useExtension)

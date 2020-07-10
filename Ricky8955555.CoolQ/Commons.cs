@@ -22,14 +22,17 @@ namespace Ricky8955555.CoolQ
             new MarketingApp()
         };
 
-        internal readonly static Configuration PluginConfig = new PluginConfig();
+        internal static class Configs
+        {
+            internal readonly static Configuration PluginConfig = new PluginConfig();
 
-        internal readonly static Configuration AppStatusConfig = new AppStatusConfig();
+            internal readonly static Configuration AppStatusConfig = new AppStatusConfig();
 
-        internal readonly static Configuration BlacklistConfig = new BlacklistConfig();
+            internal readonly static Configuration BlacklistConfig = new BlacklistConfig();
 
-        internal static string Prefix => PluginConfig.Config["Prefix"].ToString();
+            internal static string Prefix => PluginConfig.Config["Prefix"].ToString();
 
-        internal static long Owner => PluginConfig.Config["Owner"].ToObject<long>();
+            internal static long Owner => PluginConfig.Config["Owner"].ToObject<long>();
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
 using Newtonsoft.Json.Linq;
-using static Ricky8955555.CoolQ.Commons;
+using static Ricky8955555.CoolQ.Commons.Configs;
 using static Ricky8955555.CoolQ.Utilities;
 
 namespace Ricky8955555.CoolQ
@@ -34,6 +34,7 @@ namespace Ricky8955555.CoolQ
                         }
                     }
             }
+            catch (ApiException ex) when (ex.ErrorCode == -34) { }
             catch (ApiException ex)
             {
                 ex.LogAsWarning();

@@ -3,7 +3,7 @@ using HuajiTech.CoolQ.Messaging;
 using System;
 using System.Linq;
 using static Ricky8955555.CoolQ.Utilities;
-using static Ricky8955555.CoolQ.Commons;
+using static Ricky8955555.CoolQ.Commons.Configs;
 
 namespace Ricky8955555.CoolQ.Features
 {

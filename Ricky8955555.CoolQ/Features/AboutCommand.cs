@@ -37,14 +37,14 @@ namespace Ricky8955555.CoolQ.Features
 
                 try
                 {
-                    ((IRequestable<IMember>)rickyMember).Request();
+                    rickyMember.Request();
                     ricky = rickyMember.Mention().ToSendableString();
                 }
                 catch {}
 
                 try
                 {
-                    ((IRequestable<IMember>)sycMember).Request();
+                    sycMember.Request();
                     syc = sycMember.Mention().ToSendableString();
                 }
                 catch {}
