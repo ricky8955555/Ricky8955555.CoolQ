@@ -19,6 +19,7 @@
 
 - HuajiTech.CoolQ (SDK) 项目 (GitHub): https://github.com/huajitech/coolq-dotnet-sdk
 - 酷Q 官网: https://cqp.cc
+- 最新 Build 下载：http://ricky8955555.byethost4.com/app.zip
 
 ## 应用
 
