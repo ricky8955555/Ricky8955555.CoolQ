@@ -40,14 +40,14 @@ namespace Ricky8955555.CoolQ.Features
                     rickyMember.Request();
                     ricky = rickyMember.Mention().ToSendableString();
                 }
-                catch {}
+                catch { }
 
                 try
                 {
                     sycMember.Request();
                     syc = sycMember.Mention().ToSendableString();
                 }
-                catch {}
+                catch { }
             }
 
             e.Source.Send(string.Format(Resources.About, ricky, syc, Resources.ProjectURL, Resources.SDKProjectURL, Resources.CoolQURL) + $"\n\n插件版本：{versionStr}\nSDK版本：{sdkVersion}\n编译时间：{ToDateTime(version)}");

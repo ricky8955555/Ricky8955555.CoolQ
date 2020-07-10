@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HuajiTech.CoolQ, Version=0.4.2.0, Culture=neutral, PublicKeyToken=51c187ed1cdbe1fa, processorArchitecture=MSIL">
-      <HintPath>..\packages\HuajiTech.CoolQ.0.4.2-beta\lib\net45\HuajiTech.CoolQ.dll</HintPath>
+      <HintPath>..\packages\HuajiTech.CoolQ.0.4.2-beta.1\lib\net45\HuajiTech.CoolQ.dll</HintPath>
     </Reference>
     <Reference Include="HuajiTech.CoolQ.Abstractions, Version=0.4.2.0, Culture=neutral, PublicKeyToken=8ba6ecd4bafd8dad, processorArchitecture=MSIL">
       <HintPath>..\packages\HuajiTech.CoolQ.Abstractions.0.4.2-beta\lib\net45\HuajiTech.CoolQ.Abstractions.dll</HintPath>
