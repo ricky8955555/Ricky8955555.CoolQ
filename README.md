@@ -1,5 +1,12 @@
 # Ricky8955555.CoolQ
 
+![GitHub](https://img.shields.io/github/license/ricky8955555/Ricky8955555.CoolQ)
+![GitHub last commit](https://img.shields.io/github/last-commit/ricky8955555/Ricky8955555.CoolQ)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/ricky8955555/Ricky8955555.CoolQ)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ricky8955555/Ricky8955555.CoolQ)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fricky8955555%2FRicky8955555.CoolQ.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fricky8955555%2FRicky8955555.CoolQ?ref=badge_shield)
+[![Build status](https://ci.appveyor.com/api/projects/status/4fev7v95w57jbh4c?svg=true)](https://ci.appveyor.com/project/ricky8955555/ricky8955555-coolq)
+
 一款基于 酷Q 的机器人插件
 
 ## 简介
@@ -28,3 +35,24 @@
 - 拍一拍
 - 营销号文章生成器
 - 关于本插件
+
+## 使用方法
+
+使用时，先启用插件，使插件初始化
+
+在 酷Q 程序文件夹下，打开 data\app\io.ricky8955555.github.addons\PluginConfig.json 配置插件：
+
+Owner -> 机器人主人
+
+Prefix -> 指令前缀（支持 CQ 码）
+
+示例：
+
+```json
+{
+  "Prefix": "/",
+  "Owner": 397050061
+}
+```
+
+修改完毕后，重载应用
