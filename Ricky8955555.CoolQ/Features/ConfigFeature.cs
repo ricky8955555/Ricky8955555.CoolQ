@@ -14,7 +14,7 @@ namespace Ricky8955555.CoolQ.Features
 
         private static IChattable CurrentUser = null;
 
-        private static long OwnerSet;
+        private static long OwnerSet = -1;
 
         internal override void Invoke(MessageReceivedEventArgs e)
         {
@@ -75,6 +75,7 @@ namespace Ricky8955555.CoolQ.Features
                         PluginConfig.Save();
                         CurrentStepId = 0;
                         CurrentUser = null;
+                        OwnerSet = -1;
                         IsRunning = false;
                     }
                     else
