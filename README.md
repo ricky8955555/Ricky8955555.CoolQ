@@ -40,7 +40,7 @@
 
 ## 使用方法
 
-（机器人默认前缀为 *）
+（机器人默认前缀为 minop）
 
 1. 输入 “前缀 + config” 进行配置（请尽快进行配置，避免机器人被别人认领）
 2. 如果配置错误，请删除 酷Q 目录下 data\app\io.github.ricky8955555.addons\PluginConfig.json，并重载应用
