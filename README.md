@@ -40,22 +40,8 @@
 
 ## 使用方法
 
-1. 使用时，先启用插件，使插件初始化
+（机器人默认前缀为 *）
 
-2. 在 酷Q 程序文件夹下，打开 data\app\io.ricky8955555.github.addons\PluginConfig.json 配置插件：
-
-    - Owner -> 机器人主人
-    - Prefix -> 指令前缀（支持 CQ 码）
-
-示例：
-
-```json
-{
-  "Prefix": "/",
-  "Owner": 397050061
-}
-```
-
-3. 修改完毕后，重载应用
-
-4. 发送 “前缀 + help” 指令即可获取帮助菜单
+1. 输入 “前缀 + config” 进行配置（请尽快进行配置，避免机器人被别人认领）
+2. 如果配置错误，请删除 酷Q 目录下 data\app\io.github.ricky8955555.addons\PluginConfig.json，并重载应用
+3. 配置完后，输入 “前缀 + help” 获取帮助
