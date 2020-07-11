@@ -39,13 +39,12 @@
 
 ## 使用方法
 
-使用时，先启用插件，使插件初始化
+1. 使用时，先启用插件，使插件初始化
 
-在 酷Q 程序文件夹下，打开 data\app\io.ricky8955555.github.addons\PluginConfig.json 配置插件：
+2. 在 酷Q 程序文件夹下，打开 data\app\io.ricky8955555.github.addons\PluginConfig.json 配置插件：
 
-Owner -> 机器人主人
-
-Prefix -> 指令前缀（支持 CQ 码）
+    - Owner -> 机器人主人
+    - Prefix -> 指令前缀（支持 CQ 码）
 
 示例：
 
@@ -56,6 +55,6 @@ Prefix -> 指令前缀（支持 CQ 码）
 }
 ```
 
-修改完毕后，重载应用
+3. 修改完毕后，重载应用
 
-发送 “前缀 + help” 指令即可获取帮助菜单
+4. 发送 “前缀 + help” 指令即可获取帮助菜单
