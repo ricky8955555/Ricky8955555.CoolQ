@@ -17,5 +17,7 @@ namespace Ricky8955555.CoolQ.Apps
             new ConfigCommand(),
             new ConfigFeature()
         };
+
+        internal static bool IsRunning = false;
     }
 }

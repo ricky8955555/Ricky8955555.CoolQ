@@ -1,6 +1,6 @@
 ﻿using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
-using System;
+using static Ricky8955555.CoolQ.Apps.ConfigApp;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -11,8 +11,6 @@ namespace Ricky8955555.CoolQ.Features
         internal override string ResponseCommand { get; } = "config";
 
         protected override bool IsHandledAutomatically { get; } = false;
-
-        internal static bool IsRunning = false;
 
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements = null)
         {

@@ -12,7 +12,7 @@ namespace Ricky8955555.CoolQ.Features
 
         internal override void Invoke(MessageReceivedEventArgs e)
         {
-            string message = PlainText.Unescape(e.Message);
+            string message = e.Message;
 
             if (message.Contains("@"))
             {
