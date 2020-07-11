@@ -14,6 +14,8 @@ namespace Ricky8955555.CoolQ.Features
 
         private static IChattable CurrentUser = null;
 
+        private static long OwnerSet;
+
         internal override void Invoke(MessageReceivedEventArgs e)
         {
             if (Owner == -1)
@@ -26,8 +28,6 @@ namespace Ricky8955555.CoolQ.Features
 
                 if (CurrentUser != null && CurrentUser.Equals(e.Sender))
                 {
-                    long owner = -1;
-
                     switch (CurrentStepId)
                     {
                         case 0:
@@ -37,9 +37,9 @@ namespace Ricky8955555.CoolQ.Features
                             break;
 
                         case 1:
-                            if (long.TryParse(e.Message, out owner))
+                            if (long.TryParse(e.Message, out OwnerSet))
                             {
-                                if (owner < -1)
+                                if (OwnerSet < -1)
                                 {
                                     e.Source.Send("QQ 号不正确，请重新输入管理员账号：");
                                     CurrentStepId--;
@@ -67,10 +67,10 @@ namespace Ricky8955555.CoolQ.Features
                     {
                         e.Source.Send("配置准备就绪，敬请使用吧！");
 
-                        if (owner == -1)
+                        if (OwnerSet == -1)
                             Owner = CurrentUser.Number;
                         else
-                            Owner = owner;
+                            Owner = OwnerSet;
 
                         PluginConfig.Save();
                         CurrentStepId = 0;
