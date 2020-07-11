@@ -26,6 +26,8 @@ namespace Ricky8955555.CoolQ.Features
 
                 if (CurrentUser != null && CurrentUser.Equals(e.Sender))
                 {
+                    long owner = -1;
+
                     switch (CurrentStepId)
                     {
                         case 0:
@@ -35,13 +37,9 @@ namespace Ricky8955555.CoolQ.Features
                             break;
 
                         case 1:
-                            if (long.TryParse(e.Message, out long owner))
+                            if (long.TryParse(e.Message, out owner))
                             {
-                                if (owner == -1)
-                                    Owner = CurrentUser.Number;
-                                else if (owner > -1)
-                                    Owner = owner;
-                                else
+                                if (owner < -1)
                                 {
                                     e.Source.Send("QQ 号不正确，请重新输入管理员账号：");
                                     CurrentStepId--;
@@ -68,6 +66,12 @@ namespace Ricky8955555.CoolQ.Features
                     if (CurrentStepId == LastStepId)
                     {
                         e.Source.Send("配置准备就绪，敬请使用吧！");
+
+                        if (owner == -1)
+                            Owner = CurrentUser.Number;
+                        else
+                            Owner = owner;
+
                         PluginConfig.Save();
                         CurrentStepId = 0;
                         CurrentUser = null;
