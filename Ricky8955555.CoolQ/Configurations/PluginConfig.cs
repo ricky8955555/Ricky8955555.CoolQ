@@ -8,7 +8,7 @@ namespace Ricky8955555.CoolQ.Configurations
 
         protected override JToken InitInfo { get; } = new JObject()
         {
-            new JProperty("Prefix", "*"),
+            new JProperty("Prefix", "minop "),
             new JProperty("Owner", -1)
         };
     }
