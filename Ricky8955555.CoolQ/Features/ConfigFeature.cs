@@ -1,9 +1,11 @@
 ﻿using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
+using HuajiTech.CoolQ.Messaging;
 using System.Linq;
 using static Ricky8955555.CoolQ.Apps.ConfigApp;
 using static Ricky8955555.CoolQ.Commons;
 using static Ricky8955555.CoolQ.Commons.Configs;
+using static Ricky8955555.CoolQ.Utilities;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -33,8 +35,8 @@ namespace Ricky8955555.CoolQ.Features
                     {
                         case 0:
                             if (Owner == -1)
-                                e.Source.Send("Hey! 别来无恙啊，欢迎使用 Minop Bot!");
-                            e.Source.Send("请输入管理员账号：（输入 -1 则设置为当前账号）");
+                                e.Reply("Hey! 别来无恙啊，欢迎使用 Minop Bot!");
+                            e.Reply("请输入管理员账号：（输入 -1 则设置为当前账号）");
                             break;
 
                         case 1:
@@ -42,17 +44,17 @@ namespace Ricky8955555.CoolQ.Features
                             {
                                 if (OwnerSet < -1)
                                 {
-                                    e.Source.Send("QQ 号不正确，请重新输入管理员账号：");
+                                    e.Reply("QQ 号不正确，请重新输入管理员账号：");
                                     CurrentStepId--;
                                     break;
                                 }
 
-                                e.Source.Send("管理员设置完毕！");
-                                e.Source.Send("请输入命令响应前缀：");
+                                e.Reply("管理员设置完毕！");
+                                e.Reply("请输入命令响应前缀：");
                             }
                             else
                             {
-                                e.Source.Send("获取 QQ 号失败，请重新输入管理员账号：");
+                                e.Reply("获取 QQ 号失败，请重新输入管理员账号：");
                                 CurrentStepId--;
                             }
 
@@ -60,15 +62,15 @@ namespace Ricky8955555.CoolQ.Features
 
                         case 2:
                             Prefix = e.Message;
-                            e.Source.Send("命令响应前缀设置完毕！");
+                            e.Reply("命令响应前缀设置完毕！");
                             break;
                     }
 
                     if (CurrentStepId == LastStepId)
                     {
-                        e.Source.Send("配置准备就绪，敬请使用吧！");
-                        e.Source.Send($"如果需要使用帮助菜单，请输入 {Commons.Apps.Where(x => x.Name == "HelpMenu").Single().Features.Single().Usage}");
-                        e.Source.Send($"如果设置有误，请删除 data\\app\\{AppId}\\PluginConfig.json，并重载应用，重新发送 {Usage}");
+                        e.Reply("配置准备就绪，敬请使用吧！");
+                        e.Reply($"如果需要使用帮助菜单，请输入 {Commons.Apps.Where(x => x.Name == "HelpMenu").Single().Features.Single().Usage}");
+                        e.Reply($"如果设置有误，请删除 data\\app\\{AppId}\\PluginConfig.json，并重载应用，重新发送 {Commons.Apps.Where(x => x.Name == "Config").Single().Features.Where(x => GetClassName(x) == "ConfigCommand").Single().Usage}");
 
                         if (OwnerSet == -1)
                             Owner = CurrentUser.Number;

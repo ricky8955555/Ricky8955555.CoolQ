@@ -30,5 +30,7 @@ namespace Ricky8955555.CoolQ
         }
 
         internal static DateTime ToDateTime(Version version) => new DateTime(2000, 1, 1) + TimeSpan.FromDays(version.Build) + TimeSpan.FromSeconds(version.Revision * 2);
+
+        internal static string GetClassName(object obj) => obj.ToString().Split('.').Last();
     }
 }
