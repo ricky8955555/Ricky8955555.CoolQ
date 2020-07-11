@@ -2,6 +2,7 @@
 // 最后更新于 2020-7-3 19:44。
 
 using HuajiTech.CoolQ;
+using Ricky8955555.CoolQ;
 
 // 指定资源管理器的默认区域性信息。通常情况下，无需更改此项。
 [assembly: System.Resources.NeutralResourcesLanguage("zh-CN")]
@@ -13,4 +14,4 @@ using HuajiTech.CoolQ;
 
 // 指定应用的 AppID。必须更改此项。
 // dev 目录下存放应用的目录名必须与 AppID 匹配。
-[assembly: AppId("io.github.ricky8955555.addons")]
+[assembly: AppId(Commons.AppId)]

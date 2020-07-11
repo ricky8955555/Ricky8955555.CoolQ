@@ -67,6 +67,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Apps\ConfigApp.cs" />
+    <Compile Include="Features\ConfigCommand.cs" />
+    <Compile Include="Features\ConfigFeature.cs" />
     <Compile Include="Initializer.cs" />
     <Compile Include="Apps\AutoRepeaterApp.cs" />
     <Compile Include="Apps\BlacklistManagerApp.cs" />

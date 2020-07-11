@@ -1,10 +1,13 @@
-﻿using Ricky8955555.CoolQ.Apps;
+﻿using HuajiTech.CoolQ;
+using Ricky8955555.CoolQ.Apps;
 using Ricky8955555.CoolQ.Configurations;
 
 namespace Ricky8955555.CoolQ
 {
     internal static class Commons
     {
+        internal const string AppId = "io.github.ricky8955555.addons";
+
         internal readonly static AppBase[] Apps = new AppBase[]
         {
             new HelpMenuApp(),
@@ -19,7 +22,8 @@ namespace Ricky8955555.CoolQ
             new AutoRepeaterApp(),
             new FakeMentionParserApp(),
             new SlappingApp(),
-            new MarketingApp()
+            new MarketingApp(),
+            new ConfigApp()
         };
 
         internal static class Configs
@@ -30,9 +34,17 @@ namespace Ricky8955555.CoolQ
 
             internal readonly static Configuration BlacklistConfig = new BlacklistConfig();
 
-            internal static string Prefix => PluginConfig.Config["Prefix"].ToString();
+            internal static string Prefix
+            {
+                get => PluginConfig.Config["Prefix"].ToString();
+                set => PluginConfig.Config["Prefix"] = value;
+            }
 
-            internal static long Owner => PluginConfig.Config["Owner"].ToObject<long>();
+            internal static long Owner
+            {
+                get => PluginConfig.Config["Owner"].ToObject<long>();
+                set => PluginConfig.Config["Owner"] = value;
+            }
         }
     }
 }

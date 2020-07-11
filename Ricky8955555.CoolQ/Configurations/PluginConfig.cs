@@ -9,7 +9,7 @@ namespace Ricky8955555.CoolQ.Configurations
         protected override JToken InitInfo { get; } = new JObject()
         {
             new JProperty("Prefix", "*"),
-            new JProperty("Owner", 0)
+            new JProperty("Owner", -1)
         };
     }
 }

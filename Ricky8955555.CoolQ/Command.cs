@@ -11,6 +11,8 @@ namespace Ricky8955555.CoolQ
 
         protected abstract string CommandUsage { get; }
 
+        protected virtual bool IsHandledAutomatically { get; } = true;
+
         internal override string Usage => string.Format(CommandUsage, Prefix);
 
         protected string GetMessage(string message)
@@ -47,7 +49,8 @@ namespace Ricky8955555.CoolQ
             if (message?.Trim().ToLower() == ResponseCommand)
             {
                 Invoking(e);
-                Handled = true;
+                if (IsHandledAutomatically)
+                    Handled = true;
             }
             else if (parameter != null)
             {
@@ -56,7 +59,8 @@ namespace Ricky8955555.CoolQ
                 else
                     NotifyIncorrectUsage(e);
 
-                Handled = true;
+                if (IsHandledAutomatically)
+                    Handled = true;
             }
         }
     }
@@ -80,7 +84,8 @@ namespace Ricky8955555.CoolQ
                 else
                     NotifyIncorrectUsage(e);
 
-                Handled = true;
+                if (IsHandledAutomatically)
+                    Handled = true;
             }
         }
     }
@@ -105,7 +110,8 @@ namespace Ricky8955555.CoolQ
                 else
                     NotifyIncorrectUsage(e);
 
-                Handled = true;
+                if (IsHandledAutomatically)
+                    Handled = true;
             }
         }
     }
