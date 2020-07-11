@@ -7,7 +7,7 @@
 [![GitHub Releases](https://img.shields.io/github/downloads/ricky8955555/Ricky8955555.CoolQ/latest/total)](https://github.com/ricky8955555/Ricky8955555.CoolQ/releases/latest)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fricky8955555%2FRicky8955555.CoolQ.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fricky8955555%2FRicky8955555.CoolQ?ref=badge_shield)
 [![Build status](https://ci.appveyor.com/api/projects/status/4fev7v95w57jbh4c?svg=true)](https://ci.appveyor.com/project/ricky8955555/ricky8955555-coolq)
-[![chat on QQ](http://img.shields.io/badge/chat%20on%20QQ-565136444-blue)](https://jq.qq.com/?_wv=1027&k=uQXe80tV)
+[![Chat on QQ](http://img.shields.io/badge/chat%20on%20QQ-565136444-blue)](https://jq.qq.com/?_wv=1027&k=uQXe80tV)
 
 一款基于 酷Q 的机器人插件
 
