@@ -34,6 +34,8 @@ namespace Ricky8955555.CoolQ
 
             internal readonly static Configuration BlacklistConfig = new BlacklistConfig();
 
+            internal readonly static Configuration SlappingConfig = new SlappingConfig();
+
             internal static string Prefix
             {
                 get => PluginConfig.Config["Prefix"].ToString();

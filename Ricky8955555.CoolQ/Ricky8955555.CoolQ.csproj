@@ -68,8 +68,10 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Apps\ConfigApp.cs" />
+    <Compile Include="Configurations\SlappingConfig.cs" />
     <Compile Include="Features\ConfigCommand.cs" />
     <Compile Include="Features\ConfigFeature.cs" />
+    <Compile Include="Features\SlappingCommand.cs" />
     <Compile Include="Initializer.cs" />
     <Compile Include="Apps\AutoRepeaterApp.cs" />
     <Compile Include="Apps\BlacklistManagerApp.cs" />
