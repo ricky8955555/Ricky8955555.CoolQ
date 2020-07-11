@@ -49,7 +49,7 @@ namespace Ricky8955555.CoolQ
                 case AppPermission.Administrator:
                     return !(user is IMember member) || (member.IsAdministrator || user.Number == Owner);
                 case AppPermission.Owner:
-                    return user.Number == Owner || user.Number == -1;
+                    return user.Number == Owner || Owner == -1;
                 default:
                     return false;
             }
