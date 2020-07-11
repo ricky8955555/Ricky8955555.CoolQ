@@ -12,6 +12,8 @@ namespace Ricky8955555.CoolQ.Apps
 
         internal override AppPriority Priority { get; } = AppPriority.Highest;
 
+        internal override AppPermission Permission { get; } = AppPermission.Owner;
+
         internal override Feature[] Features { get; } = new Feature[]
         {
             new ConfigCommand(),

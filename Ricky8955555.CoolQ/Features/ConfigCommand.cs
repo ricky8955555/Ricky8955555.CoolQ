@@ -14,7 +14,13 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements = null)
         {
-            IsRunning = true;
+            if (IsRunning)
+            {
+                e.Source.Send("配置正在运行中……");
+                Handled = true;
+            }
+            else
+                IsRunning = true;
         }
     }
 }

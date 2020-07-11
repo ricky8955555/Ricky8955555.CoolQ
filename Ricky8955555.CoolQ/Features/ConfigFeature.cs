@@ -76,6 +76,8 @@ namespace Ricky8955555.CoolQ.Features
                     else
                         CurrentStepId++;
                 }
+
+                Handled = true;
             }
         }
     }
