@@ -70,7 +70,7 @@ namespace Ricky8955555.CoolQ.Features
                     {
                         e.Reply("配置准备就绪，敬请使用吧！");
                         e.Reply($"如果需要使用帮助菜单，请输入 {Commons.Apps.Where(x => x.Name == "HelpMenu").Single().Features.Single().Usage}");
-                        e.Reply($"如果设置有误，请删除 data\\app\\{AppId}\\PluginConfig.json，并重载应用，重新发送 {Commons.Apps.Where(x => x.Name == "Config").Single().Features.Where(x => GetClassName(x) == "ConfigCommand").Single().Usage}");
+                        e.Reply($"如果设置有误，请删除 data\\app\\{AppId}\\PluginConfig.json，并重载应用，重新发送 {Commons.Apps.Where(x => x.Name == "Config").Single().Features.Where(x => x.GetType().Name == "ConfigCommand").Single().Usage}");
 
                         if (OwnerSet == -1)
                             Owner = CurrentUser.Number;
