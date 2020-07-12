@@ -25,7 +25,7 @@ namespace Ricky8955555.CoolQ.Features
             }
             else
             {
-                ((JObject)SlappingConfig.Config).Add(new JProperty(numStr, elements.ToSendableString()), true);
+                config.Add(new JProperty(numStr, elements.ToSendableString()), true);
                 SlappingConfig.Save();
             }
 
