@@ -1,9 +1,8 @@
-﻿using HuajiTech.CoolQ.Events;
+using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using System;
 using System.Linq;
 using static Ricky8955555.CoolQ.Utilities;
-using static Ricky8955555.CoolQ.Commons.Configs;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -19,7 +18,6 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements = null)
         {
-            string prefix = PluginConfig.Config["Prefix"].ToString();
             var appInfos = GetApps(e.Source, e.Sender).Select(x => $"{(x.IsEnabled(e.Source) ? string.Empty : "【已停用】")}{x.DisplayName} ({x.Name}):\n" + string.Join("\n", x.Features.Where(f => f.Usage != null).Select(f => f.Usage).OrderBy(f => f))).OrderBy(x => x);
             int pageCount = (int)Math.Ceiling((float)appInfos.Count() / MaxCount);
             int pageIndex = 1;
