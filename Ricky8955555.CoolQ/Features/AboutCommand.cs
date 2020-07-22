@@ -50,7 +50,7 @@ namespace Ricky8955555.CoolQ.Features
                 catch { }
             }
 
-            e.Source.Send(string.Format(Resources.About, ricky, syc, Resources.ProjectURL, Resources.CommunityURL, Resources.SDKProjectURL, Resources.CoolQURL) + $"\n\n插件版本：{versionStr}\nSDK版本：{sdkVersion}\n编译时间：{ToDateTime(version)}");
+            e.Source.Send(string.Format(Resources.About, ricky, syc, Resources.ProjectURL, Resources.CommunityURL, Resources.SDKProjectURL, Resources.CoolQURL, Resources.HomepageURL) + $"\n\n插件版本：{versionStr}\nSDK版本：{sdkVersion}\n编译时间：{ToDateTime(version)}");
         }
     }
 }

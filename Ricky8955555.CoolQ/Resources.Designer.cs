@@ -70,7 +70,8 @@ namespace Ricky8955555.CoolQ {
         ///Ricky8955555.CoolQ 项目 (GitHub): {2}
         ///Minop Bot (酷Q社区): {3}
         ///HuajiTech.CoolQ (SDK) 项目 (GitHub): {4}
-        ///酷Q 官网: {5} 的本地化字符串。
+        ///酷Q 官网: {5}
+        ///Ricky 的个人网站：{6} 的本地化字符串。
         /// </summary>
         internal static string About {
             get {
@@ -129,6 +130,15 @@ namespace Ricky8955555.CoolQ {
         internal static string FeatureIncorrectUsage {
             get {
                 return ResourceManager.GetString("FeatureIncorrectUsage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 https://ricky8955555.neocities.org 的本地化字符串。
+        /// </summary>
+        internal static string HomepageURL {
+            get {
+                return ResourceManager.GetString("HomepageURL", resourceCulture);
             }
         }
         

@@ -127,7 +127,8 @@ By {0}
 Ricky8955555.CoolQ 项目 (GitHub): {2}
 Minop Bot (酷Q社区): {3}
 HuajiTech.CoolQ (SDK) 项目 (GitHub): {4}
-酷Q 官网: {5}</value>
+酷Q 官网: {5}
+Ricky 的个人网站：{6}</value>
   </data>
   <data name="CommunityURL" xml:space="preserve">
     <value>https://cqp.cc/t/51291</value>
@@ -146,6 +147,9 @@ HuajiTech.CoolQ (SDK) 项目 (GitHub): {4}
   </data>
   <data name="FeatureIncorrectUsage" xml:space="preserve">
     <value>参数错误 (￣３￣)a ，具体用法：{0}</value>
+  </data>
+  <data name="HomepageURL" xml:space="preserve">
+    <value>https://ricky8955555.neocities.org</value>
   </data>
   <data name="MarketingTemplate" xml:space="preserve">
     <value>{0}{1}是怎么回事呢？{0}相信大家都很熟悉，但是{0}{1}是怎么回事呢，下面就让小编带大家一起了解吧。
