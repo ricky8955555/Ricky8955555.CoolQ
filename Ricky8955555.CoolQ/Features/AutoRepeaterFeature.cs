@@ -17,7 +17,7 @@ namespace Ricky8955555.CoolQ.Features
                 {
                     e.Source.Send(e.Message.Content);
                 }
-                catch (ApiException ex) when (ex.ErrorCode == -11) { }
+                catch (ApiException ex) when (ex.ErrorCode == -11 || ex.ErrorCode == -33) { }
             else
             {
                 Messages.Add((e.Source, e.Message));
@@ -31,7 +31,7 @@ namespace Ricky8955555.CoolQ.Features
                         {
                             e.Source.Send(e.Message.Content);
                         }
-                        catch (ApiException ex) when (ex.ErrorCode == -11) { }
+                        catch (ApiException ex) when (ex.ErrorCode == -11 || ex.ErrorCode == -33) { }
                 }
                 else
                     Messages.RemoveAll(x => x.Source.Equals(e.Source) && x.Message != e.Message);
