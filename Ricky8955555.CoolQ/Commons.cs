@@ -1,5 +1,4 @@
-﻿using HuajiTech.CoolQ;
-using Ricky8955555.CoolQ.Apps;
+﻿using Ricky8955555.CoolQ.Apps;
 using Ricky8955555.CoolQ.Configurations;
 
 namespace Ricky8955555.CoolQ
@@ -23,7 +22,8 @@ namespace Ricky8955555.CoolQ
             new FakeMentionParserApp(),
             new SlappingApp(),
             new MarketingApp(),
-            new ConfigApp()
+            new ConfigApp(),
+            new IPInfoApp()
         };
 
         internal static class Configs

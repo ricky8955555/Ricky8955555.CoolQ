@@ -2,7 +2,6 @@
 using HuajiTech.CoolQ.Messaging;
 using System;
 using System.Linq;
-using static Ricky8955555.CoolQ.Utilities;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -21,7 +20,7 @@ namespace Ricky8955555.CoolQ.Features
                 try
                 {
                     var config = Commons.Configs.AppStatusConfig;
-                    var app = GetApps(e.Source, e.Sender).Where(x => x.Name == splitText[0]).Single();
+                    var app = AppUtilities.GetApps(e.Source, e.Sender).Where(x => x.Name == splitText[0]).Single();
                     bool? operation = splitText[1].ToLower().ToBool("on", "off");
 
                     if (app.CanDisable)

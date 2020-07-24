@@ -22,6 +22,9 @@ namespace Ricky8955555.CoolQ.Features
             if (splitText != null &&
                 splitText.Length == 2 && int.TryParse(splitText[1], out pingCount) && pingCount > 0 ||
                 splitText.Length == 1)
+            {
+                e.Reply(Resources.Processing);
+
                 try
                 {
                     for (int i = 0; i < pingCount; i++)
@@ -45,8 +48,9 @@ namespace Ricky8955555.CoolQ.Features
                 }
                 catch (Exception ex)
                 {
-                    e.Source.Send($"Ping {splitText[0]} 出错，错误原因：" + ex.Message);
+                    e.Source.Send($"Ping {splitText[0]} 出错，错误原因：{ex.Message}");
                 }
+            }
             else
                 NotifyIncorrectUsage(e);
         }

@@ -68,9 +68,11 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Apps\ConfigApp.cs" />
+    <Compile Include="Apps\IPInfoApp.cs" />
     <Compile Include="Configurations\SlappingConfig.cs" />
     <Compile Include="Features\ConfigCommand.cs" />
     <Compile Include="Features\ConfigFeature.cs" />
+    <Compile Include="Features\IPInfoCommand.cs" />
     <Compile Include="Features\SlappingCommand.cs" />
     <Compile Include="Initializer.cs" />
     <Compile Include="Apps\AutoRepeaterApp.cs" />
@@ -116,7 +118,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Utilities.cs" />
+    <Compile Include="Utilities\AppUtilities.cs" />
+    <Compile Include="Utilities\VersionUtilities.cs" />
+    <Compile Include="Utilities\HttpUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

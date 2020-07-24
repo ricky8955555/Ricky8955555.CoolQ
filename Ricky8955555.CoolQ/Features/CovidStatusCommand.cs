@@ -1,7 +1,6 @@
 ﻿using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using Newtonsoft.Json.Linq;
-using System.Net.Http;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -13,13 +12,13 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements = null)
         {
-            var client = new HttpClient();
-            var res = client.GetAsync(Resources.CovidStatusApiURL).Result;
-            if (res.IsSuccessStatusCode)
+            e.Reply(Resources.Processing);
+
+            if (HttpUtilities.HttpGet(Resources.CovidStatusApiURL, out string content))
             {
                 try
                 {
-                    var json = JObject.Parse(res.Content.ReadAsStringAsync().Result);
+                    var json = JObject.Parse(content);
                     var dJson = JObject.Parse(json["data"].ToString());
                     var chinaTotal = dJson["chinaTotal"];
                     var chinaAdd = dJson["chinaAdd"];

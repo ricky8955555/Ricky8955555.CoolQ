@@ -3,7 +3,6 @@ using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using System.Reflection;
 using static HuajiTech.CoolQ.CurrentPluginContext;
-using static Ricky8955555.CoolQ.Utilities;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -50,7 +49,7 @@ namespace Ricky8955555.CoolQ.Features
                 catch { }
             }
 
-            e.Source.Send(string.Format(Resources.About, ricky, syc, Resources.ProjectURL, Resources.CommunityURL, Resources.SDKProjectURL, Resources.CoolQURL, Resources.HomepageURL) + $"\n\n插件版本：{versionStr}\nSDK版本：{sdkVersion}\n编译时间：{ToDateTime(version)}");
+            e.Source.Send(string.Format(Resources.About, ricky, syc, Resources.ProjectURL, Resources.CommunityURL, Resources.SDKProjectURL, Resources.CoolQURL, Resources.HomepageURL) + $"\n\n插件版本：{versionStr}\nSDK版本：{sdkVersion}\n编译时间：{VersionUtilities.ToDateTime(version)}");
         }
     }
 }

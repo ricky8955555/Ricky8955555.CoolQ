@@ -2,7 +2,6 @@ using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using System;
 using System.Linq;
-using static Ricky8955555.CoolQ.Utilities;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -18,12 +17,12 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements = null)
         {
-            var appInfos = GetApps(e.Source, e.Sender).Select(x => $"{(x.IsEnabled(e.Source) ? string.Empty : "【已停用】")}{x.DisplayName} ({x.Name}):\n" + string.Join("\n", x.Features.Where(f => f.Usage != null).Select(f => f.Usage).OrderBy(f => f))).OrderBy(x => x);
+            var appInfos = AppUtilities.GetApps(e.Source, e.Sender).Select(x => $"{(x.IsEnabled(e.Source) ? string.Empty : "【已停用】")}{x.DisplayName} ({x.Name}):\n" + string.Join("\n", x.Features.Where(f => f.Usage != null).Select(f => f.Usage).OrderBy(f => f))).OrderBy(x => x);
             int pageCount = (int)Math.Ceiling((float)appInfos.Count() / MaxCount);
             int pageIndex = 1;
 
             if (elements == null ||
-                (elements != null && elements.Count == 1 && elements[0] is PlainText plainText && int.TryParse(plainText.Content, out pageIndex)))
+                (elements != null && elements.Count == 1 && elements[0] is PlainText plainText && int.TryParse(plainText, out pageIndex)))
             {
                 if (pageIndex <= pageCount)
                 {

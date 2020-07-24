@@ -3,7 +3,6 @@ using HuajiTech.CoolQ.Messaging;
 using Newtonsoft.Json.Linq;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -15,16 +14,17 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText)
         {
-            string songName = plainText;
+            string str = plainText;
 
-            if (!string.IsNullOrWhiteSpace(songName))
+            if (!string.IsNullOrWhiteSpace(str))
             {
-                var musicName = songName.Trim();
-                var client = new HttpClient();
-                var res = client.GetAsync(string.Format(Resources.MusicApiURL, WebUtility.UrlEncode(musicName))).Result;
-                if (res.IsSuccessStatusCode)
+                e.Reply(Resources.Processing);
+
+                string musicName = str.Trim();
+
+                if (HttpUtilities.HttpGet(string.Format(Resources.MusicApiURL, WebUtility.UrlEncode(musicName)), out string content))
                 {
-                    var json = JObject.Parse(res.Content.ReadAsStringAsync().Result);
+                    var json = JObject.Parse(content);
                     try
                     {
                         var musicJson = json["result"]["songs"][0];
