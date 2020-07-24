@@ -27,7 +27,7 @@ namespace Ricky8955555.CoolQ
 
         protected string GetParameter(string message)
         {
-            string[] splitMessage = message?.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+            string[] splitMessage = message?.Split(new string[] { " ", Commons.CQNewLine }, 2, StringSplitOptions.RemoveEmptyEntries);
             if (splitMessage != null && splitMessage.Length == 2 && splitMessage[0].ToLower() == ResponseCommand && !string.IsNullOrWhiteSpace(splitMessage[1]))
                 return splitMessage[1];
             else

@@ -7,6 +7,8 @@ namespace Ricky8955555.CoolQ
     {
         internal const string AppId = "io.github.ricky8955555.addons";
 
+        internal static readonly string CQNewLine = "\r\n";
+
         internal readonly static AppBase[] Apps = new AppBase[]
         {
             new HelpMenuApp(),
