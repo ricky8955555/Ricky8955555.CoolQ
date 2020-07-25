@@ -116,7 +116,5 @@ namespace Ricky8955555.CoolQ
 
             return !(element1 == null && element2 == null);
         }
-
-        internal static string ToString(this bool flag, string trueString, string falseString) => flag ? trueString : falseString;
     }
 }

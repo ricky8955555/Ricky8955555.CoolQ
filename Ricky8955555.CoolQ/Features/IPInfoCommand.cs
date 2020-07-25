@@ -35,9 +35,9 @@ namespace Ricky8955555.CoolQ.Features
                                               $"所属组织：{json["org"]}\n" +
                                               $"AS：{json["asname"]}（{json["as"]}）\n" +
                                               $"反向DNS：{json["reverse"]}\n" +
-                                              $"移动数据接入：{json["mobile"].ToObject<bool>().ToString("是", "否")}\n" +
-                                              $"代理：{json["proxy"].ToObject<bool>().ToString("是", "否")}\n" +
-                                              $"托管/数据中心：{json["hosting"].ToObject<bool>().ToString("是", "否")}");
+                                              $"移动数据接入：{(json["mobile"].ToObject<bool>() ? "是" : "否")}\n" +
+                                              $"代理：{(json["proxy"].ToObject<bool>() ? "是" : "否")}\n" +
+                                              $"托管/数据中心：{(json["hosting"].ToObject<bool>() ? "是" : "否")}");
                     }
                     else
                         e.Reply("获取 IP 信息失败" + (json.ContainsKey("message") ? "，错误原因：" + json["message"] : string.Empty));
