@@ -4,7 +4,7 @@ using System.Linq;
 using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
 using Newtonsoft.Json.Linq;
-using static Ricky8955555.CoolQ.Commons.Configs;
+using static Ricky8955555.CoolQ.Configuration;
 
 namespace Ricky8955555.CoolQ
 {
@@ -24,7 +24,7 @@ namespace Ricky8955555.CoolQ
                 InitChattable(e.Source);
 
                 if (!(BlacklistConfig.Config.ToObject<List<long>>().Contains(e.Sender.Number) || string.IsNullOrEmpty(e.Message)))
-                    foreach (var app in Commons.Apps.OrderBy(x => (int)x.Priority))
+                    foreach (var app in AppBase.Apps.OrderBy(x => (int)x.Priority))
                     {
                         app.Run(e);
                         if (app.Handled)

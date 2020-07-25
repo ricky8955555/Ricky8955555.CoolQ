@@ -1,10 +1,11 @@
 ﻿using System.IO;
 using Newtonsoft.Json.Linq;
+using Ricky8955555.CoolQ.Configurations;
 using static HuajiTech.CoolQ.CurrentPluginContext;
 
 namespace Ricky8955555.CoolQ
 {
-    internal abstract class Configuration
+    internal abstract partial class Configuration
     {
         internal abstract string Name { get; }
 

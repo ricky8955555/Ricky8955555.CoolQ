@@ -2,7 +2,7 @@
 using HuajiTech.CoolQ.Messaging;
 using Newtonsoft.Json.Linq;
 using System.Linq;
-using static Ricky8955555.CoolQ.Commons.Configs;
+using static Ricky8955555.CoolQ.Configuration;
 
 namespace Ricky8955555.CoolQ.Features
 {

@@ -1,10 +1,10 @@
 ﻿using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
-using static Ricky8955555.CoolQ.Commons.Configs;
+using static Ricky8955555.CoolQ.Configuration;
 
 namespace Ricky8955555.CoolQ
 {
-    internal abstract class AppBase
+    internal abstract partial class AppBase
     {
         internal abstract string Name { get; }
 

@@ -14,4 +14,4 @@ using Ricky8955555.CoolQ;
 
 // 指定应用的 AppID。必须更改此项。
 // dev 目录下存放应用的目录名必须与 AppID 匹配。
-[assembly: AppId(Commons.AppId)]
+[assembly: AppId(Constants.AppId)]

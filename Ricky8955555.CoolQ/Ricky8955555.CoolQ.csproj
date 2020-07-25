@@ -67,8 +67,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Apps.cs" />
     <Compile Include="Apps\ConfigApp.cs" />
     <Compile Include="Apps\IPInfoApp.cs" />
+    <Compile Include="Configurations.cs" />
     <Compile Include="Configurations\SlappingConfig.cs" />
     <Compile Include="Features\ConfigCommand.cs" />
     <Compile Include="Features\ConfigFeature.cs" />
@@ -88,7 +90,7 @@
     <Compile Include="Apps\SlappingApp.cs" />
     <Compile Include="Apps\SpacingApp.cs" />
     <Compile Include="Apps\SwitchApp.cs" />
-    <Compile Include="Commons.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Features\AutoRepeaterCommand.cs" />
     <Compile Include="Features\BlacklistManagerCommand.cs" />
     <Compile Include="Command.cs" />

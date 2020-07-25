@@ -3,8 +3,8 @@ using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using System.Linq;
 using static Ricky8955555.CoolQ.Apps.ConfigApp;
-using static Ricky8955555.CoolQ.Commons;
-using static Ricky8955555.CoolQ.Commons.Configs;
+using static Ricky8955555.CoolQ.Constants;
+using static Ricky8955555.CoolQ.Configuration;
 
 namespace Ricky8955555.CoolQ.Features
 {
@@ -68,8 +68,8 @@ namespace Ricky8955555.CoolQ.Features
                     if (CurrentStepId == LastStepId)
                     {
                         e.Reply("配置准备就绪，敬请使用吧！\n" +
-                            $"如果需要使用帮助菜单，请输入 {Commons.Apps.Where(x => x.Name == "HelpMenu").Single().Features.Single().Usage}\n" +
-                            $"如果设置有误，请删除 data\\app\\{AppId}\\PluginConfig.json，并重载应用，重新发送 {Commons.Apps.Where(x => x.Name == "Config").Single().Features.Where(x => x.GetType().Name == "ConfigCommand").Single().Usage}");
+                            $"如果需要使用帮助菜单，请输入 {Constants.Apps.Where(x => x.Name == "HelpMenu").Single().Features.Single().Usage}\n" +
+                            $"如果设置有误，请删除 data\\app\\{AppId}\\PluginConfig.json，并重载应用，重新发送 {Constants.Apps.Where(x => x.Name == "Config").Single().Features.Where(x => x.GetType().Name == "ConfigCommand").Single().Usage}");
 
                         if (OwnerSet == -1)
                             Owner = CurrentUser.Number;
