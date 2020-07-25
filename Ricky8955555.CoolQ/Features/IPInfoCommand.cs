@@ -21,7 +21,7 @@ namespace Ricky8955555.CoolQ.Features
                     var json = JObject.Parse(content);
                     if (json["status"].ToString() == "success")
                     {
-                        e.Source.Send($"状态：获取成功\n" +
+                        e.Reply($"状态：获取成功\n" +
                                               $"IP {json["query"]} 信息：\n" +
                                               $"洲：{json["continent"]}（{json["continentCode"]}）\n" +
                                               $"国家：{json["country"]}（{json["countryCode"]}）\n" +

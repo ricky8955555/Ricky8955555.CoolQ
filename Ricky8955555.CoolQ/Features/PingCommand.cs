@@ -36,19 +36,19 @@ namespace Ricky8955555.CoolQ.Features
                             packetLostCount += 1;
                         else
                         {
-                            e.Source.Send($"Ping {splitText[0]} 失败，失败原因：{pingReply.Status}");
+                            e.Reply($"Ping {splitText[0]} 失败，失败原因：{pingReply.Status}");
                             return;
                         }
                     }
 
                     if (packetLostCount < pingCount)
-                        e.Source.Send($"Ping {splitText[0]} 结果：\n延迟：{totalRoundtripTime / pingCount} ms\n丢包率：{packetLostCount / pingCount * 100} %");
+                        e.Reply($"Ping {splitText[0]} 结果：\n延迟：{totalRoundtripTime / pingCount} ms\n丢包率：{packetLostCount / pingCount * 100} %");
                     else
-                        e.Source.Send($"Ping {splitText[0]} 超时");
+                        e.Reply($"Ping {splitText[0]} 超时");
                 }
                 catch (Exception ex)
                 {
-                    e.Source.Send($"Ping {splitText[0]} 出错，错误原因：{ex.Message}");
+                    e.Reply($"Ping {splitText[0]} 出错，错误原因：{ex.Message}");
                 }
             }
             else
