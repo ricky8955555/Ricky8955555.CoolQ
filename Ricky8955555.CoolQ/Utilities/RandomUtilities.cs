@@ -6,7 +6,7 @@ namespace Ricky8955555.CoolQ
     {
         private static readonly Random Random = new Random();
 
-        internal static double NextDouble(double minValue, double maxValue) => (Random.NextDouble() * (minValue - maxValue)) + minValue;
+        internal static double NextDouble(double minValue, double maxValue) => (Random.NextDouble() * (maxValue - minValue)) + minValue;
 
         internal static long Next(long minValue, long maxValue) => (long)NextDouble(minValue, maxValue);
 

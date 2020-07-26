@@ -37,7 +37,7 @@ namespace Ricky8955555.CoolQ.Features
                         NotifyIncorrectUsage(e);
                 }
                 else if (splitText[0] == "options")
-                    e.Reply(RandomUtilities.RandomOption(splitText));
+                    e.Reply(RandomUtilities.RandomOption(splitText[1].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)));
             }
             else
                 NotifyIncorrectUsage(e);
