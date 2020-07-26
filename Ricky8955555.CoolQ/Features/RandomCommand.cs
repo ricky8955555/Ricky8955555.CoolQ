@@ -6,11 +6,11 @@ namespace Ricky8955555.CoolQ.Features
 {
     internal class RandomCommand : Command<PlainText>
     {
-        internal override string ResponseCommand => throw new NotImplementedException();
+        internal override string ResponseCommand { get; } = "random";
 
-        protected override string CommandUsage { get; } = "{0}random number <最小值> <最大值>\n" +
-            "{0}random numberint <最小值> <最大值>\n" +
-            "{0}random options <选项> (空格为分隔符)";
+        protected override string CommandUsage { get; } = "{0}random number <最小值> <最大值> (输出随机数)\n" +
+            "{0}random numberint <最小值> <最大值> (输出随机整数)\n" +
+            "{0}random options <选项> (空格为分隔符) (输出随机选项)";
 
         protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText)
         {
