@@ -10,6 +10,6 @@ namespace Ricky8955555.CoolQ
 
         internal static long Next(long minValue, long maxValue) => (long)NextDouble(minValue, maxValue);
 
-        internal static T RandomOption<T>(params T[] options) => options[Random.Next(0, options.Length - 1)];
+        internal static T RandomOption<T>(params T[] options) => options[Random.Next(0, options.Length)];
     }
 }
