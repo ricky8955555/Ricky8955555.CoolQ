@@ -2,7 +2,7 @@
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    class HelpMenuApp : App
+    internal class HelpMenuApp : App
     {
         internal override string Name { get; } = "HelpMenu";
 

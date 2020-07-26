@@ -4,7 +4,7 @@ using System;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class MarketingCommand : Command<PlainText>
+    internal class MarketingCommand : Command<PlainText>
     {
         internal override string ResponseCommand { get; } = "marketing";
 

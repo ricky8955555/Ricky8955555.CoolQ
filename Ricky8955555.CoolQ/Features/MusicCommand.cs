@@ -6,7 +6,7 @@ using System.Net;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class MusicCommand : Command<PlainText>
+    internal class MusicCommand : Command<PlainText>
     {
         internal override string ResponseCommand { get; } = "music";
 

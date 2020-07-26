@@ -6,7 +6,7 @@ using static Ricky8955555.CoolQ.Configuration;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class SlappingFeature : Feature
+    internal class SlappingFeature : Feature
     {
         internal override string Usage { get; } = "当发送者单条消息中含有 2 个或以上对同个人提及时，则发送 “@发送者 拍了拍 @提及者 {自定义语句}”";
 

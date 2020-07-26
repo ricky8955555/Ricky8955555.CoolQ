@@ -2,7 +2,7 @@
 
 namespace Ricky8955555.CoolQ.Configurations
 {
-    class BlacklistConfig : Configuration
+    internal class BlacklistConfig : Configuration
     {
         internal override string Name { get; } = "BlacklistConfig";
 

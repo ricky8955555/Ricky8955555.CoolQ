@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class RichTextAutoParserFeature : Feature
+    internal class RichTextAutoParserFeature : Feature
     {
         internal override string Usage { get; } = "发送富文本即可解析（只支持部分）";
 

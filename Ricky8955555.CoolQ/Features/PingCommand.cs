@@ -5,7 +5,7 @@ using System.Net.NetworkInformation;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class PingCommand : Command<PlainText>
+    internal class PingCommand : Command<PlainText>
     {
         internal override string ResponseCommand { get; } = "ping";
 

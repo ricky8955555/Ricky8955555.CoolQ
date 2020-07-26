@@ -2,7 +2,7 @@
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    class RichTextAutoParserApp : App
+    internal class RichTextAutoParserApp : App
     {
         internal override string Name { get; } = "RichTextAutoParser";
 

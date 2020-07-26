@@ -5,7 +5,7 @@ using System;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class SpacingCommand : Command<PlainText>
+    internal class SpacingCommand : Command<PlainText>
     {
         internal override string ResponseCommand { get; } = "space";
 

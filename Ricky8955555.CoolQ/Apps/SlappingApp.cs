@@ -2,7 +2,7 @@
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    class SlappingApp : GroupApp
+    internal class SlappingApp : GroupApp
     {
         internal override string Name { get; } = "Slapping";
 

@@ -4,7 +4,7 @@ using static Ricky8955555.CoolQ.Apps.AutoRepeaterApp;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class AutoRepeaterCommand : Command
+    internal class AutoRepeaterCommand : Command
     {
         internal override string ResponseCommand { get; } = "autorepeat";
 

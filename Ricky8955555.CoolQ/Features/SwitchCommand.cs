@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class SwitchCommand : Command<PlainText>
+    internal class SwitchCommand : Command<PlainText>
     {
         internal override string ResponseCommand { get; } = "switch";
 

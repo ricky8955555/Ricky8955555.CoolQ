@@ -2,7 +2,7 @@
 
 namespace Ricky8955555.CoolQ.Configurations
 {
-    class PluginConfig : Configuration
+    internal class PluginConfig : Configuration
     {
         internal override string Name { get; } = "PluginConfig";
 

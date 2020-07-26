@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class CovidStatusCommand : Command
+    internal class CovidStatusCommand : Command
     {
         internal override string ResponseCommand { get; } = "covid-19";
 

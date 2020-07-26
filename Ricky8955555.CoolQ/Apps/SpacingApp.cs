@@ -2,7 +2,7 @@
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    class SpacingApp : App
+    internal class SpacingApp : App
     {
         internal override string Name { get; } = "Spacing";
 

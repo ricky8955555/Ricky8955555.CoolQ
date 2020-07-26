@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class FakeMentionParserFeature : Feature
+    internal class FakeMentionParserFeature : Feature
     {
         internal override string Usage { get; } = "当消息中存在纯文本形式的假提及，则发送提及";
 

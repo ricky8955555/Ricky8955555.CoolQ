@@ -2,7 +2,7 @@
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    class BlacklistManagerApp : App
+    internal class BlacklistManagerApp : App
     {
         internal override string Name { get; } = "BlacklistManager";
 

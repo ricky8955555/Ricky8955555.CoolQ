@@ -3,7 +3,7 @@ using Ricky8955555.CoolQ.Features;
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    class FakeMentionParserApp : GroupApp
+    internal class FakeMentionParserApp : GroupApp
     {
         internal override string Name { get; } = "FakeMentionParser";
 

@@ -2,7 +2,7 @@
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    class MusicApp : App
+    internal class MusicApp : App
     {
         internal override string Name { get; } = "Music";
 

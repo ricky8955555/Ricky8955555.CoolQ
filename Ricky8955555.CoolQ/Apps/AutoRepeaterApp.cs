@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    class AutoRepeaterApp : App
+    internal class AutoRepeaterApp : App
     {
         internal override string Name { get; } = "AutoRepeater";
 

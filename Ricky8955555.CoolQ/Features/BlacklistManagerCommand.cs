@@ -7,7 +7,7 @@ using static Ricky8955555.CoolQ.Configuration;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class BlacklistManagerCommand : Command
+    internal class BlacklistManagerCommand : Command
     {
         internal override string ResponseCommand { get; } = "blacklist";
 

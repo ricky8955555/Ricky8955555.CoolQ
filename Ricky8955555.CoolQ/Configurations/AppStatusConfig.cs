@@ -2,7 +2,7 @@
 
 namespace Ricky8955555.CoolQ.Configurations
 {
-    class AppStatusConfig : Configuration
+    internal class AppStatusConfig : Configuration
     {
         internal override string Name { get; } = "AppStatusConfig";
 

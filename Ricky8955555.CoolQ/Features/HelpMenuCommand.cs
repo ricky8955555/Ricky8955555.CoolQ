@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    class HelpMenuCommand : Command
+    internal class HelpMenuCommand : Command
     {
         internal override string ResponseCommand { get; } = "help";
 

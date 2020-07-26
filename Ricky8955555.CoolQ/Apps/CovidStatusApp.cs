@@ -2,7 +2,7 @@
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    class CovidStatusApp : App
+    internal class CovidStatusApp : App
     {
         internal override string Name { get; } = "CovidStatus";
 

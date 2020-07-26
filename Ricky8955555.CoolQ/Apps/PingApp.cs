@@ -2,7 +2,7 @@
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    class PingApp : App
+    internal class PingApp : App
     {
         internal override string Name { get; } = "Ping";
 
