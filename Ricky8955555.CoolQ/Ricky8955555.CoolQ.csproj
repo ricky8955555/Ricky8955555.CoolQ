@@ -70,11 +70,13 @@
     <Compile Include="Apps.cs" />
     <Compile Include="Apps\ConfigApp.cs" />
     <Compile Include="Apps\IPInfoApp.cs" />
+    <Compile Include="Apps\RandomApp.cs" />
     <Compile Include="Configurations.cs" />
     <Compile Include="Configurations\SlappingConfig.cs" />
     <Compile Include="Features\ConfigCommand.cs" />
     <Compile Include="Features\ConfigFeature.cs" />
     <Compile Include="Features\IPInfoCommand.cs" />
+    <Compile Include="Features\RandomCommand.cs" />
     <Compile Include="Features\SlappingCommand.cs" />
     <Compile Include="Initializer.cs" />
     <Compile Include="Apps\AutoRepeaterApp.cs" />
@@ -121,6 +123,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AppUtilities.cs" />
+    <Compile Include="Utilities\RandomUtilities.cs" />
     <Compile Include="Utilities\VersionUtilities.cs" />
     <Compile Include="Utilities\HttpUtilities.cs" />
   </ItemGroup>

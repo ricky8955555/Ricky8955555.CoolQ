@@ -20,7 +20,8 @@ namespace Ricky8955555.CoolQ
             new SlappingApp(),
             new MarketingApp(),
             new ConfigApp(),
-            new IPInfoApp()
+            new IPInfoApp(),
+            new RandomApp()
         };
     }
 }
