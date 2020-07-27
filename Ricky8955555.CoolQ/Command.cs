@@ -87,8 +87,6 @@ namespace Ricky8955555.CoolQ
                 if (IsHandledAutomatically)
                     Handled = true;
             }
-            else
-                NotifyIncorrectUsage(e);
         }
     }
 
@@ -115,8 +113,6 @@ namespace Ricky8955555.CoolQ
                 if (IsHandledAutomatically)
                     Handled = true;
             }
-            else
-                NotifyIncorrectUsage(e);
         }
     }
 }
