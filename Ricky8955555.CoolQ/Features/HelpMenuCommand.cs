@@ -5,25 +5,24 @@ using System.Linq;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class HelpMenuCommand : Command
+    internal class HelpMenuCommand : Command<PlainText>
     {
         internal override string ResponseCommand { get; } = "help";
 
-        protected override string CommandUsage { get; } = "{0}help [页码 (缺省值 1)]";
+        protected override string CommandUsage { get; } = "{0}help <页码>\n" +
+            "{0}help <应用名称>";
 
-        protected override bool CanHaveParameter { get; } = true;
+        private static readonly int MaxCount = 10;
 
-        private static readonly int MaxCount = 6;
-
-        protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements = null)
+        protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText)
         {
-            var appInfos = AppUtilities.GetApps(e.Source, e.Sender).Select(x => $"{(x.IsEnabled(e.Source) ? string.Empty : "【已停用】")}{x.DisplayName} ({x.Name}):\n" + string.Join("\n", x.Features.Where(f => f.Usage != null).Select(f => f.Usage).OrderBy(f => f))).OrderBy(x => x);
-            int pageCount = (int)Math.Ceiling((float)appInfos.Count() / MaxCount);
-            int pageIndex = 1;
+            var apps = AppUtilities.GetApps(e.Source, e.Sender);
 
-            if (elements == null ||
-                (elements != null && elements.Count == 1 && elements[0] is PlainText plainText && int.TryParse(plainText, out pageIndex)))
+            if (int.TryParse(plainText, out int pageIndex))
             {
+                var appInfos = apps.Select(GetAppInfo);
+                int pageCount = (int)Math.Ceiling((float)appInfos.Count() / MaxCount);
+
                 if (pageIndex <= pageCount)
                 {
                     int start = (pageIndex - 1) * MaxCount;
@@ -32,12 +31,24 @@ namespace Ricky8955555.CoolQ.Features
                     e.Source.Send($"帮助菜单 (第 {pageIndex} 页 / 共 {pageCount} 页)：\n" + string.Join("\n\n", appInfosSplit));
                 }
                 else if (pageIndex < 1)
-                    e.Source.Send($"页数不能小于等于 0 (Ｔ▽Ｔ)");
+                    e.Reply($"页数不能小于等于 0 (Ｔ▽Ｔ)");
                 else if (pageIndex > pageCount)
-                    e.Source.Send($"对于你而言，该帮助菜单仅有 {pageCount} 页 |ω･`)");
+                    e.Reply($"帮助菜单仅有 {pageCount} 页 |ω･`)");
             }
             else
-                NotifyIncorrectUsage(e);
+            {
+                try
+                {
+                    var app = apps.Where(x => x.Name == plainText).Single();
+                    e.Source.Send(GetAppInfo(app) + "\n" + string.Join("\n", app.Features.Where(f => f.Usage != null).Select(f => f.Usage)));
+                }
+                catch (InvalidOperationException)
+                {
+                    e.Reply($"应用 {plainText} 不存在 (•́へ•́╬)");
+                }
+            }
+
+            string GetAppInfo(AppBase app) => $"{(app.IsEnabled(e.Source) ? string.Empty : "【已停用】")}{app.DisplayName} ({app.Name})";
         }
     }
 }

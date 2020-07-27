@@ -39,7 +39,7 @@ namespace Ricky8955555.CoolQ.Features
                 }
                 catch (InvalidOperationException)
                 {
-                    e.Reply($"应用 {splitText[0]} 不存在");
+                    e.Reply($"应用 {splitText[0]} 不存在 (•́へ•́╬)");
                 }
             }
             else
