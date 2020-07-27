@@ -146,7 +146,8 @@ Ricky 的个人网站：{6}</value>
     <value>https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5</value>
   </data>
   <data name="FeatureIncorrectUsage" xml:space="preserve">
-    <value>参数错误 (￣３￣)a ，具体用法：{0}</value>
+    <value>参数错误 (￣３￣)a ，具体用法：
+{0}</value>
   </data>
   <data name="HomepageURL" xml:space="preserve">
     <value>https://ricky8955555.neocities.org</value>

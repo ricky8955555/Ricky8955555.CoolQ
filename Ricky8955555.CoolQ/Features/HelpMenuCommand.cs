@@ -28,7 +28,7 @@ namespace Ricky8955555.CoolQ.Features
                     int start = (pageIndex - 1) * MaxCount;
                     int count = pageIndex < pageCount ? MaxCount : appInfos.Count() - start;
                     var appInfosSplit = appInfos.Skip(start).Take(count);
-                    e.Source.Send($"帮助菜单 (第 {pageIndex} 页 / 共 {pageCount} 页)：\n" + string.Join("\n\n", appInfosSplit));
+                    e.Source.Send($"帮助菜单 (第 {pageIndex} 页 / 共 {pageCount} 页)：\n\n" + string.Join("\n", appInfosSplit));
                 }
                 else if (pageIndex < 1)
                     e.Reply($"页数不能小于等于 0 (Ｔ▽Ｔ)");
@@ -40,7 +40,7 @@ namespace Ricky8955555.CoolQ.Features
                 try
                 {
                     var app = apps.Where(x => x.Name == plainText).Single();
-                    e.Source.Send(GetAppInfo(app) + "\n" + string.Join("\n", app.Features.Where(f => f.Usage != null).Select(f => f.Usage)));
+                    e.Source.Send(GetAppInfo(app) + "：\n\n" + string.Join("\n", app.Features.Where(f => f.Usage != null).Select(f => f.Usage)));
                 }
                 catch (InvalidOperationException)
                 {

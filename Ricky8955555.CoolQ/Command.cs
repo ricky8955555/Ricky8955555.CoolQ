@@ -25,13 +25,19 @@ namespace Ricky8955555.CoolQ
                 return null;
         }
 
-        protected string GetParameter(string message)
+        protected bool GetParameter(string message, out string parameter)
         {
             string[] splitMessage = message?.Split(new string[] { " ", Constants.CQNewLine }, 2, StringSplitOptions.RemoveEmptyEntries);
-            if (splitMessage != null && splitMessage.Length == 2 && splitMessage[0].ToLower() == ResponseCommand && !string.IsNullOrWhiteSpace(splitMessage[1]))
-                return splitMessage[1];
+            if (splitMessage != null && splitMessage.Length > 0)
+            {
+                parameter = splitMessage.Length == 2 ? splitMessage[1] : null;
+                return splitMessage[0].ToLower() == ResponseCommand;
+            }
             else
-                return null;
+            {
+                parameter = null;
+                return false;
+            }
         }
     }
 
@@ -44,21 +50,18 @@ namespace Ricky8955555.CoolQ
         internal override void Invoke(MessageReceivedEventArgs e)
         {
             string message = GetMessage(e.Message.ToString());
-            string parameter = GetParameter(message);
 
-            if (message?.Trim().ToLower() == ResponseCommand)
+            if (GetParameter(message?.Trim(), out string parameter))
             {
-                Invoking(e);
-                if (IsHandledAutomatically)
-                    Handled = true;
-            }
-            else if (parameter != null)
-            {
-                if (CanHaveParameter)
-                    Invoking(e, ComplexMessage.Parse(parameter));
+                if (parameter == null)
+                    Invoking(e);
                 else
-                    NotifyIncorrectUsage(e);
-
+                {
+                    if (CanHaveParameter)
+                        Invoking(e, ComplexMessage.Parse(parameter));
+                    else
+                        NotifyIncorrectUsage(e);
+                }
                 if (IsHandledAutomatically)
                     Handled = true;
             }
@@ -73,19 +76,25 @@ namespace Ricky8955555.CoolQ
         internal override void Invoke(MessageReceivedEventArgs e)
         {
             string message = GetMessage(e.Message.ToString());
-            string parameter = GetParameter(message);
 
-            if (parameter != null)
+            if (GetParameter(message?.Trim(), out string parameter))
             {
-                var elements = ComplexMessage.Parse(parameter);
-
-                if (elements.Count == 1 && elements.TryDeconstruct(out T ele))
-                    Invoking(e, ele);
-                else
+                if (parameter == null)
+                {
                     NotifyIncorrectUsage(e);
+                }
+                else
+                {
+                    var elements = ComplexMessage.Parse(parameter);
 
-                if (IsHandledAutomatically)
-                    Handled = true;
+                    if (elements.Count == 1 && elements.TryDeconstruct(out T ele))
+                        Invoking(e, ele);
+                    else
+                        NotifyIncorrectUsage(e);
+
+                    if (IsHandledAutomatically)
+                        Handled = true;
+                }
             }
         }
     }
@@ -99,19 +108,25 @@ namespace Ricky8955555.CoolQ
         internal override void Invoke(MessageReceivedEventArgs e)
         {
             string message = GetMessage(e.Message.ToString());
-            string parameter = GetParameter(message);
 
-            if (parameter != null)
+            if (GetParameter(message?.Trim(), out string parameter))
             {
-                var elements = ComplexMessage.Parse(parameter);
-
-                if (elements.Count == 2 && elements.TryDeconstruct(out T1 ele1, out T2 ele2))
-                    Invoking(e, ele1, ele2);
-                else
+                if (parameter == null)
+                {
                     NotifyIncorrectUsage(e);
+                }
+                else
+                {
+                    var elements = ComplexMessage.Parse(parameter);
 
-                if (IsHandledAutomatically)
-                    Handled = true;
+                    if (elements.Count == 2 && elements.TryDeconstruct(out T1 ele1, out T2 ele2))
+                        Invoking(e, ele1, ele2);
+                    else
+                        NotifyIncorrectUsage(e);
+
+                    if (IsHandledAutomatically)
+                        Handled = true;
+                }
             }
         }
     }
