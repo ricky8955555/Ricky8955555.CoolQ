@@ -40,7 +40,7 @@ namespace Ricky8955555.CoolQ.Features
                 try
                 {
                     var app = apps.Where(x => x.Name == plainText).Single();
-                    e.Source.Send(GetAppInfo(app) + "：\n\n" + string.Join("\n", app.Features.Where(f => f.Usage != null).Select(f => f.Usage)));
+                    e.Source.Send(GetAppInfo(app) + "：\n" + string.Join("\n", app.Features.Where(f => f.Usage != null).Select(f => f.Usage)));
                 }
                 catch (InvalidOperationException)
                 {
