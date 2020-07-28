@@ -45,8 +45,8 @@ namespace Ricky8955555.CoolQ.Features
             }
             else
                 e.Reply($"请求失败了 (；´д｀)ゞ");
-
-            string GetTemperature(string str) => string.Join(" ~ ", str.Substring(0, str.Length - 1).Split(new string[] { " ~ " }, StringSplitOptions.None).Reverse()) + "℃";
         }
+
+        private static string GetTemperature(string str) => string.Join(" ~ ", str.Substring(0, str.Length - 1).Split(new string[] { " ~ " }, StringSplitOptions.None).Reverse()) + "℃";
     }
 }

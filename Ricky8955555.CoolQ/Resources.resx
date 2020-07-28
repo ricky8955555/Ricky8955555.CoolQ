@@ -172,6 +172,9 @@ Ricky 的个人网站：{6}</value>
   <data name="SDKProjectURL" xml:space="preserve">
     <value>https://github.com/huajitech/coolq-dotnet-sdk</value>
   </data>
+  <data name="VersionInfoURL" xml:space="preserve">
+    <value>https://ricky.huajitech.net/minop-bot/version.json</value>
+  </data>
   <data name="WeatherApiURL" xml:space="preserve">
     <value>http://api.jirengu.com/getWeather.php?city={0}</value>
   </data>

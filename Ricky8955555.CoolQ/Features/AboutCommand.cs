@@ -18,13 +18,12 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage parameter = null)
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            var version = assembly.GetName().Version;
+            var version = VersionUtilities.GetVersion();
             string sdkVersion = SdkInfo.Version;
 #if DEBUG
             string versionStr = version + " (Debug)";
 #else
-            string versionStr = version + " (Release)";
+            string versionStr = VersionUtilities.GetTagVersion() + " (Release)";
 #endif
             string ricky = "Ricky8955555";
             string syc = "SYC";

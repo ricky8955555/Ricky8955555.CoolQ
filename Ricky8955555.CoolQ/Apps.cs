@@ -22,7 +22,8 @@ namespace Ricky8955555.CoolQ
             new ConfigApp(),
             new IPInfoApp(),
             new RandomApp(),
-            new WeatherApp()
+            new WeatherApp(),
+            new UpdaterApp()
         };
     }
 }

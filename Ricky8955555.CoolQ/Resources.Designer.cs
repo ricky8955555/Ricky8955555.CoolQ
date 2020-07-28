@@ -200,6 +200,15 @@ namespace Ricky8955555.CoolQ {
         }
         
         /// <summary>
+        ///   查找类似 https://ricky.huajitech.net/minop-bot/version.json 的本地化字符串。
+        /// </summary>
+        internal static string VersionInfoURL {
+            get {
+                return ResourceManager.GetString("VersionInfoURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 http://api.jirengu.com/getWeather.php?city={0} 的本地化字符串。
         /// </summary>
         internal static string WeatherApiURL {

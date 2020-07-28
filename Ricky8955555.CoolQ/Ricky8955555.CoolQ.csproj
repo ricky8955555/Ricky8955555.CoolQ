@@ -71,6 +71,7 @@
     <Compile Include="Apps\ConfigApp.cs" />
     <Compile Include="Apps\IPInfoApp.cs" />
     <Compile Include="Apps\RandomApp.cs" />
+    <Compile Include="Apps\UpdaterApp.cs" />
     <Compile Include="Apps\WeatherApp.cs" />
     <Compile Include="Configurations.cs" />
     <Compile Include="Configurations\SlappingConfig.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Features\IPInfoCommand.cs" />
     <Compile Include="Features\RandomCommand.cs" />
     <Compile Include="Features\SlappingCommand.cs" />
+    <Compile Include="Features\UpdaterCommand.cs" />
     <Compile Include="Features\WeatherCommand.cs" />
     <Compile Include="Initializer.cs" />
     <Compile Include="Apps\AutoRepeaterApp.cs" />
