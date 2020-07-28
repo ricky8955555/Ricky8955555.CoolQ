@@ -20,7 +20,7 @@ namespace Ricky8955555.CoolQ.Features
 
             if (int.TryParse(plainText, out int pageIndex))
             {
-                var appInfos = apps.Select(GetAppInfo);
+                var appInfos = apps.Select(GetAppInfo).OrderBy(x => x);
                 int pageCount = (int)Math.Ceiling((float)appInfos.Count() / MaxCount);
 
                 if (pageIndex <= pageCount)
