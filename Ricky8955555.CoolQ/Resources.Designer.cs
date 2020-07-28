@@ -198,5 +198,14 @@ namespace Ricky8955555.CoolQ {
                 return ResourceManager.GetString("SDKProjectURL", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似 http://api.jirengu.com/getWeather.php?city={0} 的本地化字符串。
+        /// </summary>
+        internal static string WeatherApiURL {
+            get {
+                return ResourceManager.GetString("WeatherApiURL", resourceCulture);
+            }
+        }
     }
 }
