@@ -39,7 +39,7 @@ namespace Ricky8955555.CoolQ.Features
             {
                 try
                 {
-                    var app = apps.Where(x => x.Name.ToLower() == plainText).Single();
+                    var app = apps.Where(x => x.Name.ToLower() == plainText.Content.ToLower()).Single();
                     e.Source.Send(GetAppInfo(app) + "：\n" + string.Join("\n", app.Features.Where(f => f.Usage != null).Select(f => f.Usage)));
                 }
                 catch (InvalidOperationException)
