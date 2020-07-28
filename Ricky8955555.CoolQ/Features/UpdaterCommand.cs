@@ -38,7 +38,7 @@ namespace Ricky8955555.CoolQ.Features
             {
                 e.Reply(Resources.Processing);
 
-                string str = plainText.Content.Trim().ToLower();
+                string str = plainText.Content.ToLower();
 
                 if (str == "run")
                 {
