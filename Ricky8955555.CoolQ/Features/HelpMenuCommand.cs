@@ -23,7 +23,7 @@ namespace Ricky8955555.CoolQ.Features
                 var appInfos = apps.Select(GetAppInfo).OrderBy(x => x);
                 int pageCount = (int)Math.Ceiling((float)appInfos.Count() / MaxCount);
 
-                if (pageIndex <= pageCount)
+                if (pageIndex > 0 && pageIndex <= pageCount)
                 {
                     int start = (pageIndex - 1) * MaxCount;
                     int count = pageIndex < pageCount ? MaxCount : appInfos.Count() - start;
