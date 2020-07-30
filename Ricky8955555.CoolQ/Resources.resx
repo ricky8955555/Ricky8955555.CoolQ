@@ -145,6 +145,14 @@ Ricky 的个人网站：{6}</value>
   <data name="CovidStatusApiURL" xml:space="preserve">
     <value>https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5</value>
   </data>
+  <data name="ExceptionNotification" xml:space="preserve">
+    <value>Oops，发生了错误！ ヽ(。&gt;д&lt;)ｐ
+请将以下错误消息发送到以下方式的一种：
+GitHub Issue：{0}
+社区：{1}
+
+{2}</value>
+  </data>
   <data name="HomepageURL" xml:space="preserve">
     <value>https://ricky8955555.neocities.org</value>
   </data>

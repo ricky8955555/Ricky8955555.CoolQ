@@ -125,6 +125,20 @@ namespace Ricky8955555.CoolQ {
         }
         
         /// <summary>
+        ///   查找类似 Oops，发生了错误！ ヽ(。&gt;д&lt;)ｐ
+        ///请将以下错误消息发送到以下方式的一种：
+        ///GitHub Issue：{0}
+        ///社区：{1}
+        ///
+        ///{2} 的本地化字符串。
+        /// </summary>
+        internal static string ExceptionNotification {
+            get {
+                return ResourceManager.GetString("ExceptionNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 https://ricky8955555.neocities.org 的本地化字符串。
         /// </summary>
         internal static string HomepageURL {
