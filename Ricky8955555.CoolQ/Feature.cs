@@ -1,5 +1,4 @@
 ﻿using HuajiTech.CoolQ.Events;
-using HuajiTech.CoolQ.Messaging;
 
 namespace Ricky8955555.CoolQ
 {

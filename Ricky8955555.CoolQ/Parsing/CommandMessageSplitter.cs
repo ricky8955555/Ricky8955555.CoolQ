@@ -69,7 +69,7 @@ namespace Ricky8955555.CoolQ.Parsing
                 else
                 {
                     if (status == Status.Quote)
-                        status = Status.TokenStart;
+                        status = Status.QuoteStart;
 
                     sb.Append(c);
                 }
