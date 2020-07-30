@@ -20,7 +20,13 @@ namespace Ricky8955555.CoolQ
             message = message.Trim();
 
             if (message.StartsWith(Prefix, StringComparison.OrdinalIgnoreCase))
-                return message.Substring(Prefix.Length);
+            {
+                string msg = message.Substring(Prefix.Length);
+                if (string.IsNullOrWhiteSpace(msg))
+                    return null;
+                else
+                    return msg;
+            }
             else
                 return null;
         }
