@@ -6,6 +6,6 @@
 
         internal const string CQNewLine = "\r\n";
 
-        internal const int TagBuild = 1;
+        internal const int TagBuild = 0;
     }
 }

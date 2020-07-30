@@ -12,7 +12,8 @@ namespace Ricky8955555.CoolQ.Apps
 
         internal override Feature[] Features { get; } = new Feature[]
         {
-            new UpdaterCommand()
+            new UpdaterCheckCommand(),
+            new UpdaterRunCommand()
         };
     }
 }

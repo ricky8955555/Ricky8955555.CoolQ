@@ -3,8 +3,8 @@ using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using System.Linq;
 using static Ricky8955555.CoolQ.Apps.ConfigApp;
-using static Ricky8955555.CoolQ.Constants;
 using static Ricky8955555.CoolQ.Configuration;
+using static Ricky8955555.CoolQ.Constants;
 
 namespace Ricky8955555.CoolQ.Features
 {

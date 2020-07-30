@@ -1,6 +1,5 @@
-﻿using System.IO;
-using Newtonsoft.Json.Linq;
-using Ricky8955555.CoolQ.Configurations;
+﻿using Newtonsoft.Json.Linq;
+using System.IO;
 using static HuajiTech.CoolQ.CurrentPluginContext;
 
 namespace Ricky8955555.CoolQ

@@ -1,5 +1,4 @@
-﻿using HuajiTech.CoolQ.Events;
-using Ricky8955555.CoolQ.Features;
+﻿using Ricky8955555.CoolQ.Features;
 
 namespace Ricky8955555.CoolQ.Apps
 {

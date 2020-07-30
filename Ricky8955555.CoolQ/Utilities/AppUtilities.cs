@@ -1,5 +1,4 @@
 ﻿using HuajiTech.CoolQ;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 

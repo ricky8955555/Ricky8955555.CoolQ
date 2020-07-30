@@ -1,7 +1,6 @@
 ﻿using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
-using System.Reflection;
 using static HuajiTech.CoolQ.CurrentPluginContext;
 
 namespace Ricky8955555.CoolQ.Features
@@ -16,7 +15,7 @@ namespace Ricky8955555.CoolQ.Features
 
         private readonly long SYCNumber = 2761729667;
 
-        protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage parameter = null)
+        protected override void Invoking(MessageReceivedEventArgs e)
         {
             var version = VersionUtilities.GetVersion();
             string sdkVersion = SdkInfo.Version;

@@ -1,5 +1,4 @@
-﻿using System;
-using HuajiTech.CoolQ.Events;
+﻿using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using Newtonsoft.Json.Linq;
 using static HuajiTech.CoolQ.CurrentPluginContext;
@@ -7,37 +6,23 @@ using static Ricky8955555.CoolQ.Configuration;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class BlacklistManagerCommand : Command
+    internal class BlacklistManagerMentionCommand : Command<PlainText, Mention>
     {
         internal override string ResponseCommand { get; } = "blacklist";
 
-        protected override string CommandUsage { get; } = "{0}blacklist <add/remove> <提及/QQ号>";
+        protected override string CommandUsage { get; } = "{0}blacklist <add/remove> <提及>";
 
-        protected override bool CanHaveParameter { get; } = true;
-
-        protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements)
+        protected override void Invoking(MessageReceivedEventArgs e, PlainText operationText, Mention mention)
         {
             var config = (JArray)BlacklistConfig.Config;
-            long number = long.MinValue;
-            bool? operation = false;
-
-            if (elements.Count == 1 && elements.TryDeconstruct(out PlainText plainText))
-            {
-                string[] splitText = plainText.Content.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                if (splitText.Length == 2 && long.TryParse(splitText[1], out number))
-                    operation = splitText[0].ToLower().ToBool("add", "remove");
-            }
-            else if (elements.Count == 2 && elements.TryDeconstruct(out plainText, out Mention mention))
-            {
-                operation = plainText.Content.Trim().ToLower().ToBool("add", "remove");
-                number = mention.TargetNumber;
-            }
+            long number = mention.TargetNumber;
+            bool? operation = operationText.Content.ToLower().ToBool("add", "remove");
 
             if (number == Owner || number == Bot.CurrentUser.Number)
                 e.Reply("无法将主人或机器人加入到黑名单 ─=≡Σ(((つ•̀ω•́)つ");
             else
             {
-                if ((!operation.HasValue) || number == long.MinValue)
+                if (!operation.HasValue)
                     NotifyIncorrectUsage(e);
                 else if (operation.Value)
                 {

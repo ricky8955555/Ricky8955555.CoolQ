@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using HuajiTech.CoolQ;
+﻿using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using static Ricky8955555.CoolQ.Configuration;
 
 namespace Ricky8955555.CoolQ
@@ -19,6 +19,12 @@ namespace Ricky8955555.CoolQ
 
         private static void MessageReceived(object sender, MessageReceivedEventArgs e)
         {
+            //if (e.Source.Number == 706172242 && e.Message.Content.StartsWith("/"))
+            //{
+            //    var command = new CommandMessage(e.Message.Content.Trim().Substring(1));
+            //    e.Source.Send($"Command: {command.Command}\nParameters: {string.Join("[[[", command.Parameters.Select(x => x.ToSendableString()))}");
+            //}
+
             try
             {
                 InitChattable(e.Source);
