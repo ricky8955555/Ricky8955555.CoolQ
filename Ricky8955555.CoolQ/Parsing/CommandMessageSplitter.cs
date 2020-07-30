@@ -9,6 +9,7 @@ namespace Ricky8955555.CoolQ.Parsing
         private enum Status
         {
             TokenStart,
+            Quote,
             QuoteStart,
             QuoteEnd
         }
@@ -20,7 +21,6 @@ namespace Ricky8955555.CoolQ.Parsing
             var strList = new List<string>();
             var status = Status.TokenStart;
             int pos = 0;
-            int lstPos = 0;
 
             while (pos < memory.Length)
             {
@@ -31,17 +31,14 @@ namespace Ricky8955555.CoolQ.Parsing
                     switch (status)
                     {
                         case Status.TokenStart:
-                            status = Status.QuoteStart;
-                            lstPos = pos;
+                            status = Status.Quote;
+                            break;
+                        case Status.Quote:
+                            status = Status.TokenStart;
+                            sb.Append('\"');
                             break;
                         case Status.QuoteStart:
-                            if (lstPos == pos - 1)
-                            {
-                                status = Status.TokenStart;
-                                sb.Append('\"');
-                            }
-                            else
-                                status = Status.QuoteEnd;
+                            status = Status.QuoteEnd;
                             break;
                         case Status.QuoteEnd:
                             status = Status.QuoteStart;
@@ -56,6 +53,10 @@ namespace Ricky8955555.CoolQ.Parsing
                         case Status.TokenStart:
                             Write();
                             break;
+                        case Status.Quote:
+                            status = Status.QuoteStart;
+                            sb.Append(' ');
+                            break;
                         case Status.QuoteStart:
                             sb.Append(' ');
                             break;
@@ -67,6 +68,9 @@ namespace Ricky8955555.CoolQ.Parsing
                 }
                 else
                 {
+                    if (status == Status.Quote)
+                        status = Status.TokenStart;
+
                     sb.Append(c);
                 }
 
