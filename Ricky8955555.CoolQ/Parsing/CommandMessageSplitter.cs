@@ -74,6 +74,7 @@ namespace Ricky8955555.CoolQ.Parsing
             }
 
             Write();
+            strList.RemoveAll(string.IsNullOrWhiteSpace);
 
             void Write()
             {

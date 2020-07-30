@@ -35,15 +35,13 @@ namespace Ricky8955555.CoolQ
 
     internal abstract class Command : CommandBase
     {
-        // protected virtual bool CanHaveParameter { get; } = false;
-
         protected abstract void Invoking(MessageReceivedEventArgs e);
 
         internal override void Invoke(MessageReceivedEventArgs e)
         {
             string message = GetMessage(e.Message.ToString());
 
-            if (GetParameter(message?.Trim(), out ComplexMessage parameters))
+            if (message != null && GetParameter(message.Trim(), out ComplexMessage parameters))
             {
                 if (parameters == null)
                 {
@@ -65,7 +63,7 @@ namespace Ricky8955555.CoolQ
         {
             string message = GetMessage(e.Message.ToString());
 
-            if (GetParameter(message?.Trim(), out ComplexMessage parameters))
+            if (message != null && GetParameter(message.Trim(), out ComplexMessage parameters))
             {
                 if (parameters == null)
                 {
@@ -92,7 +90,7 @@ namespace Ricky8955555.CoolQ
         {
             string message = GetMessage(e.Message.ToString());
 
-            if (GetParameter(message?.Trim(), out ComplexMessage parameters))
+            if (message != null && GetParameter(message.Trim(), out ComplexMessage parameters))
             {
                 if (parameters == null)
                 {
@@ -120,7 +118,7 @@ namespace Ricky8955555.CoolQ
         {
             string message = GetMessage(e.Message.ToString());
 
-            if (GetParameter(message?.Trim(), out ComplexMessage parameters))
+            if (message != null && GetParameter(message.Trim(), out ComplexMessage parameters))
             {
                 if (parameters == null)
                 {
