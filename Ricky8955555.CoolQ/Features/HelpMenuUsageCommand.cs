@@ -12,7 +12,7 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override void Invoking(MessageReceivedEventArgs e)
         {
-            e.Reply("帮助菜单用法：\n" + AppBase.Apps.Where(x => x.Name == "HelpMenu").Single().Features.Where(x => x.GetType().Name == "HelpMenuUsageCommand").Single().Usage);
+            e.Reply("帮助菜单用法：\n" + AppBase.Apps.Where(x => x.Name == "HelpMenu").Single().Features.Where(x => x.GetType().Name == "HelpMenuCommand").Single().Usage);
         }
     }
 }
