@@ -21,9 +21,7 @@ namespace Ricky8955555.CoolQ.Features
 
                 if (app.CanDisable)
                 {
-                    if (!operation.HasValue)
-                        NotifyIncorrectUsage(e);
-                    else
+                    if (operation.HasValue)
                     {
                         config.Config[e.Source.ToString(true)][app.Name] = operation.Value;
                         e.Reply($"已{(operation.Value ? "启用" : "停用")}应用 {app.DisplayName}（{app.Name}） ✧(≖ ◡ ≖✿ ");

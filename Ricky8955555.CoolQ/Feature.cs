@@ -10,10 +10,5 @@ namespace Ricky8955555.CoolQ
         internal abstract void Invoke(MessageReceivedEventArgs e);
 
         internal bool Handled { get; set; } = false;
-
-        internal void NotifyIncorrectUsage(MessageReceivedEventArgs e)
-        {
-            e.Reply(string.Format(Resources.FeatureIncorrectUsage, Usage));
-        }
     }
 }

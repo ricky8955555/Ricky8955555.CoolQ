@@ -125,16 +125,6 @@ namespace Ricky8955555.CoolQ {
         }
         
         /// <summary>
-        ///   查找类似 参数错误 (￣３￣)a ，具体用法：
-        ///{0} 的本地化字符串。
-        /// </summary>
-        internal static string FeatureIncorrectUsage {
-            get {
-                return ResourceManager.GetString("FeatureIncorrectUsage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 https://ricky8955555.neocities.org 的本地化字符串。
         /// </summary>
         internal static string HomepageURL {

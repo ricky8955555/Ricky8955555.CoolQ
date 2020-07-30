@@ -42,8 +42,6 @@ namespace Ricky8955555.CoolQ.Features
                 else
                     e.Reply("获取最新版本信息失败了 (；´д｀)ゞ");
             }
-            else
-                NotifyIncorrectUsage(e);
         }
     }
 }

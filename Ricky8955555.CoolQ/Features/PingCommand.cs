@@ -51,8 +51,6 @@ namespace Ricky8955555.CoolQ.Features
                     e.Reply($"Ping {splitText[0]} 出错，错误原因：{ex.Message}");
                 }
             }
-            else
-                NotifyIncorrectUsage(e);
         }
     }
 }

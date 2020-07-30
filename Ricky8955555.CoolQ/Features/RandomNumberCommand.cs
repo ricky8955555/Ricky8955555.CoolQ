@@ -18,15 +18,11 @@ namespace Ricky8955555.CoolQ.Features
             {
                 if (double.TryParse(minValueText, out double minValue) && double.TryParse(maxValueText, out double maxValue))
                     e.Reply(RandomUtilities.NextDouble(minValue, maxValue).ToString());
-                else
-                    NotifyIncorrectUsage(e);
             }
             else if (option == "numberint")
             {
                 if (long.TryParse(minValueText, out long minValue) && long.TryParse(maxValueText, out long maxValue))
                     e.Reply(RandomUtilities.Next(minValue, maxValue).ToString());
-                else
-                    NotifyIncorrectUsage(e);
             }
         }
     }

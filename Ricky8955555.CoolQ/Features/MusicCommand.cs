@@ -39,8 +39,6 @@ namespace Ricky8955555.CoolQ.Features
                 else
                     e.Reply($"请求失败了 (；´д｀)ゞ");
             }
-            else
-                NotifyIncorrectUsage(e);
         }
     }
 }

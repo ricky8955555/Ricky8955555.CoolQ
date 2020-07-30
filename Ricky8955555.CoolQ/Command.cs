@@ -65,11 +65,7 @@ namespace Ricky8955555.CoolQ
 
             if (message != null && GetParameter(message.Trim(), out ComplexMessage parameters))
             {
-                if (parameters == null)
-                {
-                    NotifyIncorrectUsage(e);
-                }
-                else if (parameters.Count == 1 && parameters.TryDeconstruct(out T ele))
+                if (parameters.Count == 1 && parameters.TryDeconstruct(out T ele))
                 {
                     Invoking(e, ele);
 
@@ -92,11 +88,7 @@ namespace Ricky8955555.CoolQ
 
             if (message != null && GetParameter(message.Trim(), out ComplexMessage parameters))
             {
-                if (parameters == null)
-                {
-                    NotifyIncorrectUsage(e);
-                }
-                else if (parameters.Count == 2 && parameters.TryDeconstruct(out T1 ele1, out T2 ele2))
+                if (parameters.Count == 2 && parameters.TryDeconstruct(out T1 ele1, out T2 ele2))
                 {
                     Invoking(e, ele1, ele2);
 
@@ -120,11 +112,7 @@ namespace Ricky8955555.CoolQ
 
             if (message != null && GetParameter(message.Trim(), out ComplexMessage parameters))
             {
-                if (parameters == null)
-                {
-                    NotifyIncorrectUsage(e);
-                }
-                else if (parameters.Count == 3 && parameters.TryDeconstruct(out T1 ele1, out T2 ele2, out T3 ele3))
+                if (parameters.Count == 3 && parameters.TryDeconstruct(out T1 ele1, out T2 ele2, out T3 ele3))
                 {
                     Invoking(e, ele1, ele2, ele3);
 

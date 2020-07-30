@@ -15,8 +15,6 @@ namespace Ricky8955555.CoolQ.Features
 
             if (option == "options")
                 e.Reply(RandomUtilities.RandomOption(options.Content.Split('|')));
-            else
-                NotifyIncorrectUsage(e);
         }
     }
 }
