@@ -89,6 +89,7 @@
     <Compile Include="Command.cs" />
     <Compile Include="CommandMessage.cs" />
     <Compile Include="Features\BlacklistManagerMentionCommand.cs" />
+    <Compile Include="Features\HelpMenuUsageCommand.cs" />
     <Compile Include="Features\RandomOptionsCommand.cs" />
     <Compile Include="Features\SlappingEditCommand.cs" />
     <Compile Include="Features\SpacingCustomCommand.cs" />
