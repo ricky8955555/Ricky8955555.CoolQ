@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ricky8955555.CoolQ.Parsing
 {
-    internal class CommandMessageSplitter
+    internal class CommandSplitter
     {
         private enum Status
         {
@@ -86,7 +86,10 @@ namespace Ricky8955555.CoolQ.Parsing
                 sb.Clear();
             }
 
-            return strList;
+            if (status == Status.TokenStart || status == Status.QuoteEnd)
+                return strList;
+            else
+                return null;
         }
     }
 }

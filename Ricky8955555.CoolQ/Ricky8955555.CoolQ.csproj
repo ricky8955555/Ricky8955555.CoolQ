@@ -87,7 +87,6 @@
     <Compile Include="Apps\UpdaterApp.cs" />
     <Compile Include="Apps\WeatherApp.cs" />
     <Compile Include="Command.cs" />
-    <Compile Include="CommandMessage.cs" />
     <Compile Include="Features\BlacklistManagerMentionCommand.cs" />
     <Compile Include="Features\HelpMenuUsageCommand.cs" />
     <Compile Include="Features\RandomOptionsCommand.cs" />
@@ -148,7 +147,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AppUtilities.cs" />
-    <Compile Include="Parsing\CommandMessageSplitter.cs" />
+    <Compile Include="Parsing\CommandSplitter.cs" />
     <Compile Include="Utilities\RandomUtilities.cs" />
     <Compile Include="Utilities\VersionUtilities.cs" />
     <Compile Include="Utilities\HttpUtilities.cs" />

@@ -1,5 +1,6 @@
 ﻿using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
+using Ricky8955555.CoolQ.Parsing;
 using System;
 using System.Linq;
 using static Ricky8955555.CoolQ.Configuration;
@@ -36,9 +37,26 @@ namespace Ricky8955555.CoolQ
 
         protected bool GetParameter(string message, out ComplexMessage parameters)
         {
-            var command = new CommandMessage(message);
-            parameters = command.Parameters;
-            return command.Command == ResponseCommand;
+            string[] strs = message.Split(new char[] { ' ' }, 2);
+
+            if (strs.Length > 0 && strs[0] == ResponseCommand)
+            {
+                if (strs.Length == 1)
+                    parameters = null;
+                else
+                {
+                    var splitter = new CommandSplitter();
+                    var command = splitter.Split(strs[1]);
+                    parameters = command?.Select(x => ComplexMessage.Parse(x).ToMessageElement()).ToComplexMessage();
+                }
+
+                return true;
+            }
+            else
+            {
+                parameters = null;
+                return false;
+            }
         }
 
         protected void SetHandled()

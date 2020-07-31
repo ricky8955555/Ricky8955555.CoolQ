@@ -47,6 +47,7 @@ namespace Ricky8955555.CoolQ
             }
             catch (Exception ex)
             {
+                ex.LogAsError();
                 e.Source.Send(string.Format(Resources.ExceptionNotification, Resources.ProjectURL, Resources.CommunityURL, ex));
             }
         }
