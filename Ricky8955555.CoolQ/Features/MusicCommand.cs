@@ -1,7 +1,6 @@
 ﻿using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using Newtonsoft.Json.Linq;
-using System;
 using System.Linq;
 using System.Net;
 
