@@ -10,7 +10,7 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override string CommandUsage { get; } = "{0}update (检查是否有版本更新)";
 
-        protected override void Invoking(MessageReceivedEventArgs e)
+        protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements)
         {
             var version = VersionUtilities.GetTagVersion();
 

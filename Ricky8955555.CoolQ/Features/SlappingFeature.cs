@@ -32,7 +32,7 @@ namespace Ricky8955555.CoolQ.Features
                     if (config.ContainsKey(numStr))
                         custom = " " + config[numStr].ToString();
 
-                    if (target.Equals(e.Sender))
+                    if (target.Equals(e.Subject))
                         e.Reply("拍了拍 自己" + custom);
                     else
                         e.Reply("拍了拍 " + mention + custom);

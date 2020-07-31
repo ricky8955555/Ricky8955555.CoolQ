@@ -11,7 +11,7 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override string CommandUsage { get; } = "{0}ping <IP 地址或域名> [次数 (缺省值 4) (最大值 99)]";
 
-        protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText)
+        protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText, ComplexMessage elements)
         {
             var ping = new Ping();
             long totalRoundtripTime = 0;

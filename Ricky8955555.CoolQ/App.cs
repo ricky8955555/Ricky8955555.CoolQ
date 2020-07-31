@@ -60,7 +60,7 @@ namespace Ricky8955555.CoolQ
     {
         internal override void Run(MessageReceivedEventArgs e)
         {
-            if (IsEnabled(e.Source) && IsAllowed(e.Sender))
+            if (IsEnabled(e.Source) && IsAllowed(e.Subject))
                 FeatureInvoker(e);
         }
     }
@@ -69,7 +69,7 @@ namespace Ricky8955555.CoolQ
     {
         internal override void Run(MessageReceivedEventArgs e)
         {
-            if (e.Source is IGroup && IsEnabled(e.Source) && IsAllowed(e.Sender))
+            if (e.Source is IGroup && IsEnabled(e.Source) && IsAllowed(e.Subject))
                 FeatureInvoker(e);
         }
     }
@@ -78,7 +78,7 @@ namespace Ricky8955555.CoolQ
     {
         internal override void Run(MessageReceivedEventArgs e)
         {
-            if (e.Source is IUser && IsEnabled(e.Source) && IsAllowed(e.Sender))
+            if (e.Source is IUser && IsEnabled(e.Source) && IsAllowed(e.Subject))
                 FeatureInvoker(e);
         }
     }

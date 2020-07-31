@@ -1,7 +1,6 @@
 ﻿using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
-using System.Linq;
 using static Ricky8955555.CoolQ.Apps.ConfigApp;
 using static Ricky8955555.CoolQ.Configuration;
 using static Ricky8955555.CoolQ.Constants;
@@ -25,10 +24,10 @@ namespace Ricky8955555.CoolQ.Features
 
             if (IsRunning)
             {
-                if (CurrentUser == null && (Owner == -1 || e.Sender.Number == Owner))
-                    CurrentUser = e.Sender;
+                if (CurrentUser == null && (Owner == -1 || e.Subject.Number == Owner))
+                    CurrentUser = e.Subject;
 
-                if (CurrentUser != null && CurrentUser.Equals(e.Sender))
+                if (CurrentUser != null && CurrentUser.Equals(e.Subject))
                 {
                     switch (CurrentStepId)
                     {
@@ -68,8 +67,9 @@ namespace Ricky8955555.CoolQ.Features
                     if (CurrentStepId == LastStepId)
                     {
                         e.Reply("配置准备就绪，敬请使用吧！\n" +
-                            $"如果需要使用帮助菜单，请输入 {AppBase.Apps.Where(x => x.Name == "HelpMenu").Single().Features.Where(x => x.GetType().Name == "HelpMenuUsageCommand").Single().Usage}\n" +
-                            $"如果设置有误，请删除 data\\app\\{AppId}\\PluginConfig.json，并重载应用，重新发送 {AppBase.Apps.Where(x => x.Name == "Config").Single().Features.Where(x => x.GetType().Name == "ConfigCommand").Single().Usage}");
+                            $"如果需要使用帮助菜单，请输入 {Prefix}help\n" +
+                            $"如果设置管理员账号有误，请删除 data\\app\\{AppId}\\PluginConfig.json，并重载应用，发送 minop config\n" +
+                            $"如果仅需修改其他内容，发送 {Prefix}config 重新配置即可");
 
                         if (OwnerSet == -1)
                             Owner = CurrentUser.Number;

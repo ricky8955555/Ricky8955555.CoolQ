@@ -13,7 +13,7 @@ namespace Ricky8955555.CoolQ.Features
 
         internal override string ResponseCommand { get; } = "weather";
 
-        protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText)
+        protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText, ComplexMessage elements)
         {
             e.Reply(Resources.Processing);
 

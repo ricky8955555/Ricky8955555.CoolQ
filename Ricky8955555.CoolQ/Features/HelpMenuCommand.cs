@@ -14,9 +14,9 @@ namespace Ricky8955555.CoolQ.Features
 
         private static readonly int MaxCount = 10;
 
-        protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText)
+        protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText, ComplexMessage elements)
         {
-            var apps = AppUtilities.GetApps(e.Source, e.Sender);
+            var apps = AppUtilities.GetApps(e.Source, e.Subject);
 
             if (int.TryParse(plainText, out int pageIndex))
             {

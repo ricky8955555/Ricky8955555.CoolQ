@@ -15,7 +15,7 @@ namespace Ricky8955555.CoolQ.Features
 
         private readonly long SYCNumber = 2761729667;
 
-        protected override void Invoking(MessageReceivedEventArgs e)
+        protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements)
         {
             var version = VersionUtilities.GetVersion();
             string sdkVersion = SdkInfo.Version;

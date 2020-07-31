@@ -1,4 +1,5 @@
 ﻿using HuajiTech.CoolQ.Events;
+using HuajiTech.CoolQ.Messaging;
 using static Ricky8955555.CoolQ.Apps.ConfigApp;
 
 namespace Ricky8955555.CoolQ.Features
@@ -11,7 +12,7 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override bool IsHandledAutomatically { get; } = false;
 
-        protected override void Invoking(MessageReceivedEventArgs e)
+        protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements)
         {
             if (IsRunning)
             {

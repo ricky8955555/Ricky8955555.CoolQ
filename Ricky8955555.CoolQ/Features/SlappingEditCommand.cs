@@ -11,9 +11,9 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override string CommandUsage { get; } = "{0}slapping <自定义语句> (设置)";
 
-        protected override void Invoking(MessageReceivedEventArgs e, MultipartElement element)
+        protected override void Invoking(MessageReceivedEventArgs e, MultipartElement element, ComplexMessage elements)
         {
-            ((JObject)SlappingConfig.Config).Add(new JProperty(e.Sender.Number.ToString(), element.ToSendableString()), true);
+            ((JObject)SlappingConfig.Config).Add(new JProperty(e.Subject.Number.ToString(), element.ToSendableString()), true);
             SlappingConfig.Save();
 
             e.Reply("你的拍一拍自定义语句设置好了 |ू･ω･` )");

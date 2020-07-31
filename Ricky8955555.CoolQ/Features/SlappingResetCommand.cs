@@ -11,9 +11,9 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override string CommandUsage { get; } = "{0}slapping (重置)";
 
-        protected override void Invoking(MessageReceivedEventArgs e)
+        protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements)
         {
-            ((JObject)SlappingConfig.Config).Remove(e.Sender.Number.ToString());
+            ((JObject)SlappingConfig.Config).Remove(e.Subject.Number.ToString());
             SlappingConfig.Save();
 
             e.Reply("你的拍一拍自定义语句重置好了 |ू･ω･` )");

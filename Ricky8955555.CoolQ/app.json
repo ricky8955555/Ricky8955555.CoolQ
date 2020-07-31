@@ -1,6 +1,6 @@
 // 用于 HuajiTech.CoolQ 应用的配置文件。
-// 最后更新于 2020-6-26 13:23。
-//
+// 最后更新于 2020-7-27 18:08。
+
 // 酷Q的 Json 文件支持以 // 开头的注释。
 // 开发模式下，应用的 app.dll 及 app.json 文件须放在 dev/[appid]/ 目录下，且必须向 AppIdAttribute 传入正确的 AppId。
 // 如 appid=com.example.demo, 则dll及json文件需分别放在 dev/com.example.demo/app.dll、dev/com.example.demo/app.json，
@@ -29,34 +29,6 @@
       "name": "群消息处理",
       "function": "OnGroupMessageReceived",
       "priority": 30000
-    },
-    {
-      "id": 1001,
-      "type": 1001,
-      "name": "酷Q启动事件",
-      "priority": 30000,
-      "function": "OnBotStarted" // 【注意：如果插件在非 AppLifecycle.Initializing 阶段加载，删除对应事件将导致插件将不被加载。】
-    },
-    {
-      "id": 1002,
-      "type": 1002,
-      "name": "酷Q关闭事件",
-      "priority": 30000,
-      "function": "OnBotStopping" // 【注意：如果插件在非 AppLifecycle.Initializing 阶段加载，删除对应事件将导致插件将不被加载。】
-    },
-    {
-      "id": 1003,
-      "type": 1003,
-      "name": "应用已被启用",
-      "priority": 30000,
-      "function": "OnAppEnabled" // 【注意：如果插件在非 AppLifecycle.Initializing 阶段加载，删除对应事件将导致插件将不被加载。】
-    },
-    {
-      "id": 1004,
-      "type": 1004,
-      "name": "应用将被停用",
-      "priority": 30000,
-      "function": "OnAppDisabling" // 【注意：如果插件在非 AppLifecycle.Initializing 阶段加载，删除对应事件将导致插件将不被加载。】
     }
   ],
   "menu": [ // 设置菜单【发布前请删除无用菜单，如果无需设置菜单请全部删除】

@@ -10,7 +10,7 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override string CommandUsage { get; } = "{0}COVID-19";
 
-        protected override void Invoking(MessageReceivedEventArgs e)
+        protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements)
         {
             e.Reply(Resources.Processing);
 

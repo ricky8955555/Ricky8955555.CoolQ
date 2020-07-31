@@ -12,7 +12,7 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override string CommandUsage { get; } = "{0}blacklist <add/remove> <QQ号>";
 
-        protected override void Invoking(MessageReceivedEventArgs e, PlainText operationText, PlainText numberText)
+        protected override void Invoking(MessageReceivedEventArgs e, PlainText operationText, PlainText numberText, ComplexMessage elements)
         {
             var config = (JArray)BlacklistConfig.Config;
             bool? operation = operationText.Content.ToLower().ToBool("add", "remove");

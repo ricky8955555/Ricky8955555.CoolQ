@@ -12,7 +12,7 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override string CommandUsage { get; } = "{0}blacklist <add/remove> <提及>";
 
-        protected override void Invoking(MessageReceivedEventArgs e, PlainText operationText, Mention mention)
+        protected override void Invoking(MessageReceivedEventArgs e, PlainText operationText, Mention mention, ComplexMessage elements)
         {
             var config = (JArray)BlacklistConfig.Config;
             long number = mention.TargetNumber;

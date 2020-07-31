@@ -29,7 +29,7 @@ namespace Ricky8955555.CoolQ
             {
                 InitChattable(e.Source);
 
-                if (!(BlacklistConfig.Config.ToObject<List<long>>().Contains(e.Sender.Number) || string.IsNullOrEmpty(e.Message)))
+                if (!(BlacklistConfig.Config.ToObject<List<long>>().Contains(e.Subject.Number) || string.IsNullOrEmpty(e.Message)))
                     foreach (var app in AppBase.Apps.OrderBy(x => (int)x.Priority))
                     {
                         app.Run(e);

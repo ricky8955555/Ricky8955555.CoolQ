@@ -1,25 +1,29 @@
 ﻿using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Linq;
 using System.Net;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class MusicCommand : Command<PlainText>
+    internal class MusicCommand : Command
     {
         internal override string ResponseCommand { get; } = "music";
 
         protected override string CommandUsage { get; } = "{0}music <歌曲名>";
 
-        protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText)
-        {
-            string str = plainText;
+        protected override LastParameterProcessing LastParameterProcessing { get; } = LastParameterProcessing.ComplexMessage;
 
-            if (!string.IsNullOrWhiteSpace(str))
+        protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements)
+        {
+            var plainText = elements.OfType<PlainText>();
+
+            if (plainText.Count() == elements.Count)
             {
                 e.Reply(Resources.Processing);
 
+                string str = string.Join(" ", plainText);
                 string musicName = str.Trim();
 
                 if (HttpUtilities.HttpGet(string.Format(Resources.MusicApiURL, WebUtility.UrlEncode(musicName)), out string content))

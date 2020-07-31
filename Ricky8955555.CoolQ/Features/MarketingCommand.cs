@@ -9,7 +9,7 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override string CommandUsage { get; } = "{0}marketing <主体> <事件> <另一种说法>";
 
-        protected override void Invoking(MessageReceivedEventArgs e, PlainText subject, PlainText eventText, PlainText anotherSaying)
+        protected override void Invoking(MessageReceivedEventArgs e, PlainText subject, PlainText eventText, PlainText anotherSaying, ComplexMessage elements)
         {
             e.Source.Send(string.Format(Resources.MarketingTemplate, subject, eventText, anotherSaying));
         }

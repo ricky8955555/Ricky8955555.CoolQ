@@ -11,12 +11,12 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override string CommandUsage { get; } = "{0}switch <应用名称> <on/off>";
 
-        protected override void Invoking(MessageReceivedEventArgs e, PlainText appName, PlainText operationText)
+        protected override void Invoking(MessageReceivedEventArgs e, PlainText appName, PlainText operationText, ComplexMessage elements)
         {
             try
             {
                 var config = Configuration.AppStatusConfig;
-                var app = AppUtilities.GetApps(e.Source, e.Sender).Where(x => x.Name.ToLower() == appName.Content.ToLower()).Single();
+                var app = AppUtilities.GetApps(e.Source, e.Subject).Where(x => x.Name.ToLower() == appName.Content.ToLower()).Single();
                 bool? operation = operationText.Content.ToLower().ToBool("on", "off");
 
                 if (app.CanDisable)
