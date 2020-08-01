@@ -1,6 +1,7 @@
 ﻿using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using System;
+using System.Linq;
 using System.Net.NetworkInformation;
 
 namespace Ricky8955555.CoolQ.Features
@@ -9,47 +10,26 @@ namespace Ricky8955555.CoolQ.Features
     {
         internal override string ResponseCommand { get; } = "ping";
 
-        protected override string CommandUsage { get; } = "{0}ping <IP 地址或域名> [次数 (缺省值 4) (最大值 99)]";
+        protected override string CommandUsage { get; } = "{0}ping <IP 地址或域名> (Ping 4 次取平均值)";
 
         protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText, ComplexMessage elements)
         {
-            var ping = new Ping();
-            long totalRoundtripTime = 0;
-            int packetLostCount = 0;
-            string[] splitText = plainText.Content.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            int pingCount = 4;
+            e.Reply(Resources.Processing);
 
-            if (splitText != null &&
-                splitText.Length == 2 && int.TryParse(splitText[1], out pingCount) && pingCount > 0 && pingCount < 100 ||
-                splitText.Length == 1)
+            try
             {
-                e.Reply(Resources.Processing);
+                var results = PingUtilities.SendMoreAndGetRoundtripTime(plainText, 4);
+                var successResults = results.Where(x => x > -1);
+                int timedoutCount = results.Count() - successResults.Count();
 
-                try
-                {
-                    for (int i = 0; i < pingCount; i++)
-                    {
-                        var pingReply = ping.Send(splitText[0]);
-                        if (pingReply.Status == IPStatus.Success)
-                            totalRoundtripTime += pingReply.RoundtripTime;
-                        else if (pingReply.Status == IPStatus.TimedOut)
-                            packetLostCount += 1;
-                        else
-                        {
-                            e.Reply($"Ping {splitText[0]} 失败，失败原因：{pingReply.Status}");
-                            return;
-                        }
-                    }
-
-                    if (packetLostCount < pingCount)
-                        e.Reply($"Ping {splitText[0]} 结果：\n延迟：{totalRoundtripTime / pingCount} ms\n丢包率：{packetLostCount / pingCount * 100} %");
-                    else
-                        e.Reply($"Ping {splitText[0]} 超时");
-                }
-                catch (Exception ex)
-                {
-                    e.Reply($"Ping {splitText[0]} 出错，错误原因：{ex.Message}");
-                }
+                if (timedoutCount == 4)
+                    e.Reply($"Ping {plainText} 超时");
+                else
+                    e.Reply($"Ping {plainText} 结果：\n延迟：{Math.Round(successResults.Average())} ms\n丢包率：{timedoutCount / 25} %");
+            }
+            catch (PingException ex)
+            {
+                e.Reply($"Ping {plainText} 出错，错误原因：{ex.Message}");
             }
         }
     }

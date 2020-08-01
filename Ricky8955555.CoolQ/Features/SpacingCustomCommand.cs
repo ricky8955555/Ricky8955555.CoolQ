@@ -13,11 +13,16 @@ namespace Ricky8955555.CoolQ.Features
 
         protected override LastParameterProcessing LastParameterProcessing { get; } = LastParameterProcessing.ComplexMessage;
 
+        protected override bool IsHandledAutomatically { get; } = false;
+
         protected override void Invoking(MessageReceivedEventArgs e, PlainText spaceNumberText, ComplexMessage elements)
         {
             var plainText = elements.OfType<PlainText>();
 
             if (plainText.Count() == elements.Count && int.TryParse(spaceNumberText, out int spaceNumber))
+            {
+                Handled = true;
+
                 try
                 {
                     string str = string.Join(" ", plainText);
@@ -27,6 +32,7 @@ namespace Ricky8955555.CoolQ.Features
                 {
                     e.Source.Send("发送出错了呀 (；´д｀)ゞ");
                 }
+            }
         }
     }
 }
