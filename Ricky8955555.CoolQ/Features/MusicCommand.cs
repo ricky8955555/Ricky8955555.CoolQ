@@ -1,4 +1,5 @@
-﻿using HuajiTech.CoolQ.Events;
+﻿using HuajiTech.CoolQ;
+using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using Newtonsoft.Json.Linq;
 using System.Linq;
@@ -31,8 +32,16 @@ namespace Ricky8955555.CoolQ.Features
                     {
                         var json = JObject.Parse(content);
                         var musicJson = json["result"]["songs"][0];
-                        e.Reply($"这是您点的歌曲哦 φ(>ω<*) ：{string.Join(" / ", musicJson["artists"].Select(x => x["name"]))} - {musicJson["name"]}");
                         e.Source.Send(new Music { Id = musicJson["id"].ToObject<int>(), Platform = MusicPlatform.Netease });
+                        e.Reply($"这是您点的歌曲哦 φ(>ω<*) ：{string.Join(" / ", musicJson["artists"].Select(x => x["name"]))} - {musicJson["name"]}");
+                    }
+                    catch (ApiException ex) when (ex.ErrorCode == -11)
+                    {
+                        e.Reply("歌曲发送失败了 (；´д｀)ゞ");
+                    }
+                    catch (ApiException)
+                    {
+                        throw;
                     }
                     catch
                     {
