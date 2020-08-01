@@ -8,9 +8,6 @@ namespace Ricky8955555.CoolQ
 
         public override string ToSendableString() => Elements.ToSendableString();
 
-        public MultipartElement(ComplexMessage elements)
-        {
-            Elements = elements;
-        }
+        public MultipartElement(ComplexMessage elements) => Elements = elements;
     }
 }
