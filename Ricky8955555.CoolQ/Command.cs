@@ -39,7 +39,7 @@ namespace Ricky8955555.CoolQ
         {
             string[] strs = message.Split(new string[] { " ", Constants.CQNewLine }, 2, StringSplitOptions.RemoveEmptyEntries);
 
-            if (strs.Length > 0 && strs[0] == ResponseCommand)
+            if (strs.Length > 0 && strs[0].ToLower() == ResponseCommand)
             {
                 if (strs.Length == 1)
                     parameters = null;
