@@ -37,7 +37,7 @@ namespace Ricky8955555.CoolQ
 
         protected bool GetParameter(string message, out ComplexMessage parameters)
         {
-            string[] strs = message.Split(new char[] { ' ' }, 2);
+            string[] strs = message.Split(new string[] { " ", Constants.CQNewLine }, 2, StringSplitOptions.RemoveEmptyEntries);
 
             if (strs.Length > 0 && strs[0] == ResponseCommand)
             {
