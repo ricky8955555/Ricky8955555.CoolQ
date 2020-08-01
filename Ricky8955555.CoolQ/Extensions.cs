@@ -39,16 +39,12 @@ namespace Ricky8955555.CoolQ
                 return jArray.Contains(item);
         }
 
-        internal static JArray Remove(this JArray jArray, object item, bool useExtension)
+        internal static bool Remove<T>(this JArray jArray, T item, ref JArray newJArray)
         {
-            if (useExtension)
-            {
-                var list = jArray.ToObject<List<object>>();
-                list.Remove(item);
-                return new JArray(list);
-            }
-            else
-                throw new ArgumentException();
+            var items = jArray.Where(x => x.ToObject<T>().Equals(item)).ToArray();
+            var flags = items.Select(x => jArray.Remove(x));
+            newJArray = jArray;
+            return items.Count() > 0 && !flags.Contains(false);
         }
 
         internal static bool Add(this JObject jObject, JProperty content, bool canOverwrite)

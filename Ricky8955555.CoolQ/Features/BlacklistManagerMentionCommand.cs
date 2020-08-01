@@ -38,7 +38,8 @@ namespace Ricky8955555.CoolQ.Features
                     {
                         if (config.Contains(number, true))
                         {
-                            BlacklistConfig.SetValueAndSave(config.Remove(number, true));
+                            config.Remove(number, ref config);
+                            BlacklistConfig.Save();
                             e.Reply($"已将 {number} 移出黑名单 ❥(ゝω・✿ฺ)");
                         }
                         else
