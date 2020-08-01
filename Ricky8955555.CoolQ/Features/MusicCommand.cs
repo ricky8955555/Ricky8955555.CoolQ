@@ -32,8 +32,8 @@ namespace Ricky8955555.CoolQ.Features
                     {
                         var json = JObject.Parse(content);
                         var musicJson = json["result"]["songs"][0];
-                        e.Source.Send(new Music { Id = musicJson["id"].ToObject<int>(), Platform = MusicPlatform.Netease });
                         e.Reply($"这是您点的歌曲哦 φ(>ω<*) ：{string.Join(" / ", musicJson["artists"].Select(x => x["name"]))} - {musicJson["name"]}");
+                        e.Source.Send(new Music { Id = musicJson["id"].ToObject<int>(), Platform = MusicPlatform.Netease });
                     }
                     catch (ApiException ex) when (ex.ErrorCode == -11)
                     {
