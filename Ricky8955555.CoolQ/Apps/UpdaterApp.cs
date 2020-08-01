@@ -8,6 +8,8 @@ namespace Ricky8955555.CoolQ.Apps
 
         internal override string DisplayName { get; } = "更新";
 
+        internal override bool CanDisable { get; } = false;
+
         internal override AppPermission Permission { get; } = AppPermission.Owner;
 
         internal override Feature[] Features { get; } = new Feature[]
