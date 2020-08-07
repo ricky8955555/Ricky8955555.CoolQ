@@ -44,11 +44,11 @@ namespace Ricky8955555.CoolQ.Features
                 }
                 catch
                 {
-                    e.Reply($"信息处理失败了 (；´д｀)ゞ");
+                    e.Reply("信息处理失败了 (；´д｀)ゞ");
                 }
             }
             else
-                e.Reply($"请求失败了 (；´д｀)ゞ");
+                e.Reply("请求失败了 (；´д｀)ゞ");
         }
     }
 }
