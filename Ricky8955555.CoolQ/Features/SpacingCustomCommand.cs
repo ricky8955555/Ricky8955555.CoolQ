@@ -19,7 +19,7 @@ namespace Ricky8955555.CoolQ.Features
         {
             var plainText = elements.OfType<PlainText>();
 
-            if (plainText.Count() == elements.Count && int.TryParse(spaceNumberText, out int spaceNumber))
+            if (plainText.Count() == elements.Count && int.TryParse(spaceNumberText, out int spaceNumber) && spaceNumber >= 0)
             {
                 Handled = true;
 
