@@ -2,7 +2,7 @@ using HuajiTech.CoolQ.Events;
 
 namespace Ricky8955555.CoolQ
 {
-    internal static class Initializer
+    public static class Initializer
     {
         public static Main Init()
         {

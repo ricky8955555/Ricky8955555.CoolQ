@@ -1,22 +1,22 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Reflection;
+using Newtonsoft.Json.Linq;
 
 namespace Ricky8955555.CoolQ
 {
-    internal static class VersionUtilities
+    public static class VersionUtilities
     {
-        internal static Version GetVersion() => Assembly.GetExecutingAssembly().GetName().Version;
+        public static Version GetVersion() => Assembly.GetExecutingAssembly().GetName().Version;
 
-        internal static Version GetTagVersion()
+        public static Version GetTagVersion()
         {
             var version = GetVersion();
             return new Version(version.Major, version.Minor, Constants.TagBuild);
         }
 
-        internal static DateTime ToDateTime(Version version) => new DateTime(2000, 1, 1) + TimeSpan.FromDays(version.Build) + TimeSpan.FromSeconds(version.Revision * 2);
+        public static DateTime ToDateTime(Version version) => new DateTime(2000, 1, 1) + TimeSpan.FromDays(version.Build) + TimeSpan.FromSeconds(version.Revision * 2);
 
-        internal static bool GetLatestVersion(out Version version, out string downloadUri)
+        public static bool GetLatestVersion(out Version version, out string downloadUri)
         {
             version = null;
             downloadUri = null;

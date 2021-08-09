@@ -5,9 +5,9 @@ using static HuajiTech.CoolQ.CurrentPluginContext;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class AboutCommand : Command
+    public class AboutCommand : Command
     {
-        internal override string ResponseCommand { get; } = "about";
+        public override string ResponseCommand { get; } = "about";
 
         protected override string CommandUsage { get; } = "{0}about";
 

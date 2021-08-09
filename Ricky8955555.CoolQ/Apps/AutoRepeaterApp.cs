@@ -1,25 +1,25 @@
-﻿using HuajiTech.CoolQ;
+﻿using System.Collections.Generic;
+using HuajiTech.CoolQ;
 using Ricky8955555.CoolQ.Features;
-using System.Collections.Generic;
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    internal class AutoRepeaterApp : App
+    public class AutoRepeaterApp : App
     {
-        internal override string Name { get; } = "AutoRepeater";
+        public override string Name { get; } = "AutoRepeater";
 
-        internal override string DisplayName { get; } = "自动复读";
+        public override string DisplayName { get; } = "自动复读";
 
-        internal override bool IsEnabledByDefault { get; } = false;
+        public override bool IsEnabledByDefault { get; } = false;
 
-        internal override AppPriority Priority { get; } = AppPriority.Lowest;
+        public override AppPriority Priority { get; } = AppPriority.Lowest;
 
-        internal override Feature[] Features { get; } = new Feature[]
+        public override Feature[] Features { get; } = new Feature[]
         {
             new AutoRepeaterCommand(),
             new AutoRepeaterFeature()
         };
 
-        internal readonly static List<IChattable> Chattables = new List<IChattable>();
+        public readonly static List<IChattable> Chattables = new();
     }
 }

@@ -2,13 +2,13 @@
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    internal class MusicApp : App
+    public class MusicApp : App
     {
-        internal override string Name { get; } = "Music";
+        public override string Name { get; } = "Music";
 
-        internal override string DisplayName { get; } = "点歌";
+        public override string DisplayName { get; } = "点歌";
 
-        internal override Feature[] Features { get; } = new Feature[]
+        public override Feature[] Features { get; } = new Feature[]
         {
             new MusicCommand()
         };

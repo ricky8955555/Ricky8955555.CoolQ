@@ -1,14 +1,14 @@
-﻿using HuajiTech.CoolQ.Events;
-using HuajiTech.CoolQ.Messaging;
-using System;
+﻿using System;
 using System.Linq;
 using System.Net.NetworkInformation;
+using HuajiTech.CoolQ.Events;
+using HuajiTech.CoolQ.Messaging;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class PingCommand : Command<PlainText>
+    public class PingCommand : Command<PlainText>
     {
-        internal override string ResponseCommand { get; } = "ping";
+        public override string ResponseCommand { get; } = "ping";
 
         protected override string CommandUsage { get; } = "{0}ping <IP 地址或域名> (Ping 4 次取平均值)";
 
@@ -20,12 +20,12 @@ namespace Ricky8955555.CoolQ.Features
             {
                 var results = PingUtilities.SendMoreAndGetRoundtripTime(plainText, 4);
                 var successResults = results.Where(x => x > -1);
-                int timedoutCount = results.Count() - successResults.Count();
+                int timeoutCount = results.Count() - successResults.Count();
 
-                if (timedoutCount == 4)
+                if (timeoutCount == 4)
                     e.Reply($"Ping {plainText} 超时");
                 else
-                    e.Reply($"Ping {plainText} 结果：\n延迟：{Math.Round(successResults.Average())} ms\n丢包率：{timedoutCount / 25} %");
+                    e.Reply($"Ping {plainText} 结果：\n延迟：{Math.Round(successResults.Average())} ms\n丢包率：{timeoutCount / 25} %");
             }
             catch (PingException ex)
             {

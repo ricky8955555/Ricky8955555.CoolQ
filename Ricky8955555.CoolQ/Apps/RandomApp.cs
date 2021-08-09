@@ -2,13 +2,13 @@
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    internal class RandomApp : App
+    public class RandomApp : App
     {
-        internal override string Name { get; } = "Random";
+        public override string Name { get; } = "Random";
 
-        internal override string DisplayName { get; } = "随机事件";
+        public override string DisplayName { get; } = "随机事件";
 
-        internal override Feature[] Features { get; } = new Feature[]
+        public override Feature[] Features { get; } = new Feature[]
         {
             new RandomNumberCommand(),
             new RandomOptionsCommand()

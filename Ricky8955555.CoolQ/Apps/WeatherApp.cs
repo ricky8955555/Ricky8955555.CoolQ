@@ -2,13 +2,13 @@
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    internal class WeatherApp : App
+    public class WeatherApp : App
     {
-        internal override string Name { get; } = "Weather";
+        public override string Name { get; } = "Weather";
 
-        internal override string DisplayName { get; } = "天气查询";
+        public override string DisplayName { get; } = "天气查询";
 
-        internal override Feature[] Features { get; } = new Feature[]
+        public override Feature[] Features { get; } = new Feature[]
         {
             new WeatherCommand()
         };

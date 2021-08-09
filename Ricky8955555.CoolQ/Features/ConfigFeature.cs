@@ -2,12 +2,12 @@
 using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using static Ricky8955555.CoolQ.Apps.ConfigApp;
-using static Ricky8955555.CoolQ.Configuration;
+using static Ricky8955555.CoolQ.Configurations;
 using static Ricky8955555.CoolQ.Constants;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class ConfigFeature : Feature
+    public class ConfigFeature : Feature
     {
         private static int CurrentStepId = 0;
 
@@ -17,17 +17,17 @@ namespace Ricky8955555.CoolQ.Features
 
         private static long OwnerSet = -1;
 
-        internal override void Invoke(MessageReceivedEventArgs e)
+        public override void Invoke(MessageReceivedEventArgs e)
         {
             if (Owner == -1)
                 Handled = true;
 
             if (IsRunning)
             {
-                if (CurrentUser == null && (Owner == -1 || e.Subject.Number == Owner))
+                if (CurrentUser is null && (Owner == -1 || e.Subject.Number == Owner))
                     CurrentUser = e.Subject;
 
-                if (CurrentUser != null && CurrentUser.Equals(e.Subject))
+                if (CurrentUser is not null && CurrentUser.Equals(e.Subject))
                 {
                     switch (CurrentStepId)
                     {

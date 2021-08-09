@@ -1,16 +1,15 @@
-﻿using HuajiTech.CoolQ.Events;
-using HuajiTech.CoolQ.Messaging;
-using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Net.NetworkInformation;
+using HuajiTech.CoolQ.Events;
+using HuajiTech.CoolQ.Messaging;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class PingCustomCommand : Command<PlainText, PlainText>
+    public class PingCustomCommand : Command<PlainText, PlainText>
     {
-        internal override string ResponseCommand { get; } = "ping";
+        public override string ResponseCommand { get; } = "ping";
 
-        protected override string CommandUsage { get; } = "{0}ping <IP 地址或域名> <次数> (Ping 取平均值)";
+        protected override string CommandUsage { get; } = "{0}ping <IP 地址或域名> <次数>";
 
         protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText, PlainText countText, ComplexMessage elements)
         {
@@ -22,12 +21,12 @@ namespace Ricky8955555.CoolQ.Features
                 {
                     var results = PingUtilities.SendMoreAndGetRoundtripTime(plainText, count);
                     var successResults = results.Where(x => x > -1);
-                    int timedoutCount = results.Count() - successResults.Count();
+                    int timeoutCount = results.Count() - successResults.Count();
 
-                    if (timedoutCount == count)
+                    if (timeoutCount == count)
                         e.Reply($"Ping {plainText} 超时");
                     else
-                        e.Reply($"Ping {plainText} 结果：\n延迟：{Math.Round(successResults.Average())} ms\n丢包率：{timedoutCount / count * 100} %");
+                        e.Reply($"Ping {plainText} 结果：\n延迟：{string.Join(", ", successResults)} ms\n丢包率：{timeoutCount / count * 100} %");
                 }
                 catch (PingException ex)
                 {

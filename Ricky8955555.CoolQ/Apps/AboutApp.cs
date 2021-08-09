@@ -3,13 +3,13 @@
 namespace Ricky8955555.CoolQ.Apps
 {
 
-    internal class AboutApp : App
+    public class AboutApp : App
     {
-        internal override string Name { get; } = "About";
+        public override string Name { get; } = "About";
 
-        internal override string DisplayName { get; } = "关于本插件";
+        public override string DisplayName { get; } = "关于本插件";
 
-        internal override Feature[] Features { get; } = new Feature[]
+        public override Feature[] Features { get; } = new Feature[]
         {
             new AboutCommand()
         };

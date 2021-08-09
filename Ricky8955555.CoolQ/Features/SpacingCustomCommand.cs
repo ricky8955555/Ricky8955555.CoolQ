@@ -1,13 +1,13 @@
-﻿using HuajiTech.CoolQ;
+﻿using System.Linq;
+using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
-using System.Linq;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class SpacingCustomCommand : Command<PlainText>
+    public class SpacingCustomCommand : Command<PlainText>
     {
-        internal override string ResponseCommand { get; } = "space";
+        public override string ResponseCommand { get; } = "space";
 
         protected override string CommandUsage { get; } = "{0}space <空格数量> <文本> (自定义空格数量)";
 

@@ -1,13 +1,13 @@
-﻿using HuajiTech.CoolQ.Events;
-using HuajiTech.CoolQ.Messaging;
-using System;
+﻿using System;
 using System.Linq;
+using HuajiTech.CoolQ.Events;
+using HuajiTech.CoolQ.Messaging;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class SwitchCommand : Command<PlainText, PlainText>
+    public class SwitchCommand : Command<PlainText, PlainText>
     {
-        internal override string ResponseCommand { get; } = "switch";
+        public override string ResponseCommand { get; } = "switch";
 
         protected override string CommandUsage { get; } = "{0}switch <应用名称> <on/off>";
 
@@ -15,7 +15,7 @@ namespace Ricky8955555.CoolQ.Features
         {
             try
             {
-                var config = Configuration.AppStatusConfig;
+                var config = Configurations.AppStatusConfig;
                 var app = AppUtilities.GetApps(e.Source, e.Subject).Where(x => x.Name.ToLower() == appName.Content.ToLower()).Single();
                 bool? operation = operationText.Content.ToLower().ToBool("on", "off");
 
@@ -23,7 +23,7 @@ namespace Ricky8955555.CoolQ.Features
                 {
                     if (operation.HasValue)
                     {
-                        config.Config[e.Source.ToString(true)][app.Name] = operation.Value;
+                        config.Config[e.Source.ToUniversalString()][app.Name] = operation.Value;
                         e.Reply($"已{(operation.Value ? "启用" : "停用")}应用 {app.DisplayName}（{app.Name}） ✧(≖ ◡ ≖✿ ");
                         config.Save();
                     }

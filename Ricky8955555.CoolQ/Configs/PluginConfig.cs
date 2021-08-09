@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace Ricky8955555.CoolQ.Configurations
+namespace Ricky8955555.CoolQ.Configs
 {
-    internal class PluginConfig : Configuration
+    public class PluginConfig : Configuration
     {
-        internal override string Name { get; } = "PluginConfig";
+        public override string Name { get; } = "PluginConfig";
 
         protected override JToken InitInfo { get; } = new JObject()
         {

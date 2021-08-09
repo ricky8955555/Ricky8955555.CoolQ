@@ -2,7 +2,7 @@
 
 namespace Ricky8955555.CoolQ
 {
-    internal class MultipartElement : MessageElement
+    public class MultipartElement : MessageElement
     {
         public ComplexMessage Elements { get; }
 

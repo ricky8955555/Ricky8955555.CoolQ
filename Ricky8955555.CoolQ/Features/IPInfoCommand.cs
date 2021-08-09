@@ -4,9 +4,9 @@ using Newtonsoft.Json.Linq;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class IPInfoCommand : Command<PlainText>
+    public class IPInfoCommand : Command<PlainText>
     {
-        internal override string ResponseCommand { get; } = "ipinfo";
+        public override string ResponseCommand { get; } = "ipinfo";
 
         protected override string CommandUsage { get; } = "{0}ipinfo <IP 地址或域名>";
 

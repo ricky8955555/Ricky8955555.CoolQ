@@ -2,13 +2,13 @@
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    internal class RichTextAutoParserApp : App
+    public class RichTextAutoParserApp : App
     {
-        internal override string Name { get; } = "RichTextAutoParser";
+        public override string Name { get; } = "RichTextAutoParser";
 
-        internal override string DisplayName { get; } = "富文本自动解析器";
+        public override string DisplayName { get; } = "富文本自动解析器";
 
-        internal override Feature[] Features { get; } = new Feature[]
+        public override Feature[] Features { get; } = new Feature[]
         {
             new RichTextAutoParserFeature()
         };

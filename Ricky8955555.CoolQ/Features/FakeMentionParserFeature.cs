@@ -1,16 +1,16 @@
-﻿using HuajiTech.CoolQ;
+﻿using System;
+using System.Linq;
+using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
-using System;
-using System.Linq;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class FakeMentionParserFeature : Feature
+    public class FakeMentionParserFeature : Feature
     {
-        internal override string Usage { get; } = "当消息中存在纯文本形式的假提及，则发送提及";
+        public override string Usage { get; } = "当消息中存在纯文本形式的假提及，则发送提及";
 
-        internal override void Invoke(MessageReceivedEventArgs e)
+        public override void Invoke(MessageReceivedEventArgs e)
         {
             string message = e.Message;
 

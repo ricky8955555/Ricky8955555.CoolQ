@@ -1,32 +1,31 @@
-﻿using HuajiTech.CoolQ.Events;
+﻿using System;
+using System.Linq;
+using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Linq;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class RichTextAutoParserFeature : Feature
+    public class RichTextAutoParserFeature : Feature
     {
-        internal override string Usage { get; } = "发送富文本即可解析（只支持部分）";
+        public override string Usage { get; } = "发送富文本即可解析（只支持部分）";
 
-        internal override void Invoke(MessageReceivedEventArgs e)
+        public override void Invoke(MessageReceivedEventArgs e)
         {
             var elements = e.Message.Parse();
-            var richText = elements[0] as RichText;
 
-            if (richText != null)
+            if (elements[0] is RichText richText)
                 try
                 {
                     var content = JObject.Parse(richText["content"].Replace(";", ""));
-                    var firstList = content.First.First.ToList();
-                    var url = firstList.Find(x => ((JProperty)x).Name.ToLower() == "url");
-                    var inaccurateUrl = firstList.Find(x => ((JProperty)x).Name.ToLower().Contains("url"));
+                    var firstList = content.First.First.ToArray();
+                    var url = firstList.FirstOrDefault(x => ((JProperty)x).Name.Equals("url", StringComparison.OrdinalIgnoreCase));
+                    var inaccurateUrl = firstList.FirstOrDefault(x => ((JProperty)x).Name.Contains("url", StringComparison.OrdinalIgnoreCase));
                     string title = richText["title"] ?? "无标题";
 
-                    if (url != null)
+                    if (url is not null)
                         e.Source.Send(new Share() { Title = title, Url = new Uri(url.First.ToString()) });
-                    else if (inaccurateUrl != null)
+                    else if (inaccurateUrl is not null)
                         e.Source.Send(new Share() { Title = title, Url = new Uri(inaccurateUrl.First.ToString()) });
                 }
                 catch { }

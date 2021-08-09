@@ -1,32 +1,43 @@
-﻿using HuajiTech.CoolQ;
+﻿using System;
+using System.Linq;
+using System.Reflection;
+using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
-using static Ricky8955555.CoolQ.Configuration;
+using static Ricky8955555.CoolQ.Configurations;
 
 namespace Ricky8955555.CoolQ
 {
-    internal abstract partial class AppBase
+    public abstract partial class AppBase
     {
-        internal abstract string Name { get; }
+        public readonly static AppBase[] Apps = Assembly.GetExecutingAssembly().GetTypes()
+            .Where(it => it.IsSubclassOf(typeof(AppBase)))
+            .Select(it => it.GetConstructors().FirstOrDefault()?.Invoke(Array.Empty<object>()))
+            .Where(it => it is not null)
+            .Cast<AppBase>()
+            .ToArray();
 
-        internal abstract string DisplayName { get; }
+        public abstract string Name { get; }
 
-        internal virtual bool IsEnabledByDefault { get; } = true;
+        public abstract string DisplayName { get; }
 
-        internal virtual bool CanDisable { get; } = true;
+        public virtual bool IsEnabledByDefault { get; } = true;
 
-        internal virtual AppPermission Permission { get; } = AppPermission.Everyone;
+        public virtual bool CanDisable { get; } = true;
 
-        internal virtual AppPriority Priority { get; } = AppPriority.Normal;
+        public virtual AppPermission Permission { get; } = AppPermission.Everyone;
 
-        internal virtual Feature[] Features { get; } = new Feature[] { };
+        public virtual AppPriority Priority { get; } = AppPriority.Normal;
 
-        internal abstract void Run(MessageReceivedEventArgs e);
+        public virtual Feature[] Features { get; } = Array.Empty<Feature>();
 
-        protected void FeatureInvoker(MessageReceivedEventArgs e)
+        public abstract void Run(MessageReceivedEventArgs e);
+
+        protected void Invoke(MessageReceivedEventArgs e)
         {
             foreach (var feature in Features)
             {
                 feature.Invoke(e);
+
                 if (feature.Handled)
                 {
                     Handled = true;
@@ -36,61 +47,57 @@ namespace Ricky8955555.CoolQ
             }
         }
 
-        internal bool Handled { get; set; } = false;
+        public bool Handled { get; set; } = false;
 
-        internal bool IsEnabled(IChattable source) => !CanDisable || AppStatusConfig.Config[source.ToString(true)][Name].ToObject<bool>();
+        public bool IsEnabled(IChattable source) => !CanDisable || AppStatusConfig.Config[source.ToUniversalString()][Name].ToObject<bool>();
 
-        internal bool IsAllowed(IUser user)
+        public bool IsAllowed(IUser user)
         {
-            switch (Permission)
+            return Permission switch
             {
-                case AppPermission.Everyone:
-                    return true;
-                case AppPermission.Administrator:
-                    return !(user is IMember member) || member.IsAdministrator || user.Number == Owner;
-                case AppPermission.Owner:
-                    return user.Number == Owner || Owner == -1;
-                default:
-                    return false;
-            }
+                AppPermission.Everyone => true,
+                AppPermission.Administrator => user is not IMember member || member.IsAdministrator || user.Number == Owner,
+                AppPermission.Owner => user.Number == Owner || Owner == -1,
+                _ => false
+            };
         }
     }
 
-    internal abstract class App : AppBase
+    public abstract class App : AppBase
     {
-        internal override void Run(MessageReceivedEventArgs e)
+        public override void Run(MessageReceivedEventArgs e)
         {
             if (IsEnabled(e.Source) && IsAllowed(e.Subject))
-                FeatureInvoker(e);
+                Invoke(e);
         }
     }
 
-    internal abstract class GroupApp : AppBase
+    public abstract class GroupApp : AppBase
     {
-        internal override void Run(MessageReceivedEventArgs e)
+        public override void Run(MessageReceivedEventArgs e)
         {
             if (e.Source is IGroup && IsEnabled(e.Source) && IsAllowed(e.Subject))
-                FeatureInvoker(e);
+                Invoke(e);
         }
     }
 
-    internal abstract class UserApp : AppBase
+    public abstract class UserApp : AppBase
     {
-        internal override void Run(MessageReceivedEventArgs e)
+        public override void Run(MessageReceivedEventArgs e)
         {
             if (e.Source is IUser && IsEnabled(e.Source) && IsAllowed(e.Subject))
-                FeatureInvoker(e);
+                Invoke(e);
         }
     }
 
-    internal enum AppPermission
+    public enum AppPermission
     {
         Everyone,
         Administrator,
         Owner
     }
 
-    internal enum AppPriority
+    public enum AppPriority
     {
         Highest,
         Higher,

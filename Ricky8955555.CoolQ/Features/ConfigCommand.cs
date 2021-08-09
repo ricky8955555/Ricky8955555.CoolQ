@@ -4,9 +4,9 @@ using static Ricky8955555.CoolQ.Apps.ConfigApp;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class ConfigCommand : Command
+    public class ConfigCommand : Command
     {
-        internal override string ResponseCommand { get; } = "config";
+        public override string ResponseCommand { get; } = "config";
 
         protected override string CommandUsage { get; } = "{0}config";
 

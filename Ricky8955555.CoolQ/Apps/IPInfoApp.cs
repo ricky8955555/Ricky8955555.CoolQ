@@ -2,13 +2,13 @@
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    internal class IPInfoApp : App
+    public class IPInfoApp : App
     {
-        internal override string Name { get; } = "IPInfo";
+        public override string Name { get; } = "IPInfo";
 
-        internal override string DisplayName { get; } = "IP 信息查询";
+        public override string DisplayName { get; } = "IP 信息查询";
 
-        internal override Feature[] Features { get; } = new Feature[]
+        public override Feature[] Features { get; } = new Feature[]
         {
             new IPInfoCommand()
         };

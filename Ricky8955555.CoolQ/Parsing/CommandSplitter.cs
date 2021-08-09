@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ricky8955555.CoolQ.Parsing
 {
-    internal class CommandSplitter
+    public class CommandSplitter
     {
         private enum Status
         {

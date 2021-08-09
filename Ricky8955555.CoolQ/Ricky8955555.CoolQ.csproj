@@ -11,6 +11,7 @@
     <RootNamespace>Ricky8955555.CoolQ</RootNamespace>
     <AssemblyName>Ricky8955555.CoolQ</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <LangVersion>latest</LangVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>false</Deterministic>
     <NuGetPackageImportStamp>
@@ -80,13 +81,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="Apps.cs" />
     <Compile Include="Apps\ConfigApp.cs" />
     <Compile Include="Apps\IPInfoApp.cs" />
     <Compile Include="Apps\RandomApp.cs" />
     <Compile Include="Apps\UpdaterApp.cs" />
     <Compile Include="Apps\WeatherApp.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="Configs\BlacklistConfig.cs" />
     <Compile Include="Features\BlacklistManagerMentionCommand.cs" />
     <Compile Include="Features\HelpMenuUsageCommand.cs" />
     <Compile Include="Features\PingCustomCommand.cs" />
@@ -96,7 +97,7 @@
     <Compile Include="Features\UpdaterRunCommand.cs" />
     <Compile Include="MultipartElement.cs" />
     <Compile Include="Configurations.cs" />
-    <Compile Include="Configurations\SlappingConfig.cs" />
+    <Compile Include="Configs\SlappingConfig.cs" />
     <Compile Include="Features\ConfigCommand.cs" />
     <Compile Include="Features\ConfigFeature.cs" />
     <Compile Include="Features\IPInfoCommand.cs" />
@@ -122,9 +123,8 @@
     <Compile Include="Features\AutoRepeaterCommand.cs" />
     <Compile Include="Features\BlacklistManagerPlainTextCommand.cs" />
     <Compile Include="Configuration.cs" />
-    <Compile Include="Configurations\AppStatusConfig.cs" />
-    <Compile Include="Configurations\BlacklistConfig.cs" />
-    <Compile Include="Configurations\PluginConfig.cs" />
+    <Compile Include="Configs\AppStatusConfig.cs" />
+    <Compile Include="Configs\PluginConfig.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Feature.cs" />
     <Compile Include="Features\AutoRepeaterFeature.cs" />

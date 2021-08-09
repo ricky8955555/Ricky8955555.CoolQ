@@ -1,16 +1,17 @@
-﻿using HuajiTech.CoolQ;
+﻿using System.Collections.Generic;
+using System.Linq;
+using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
-using System.Collections.Generic;
 using static Ricky8955555.CoolQ.Apps.AutoRepeaterApp;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class AutoRepeaterFeature : Feature
+    public class AutoRepeaterFeature : Feature
     {
 
-        private static readonly List<(IChattable Source, string Message)> Messages = new List<(IChattable Source, string Message)>();
+        private static readonly List<(IChattable Source, string Message)> Messages = new();
 
-        internal override void Invoke(MessageReceivedEventArgs e)
+        public override void Invoke(MessageReceivedEventArgs e)
         {
             if (Chattables.Contains(e.Source))
                 try
@@ -24,14 +25,14 @@ namespace Ricky8955555.CoolQ.Features
 
                 var messages = Messages.FindAll(x => x.Source.Equals(e.Source));
 
-                if (messages.FindAll(x => x.Message == e.Message).Count == messages.Count)
+                if (messages.Count(x => x.Message == e.Message) == messages.Count)
                 {
                     if (messages.Count > 2)
                         try
                         {
                             e.Source.Send(e.Message.Content);
                         }
-                        catch (ApiException ex) when (ex.ErrorCode == -11 || ex.ErrorCode == -33) { }
+                        catch (ApiException ex) when (ex.ErrorCode is -11 or -33) { }
                 }
                 else
                     Messages.RemoveAll(x => x.Source.Equals(e.Source) && x.Message != e.Message);

@@ -1,18 +1,19 @@
-﻿using HuajiTech.CoolQ.Events;
+﻿using System.Linq;
+using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
-using System.Linq;
+using Ricky8955555.CoolQ.Apps;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class HelpMenuUsageCommand : Command
+    public class HelpMenuUsageCommand : Command
     {
-        internal override string ResponseCommand { get; } = "help";
+        public override string ResponseCommand { get; } = "help";
 
         protected override string CommandUsage { get; } = "{0}help (获取帮助菜单用法)";
 
         protected override void Invoking(MessageReceivedEventArgs e, ComplexMessage elements)
         {
-            e.Reply("帮助菜单用法：\n" + AppBase.Apps.Where(x => x.Name == "HelpMenu").Single().Features.Where(x => x.GetType().Name == "HelpMenuCommand").Single().Usage);
+            e.Reply("帮助菜单用法：\n" + AppBase.Apps.First(x => x.GetType() == typeof(HelpMenuApp)).Features.First(x => x.GetType() == typeof(HelpMenuCommand)).Usage);
         }
     }
 }

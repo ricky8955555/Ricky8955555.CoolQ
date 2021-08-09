@@ -1,13 +1,13 @@
-using HuajiTech.CoolQ.Events;
-using HuajiTech.CoolQ.Messaging;
 using System;
 using System.Linq;
+using HuajiTech.CoolQ.Events;
+using HuajiTech.CoolQ.Messaging;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class HelpMenuCommand : Command<PlainText>
+    public class HelpMenuCommand : Command<PlainText>
     {
-        internal override string ResponseCommand { get; } = "help";
+        public override string ResponseCommand { get; } = "help";
 
         protected override string CommandUsage { get; } = "{0}help <页码>\n" +
             "{0}help <应用名称>";
@@ -37,15 +37,15 @@ namespace Ricky8955555.CoolQ.Features
             }
             else
             {
-                try
-                {
-                    var app = apps.Where(x => x.Name.ToLower() == plainText.Content.ToLower()).Single();
-                    e.Source.Send(GetAppInfo(app) + "：\n" + string.Join("\n", app.Features.Where(f => f.Usage != null).Select(f => f.Usage)));
-                }
-                catch (InvalidOperationException)
+                var app = apps.Where(x => x.Name.Equals(plainText.Content, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+
+                if (app is null)
                 {
                     e.Reply($"应用 {plainText} 不存在 (•́へ•́╬)");
+                    return;
                 }
+
+                e.Source.Send(GetAppInfo(app) + "：\n" + string.Join("\n", app.Features.Where(f => f.Usage is not null).Select(f => f.Usage)));
             }
 
             string GetAppInfo(AppBase app) => $"{(app.IsEnabled(e.Source) ? string.Empty : "【已停用】")}{app.DisplayName} ({app.Name})";

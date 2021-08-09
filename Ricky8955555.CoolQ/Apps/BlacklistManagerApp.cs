@@ -2,17 +2,17 @@
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    internal class BlacklistManagerApp : App
+    public class BlacklistManagerApp : App
     {
-        internal override string Name { get; } = "BlacklistManager";
+        public override string Name { get; } = "BlacklistManager";
 
-        internal override string DisplayName { get; } = "黑名单管理器";
+        public override string DisplayName { get; } = "黑名单管理器";
 
-        internal override bool CanDisable { get; } = false;
+        public override bool CanDisable { get; } = false;
 
-        internal override AppPermission Permission { get; } = AppPermission.Owner;
+        public override AppPermission Permission { get; } = AppPermission.Owner;
 
-        internal override Feature[] Features { get; } = new Feature[]
+        public override Feature[] Features { get; } = new Feature[]
         {
             new BlacklistManagerPlainTextCommand(),
             new BlacklistManagerMentionCommand()

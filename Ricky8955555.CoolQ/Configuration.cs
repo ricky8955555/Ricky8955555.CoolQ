@@ -1,40 +1,40 @@
-﻿using Newtonsoft.Json.Linq;
-using System.IO;
+﻿using System.IO;
+using Newtonsoft.Json.Linq;
 using static HuajiTech.CoolQ.CurrentPluginContext;
 
 namespace Ricky8955555.CoolQ
 {
-    internal abstract partial class Configuration
+    public abstract class Configuration
     {
-        internal abstract string Name { get; }
+        public abstract string Name { get; }
 
         protected abstract JToken InitInfo { get; }
 
-        internal JToken Config { get; private set; }
+        public JToken Config { get; private set; }
 
         private readonly DirectoryInfo DataDirInfo = Bot.AppDirectory;
 
         private readonly string Suffix = ".json";
 
-        internal Configuration()
+        public Configuration()
         {
             CreateFile(Name + Suffix);
             if (!WriteToConfig(Read(Name + Suffix)))
                 Logger.LogError(Resources.ConfigurationLoading, string.Format(Resources.ConfigurationCannotBeLoaded, Name));
         }
 
-        internal void SetValueAndSave(JToken jToken)
+        public void SetValueAndSave(JToken jToken)
         {
             Config = jToken;
             Save();
         }
 
-        internal void Save()
+        public void Save()
         {
             Write(Name + Suffix, Config.ToString());
         }
 
-        internal bool Reload()
+        public bool Reload()
         {
             string fileName = Name + Suffix;
             if (CreateFile(fileName))
@@ -46,7 +46,7 @@ namespace Ricky8955555.CoolQ
             }
         }
 
-        internal void Rebuild()
+        public void Rebuild()
         {
             Write(Name + Suffix, InitInfo.ToString());
             Config = InitInfo;

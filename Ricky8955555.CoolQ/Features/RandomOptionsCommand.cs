@@ -1,12 +1,13 @@
-﻿using HuajiTech.CoolQ.Events;
-using HuajiTech.CoolQ.Messaging;
+﻿using System;
 using System.Linq;
+using HuajiTech.CoolQ.Events;
+using HuajiTech.CoolQ.Messaging;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class RandomOptionsCommand : Command<PlainText>
+    public class RandomOptionsCommand : Command<PlainText>
     {
-        internal override string ResponseCommand { get; } = "random";
+        public override string ResponseCommand { get; } = "random";
 
         protected override string CommandUsage { get; } = "{0}random options <选项> (空格为分隔符) (输出随机选项)";
 
@@ -16,7 +17,7 @@ namespace Ricky8955555.CoolQ.Features
         {
             var options = elements.OfType<PlainText>();
 
-            if (optionText.Content.ToLower() == "options" && options.Count() == elements.Count)
+            if (optionText.Content.Equals("options", StringComparison.OrdinalIgnoreCase) && options.Count() == elements.Count)
                 e.Reply((ISendable)RandomUtilities.RandomOption(options));
         }
     }

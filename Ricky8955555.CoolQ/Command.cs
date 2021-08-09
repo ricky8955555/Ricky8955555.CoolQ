@@ -1,21 +1,21 @@
-﻿using HuajiTech.CoolQ.Events;
+﻿using System;
+using System.Linq;
+using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using Ricky8955555.CoolQ.Parsing;
-using System;
-using System.Linq;
-using static Ricky8955555.CoolQ.Configuration;
+using static Ricky8955555.CoolQ.Configurations;
 
 namespace Ricky8955555.CoolQ
 {
-    internal abstract class CommandBase : Feature
+    public abstract class CommandBase : Feature
     {
-        internal abstract string ResponseCommand { get; }
+        public abstract string ResponseCommand { get; }
 
         protected abstract string CommandUsage { get; }
 
         protected virtual bool IsHandledAutomatically { get; } = true;
 
-        internal override string Usage => string.Format(CommandUsage, Prefix);
+        public override string Usage => string.Format(CommandUsage, Prefix);
 
         protected virtual LastParameterProcessing LastParameterProcessing { get; } = LastParameterProcessing.None;
 
@@ -66,118 +66,134 @@ namespace Ricky8955555.CoolQ
         }
     }
 
-    internal abstract class Command : CommandBase
+    public abstract class Command : CommandBase
     {
         protected abstract void Invoking(MessageReceivedEventArgs e, ComplexMessage elements);
 
-        internal override void Invoke(MessageReceivedEventArgs e)
+        public override void Invoke(MessageReceivedEventArgs e)
         {
             string message = GetMessage(e.Message);
 
-            if (message != null && GetParameter(message.Trim(), out ComplexMessage parameters))
+            if (message is not null && GetParameter(message.Trim(), out ComplexMessage parameters))
             {
-                if (LastParameterProcessing == LastParameterProcessing.None && parameters == null)
+                if (LastParameterProcessing == LastParameterProcessing.None && parameters is null)
                 {
                     Invoking(e, null);
-                    SetHandled();
                 }
-                else if (LastParameterProcessing == LastParameterProcessing.ComplexMessage && parameters != null)
+                else if (LastParameterProcessing == LastParameterProcessing.ComplexMessage && parameters is not null)
                 {
                     Invoking(e, parameters);
-                    SetHandled();
                 }
+                else
+                {
+                    return;
+                }
+
+                SetHandled();
             }
         }
     }
 
-    internal abstract class Command<T> : CommandBase
+    public abstract class Command<T> : CommandBase
         where T : MessageElement
     {
         protected abstract void Invoking(MessageReceivedEventArgs e, T arg, ComplexMessage elements);
 
-        internal override void Invoke(MessageReceivedEventArgs e)
+        public override void Invoke(MessageReceivedEventArgs e)
         {
             string message = GetMessage(e.Message);
 
-            if (message != null && GetParameter(message.Trim(), out ComplexMessage parameters))
+            if (message is not null && GetParameter(message.Trim(), out ComplexMessage parameters))
             {
-                if (parameters != null && parameters.TryDeconstruct(out T ele))
+                if (parameters is not null && parameters.TryDeconstruct(out T ele))
                 {
                     if (LastParameterProcessing == LastParameterProcessing.None && parameters.Count == 1)
                     {
                         Invoking(e, ele, null);
-                        SetHandled();
                     }
                     else if (LastParameterProcessing == LastParameterProcessing.ComplexMessage && parameters.Count > 1)
                     {
                         Invoking(e, ele, parameters.Skip(1).ToComplexMessage());
-                        SetHandled();
                     }
+                    else
+                    {
+                        return;
+                    }
+
+                    SetHandled();
                 }
             }
         }
     }
 
-    internal abstract class Command<T1, T2> : CommandBase
+    public abstract class Command<T1, T2> : CommandBase
         where T1 : MessageElement
         where T2 : MessageElement
     {
         protected abstract void Invoking(MessageReceivedEventArgs e, T1 arg1, T2 arg2, ComplexMessage elements);
 
-        internal override void Invoke(MessageReceivedEventArgs e)
+        public override void Invoke(MessageReceivedEventArgs e)
         {
             string message = GetMessage(e.Message);
 
-            if (message != null && GetParameter(message.Trim(), out ComplexMessage parameters))
+            if (message is not null && GetParameter(message.Trim(), out ComplexMessage parameters))
             {
-                if (parameters != null && parameters.TryDeconstruct(out T1 ele1, out T2 ele2))
+                if (parameters is not null && parameters.TryDeconstruct(out T1 ele1, out T2 ele2))
                 {
                     if (LastParameterProcessing == LastParameterProcessing.None && parameters.Count == 2)
                     {
                         Invoking(e, ele1, ele2, null);
-                        SetHandled();
                     }
                     else if (LastParameterProcessing == LastParameterProcessing.ComplexMessage && parameters.Count > 2)
                     {
                         Invoking(e, ele1, ele2, parameters.Skip(2).ToComplexMessage());
-                        SetHandled();
                     }
+                    else
+                    {
+                        return;
+                    }
+
+                    SetHandled();
                 }
             }
         }
     }
 
-    internal abstract class Command<T1, T2, T3> : CommandBase
+    public abstract class Command<T1, T2, T3> : CommandBase
         where T1 : MessageElement
         where T2 : MessageElement
         where T3 : MessageElement
     {
         protected abstract void Invoking(MessageReceivedEventArgs e, T1 arg1, T2 arg2, T3 arg3, ComplexMessage elements);
 
-        internal override void Invoke(MessageReceivedEventArgs e)
+        public override void Invoke(MessageReceivedEventArgs e)
         {
             string message = GetMessage(e.Message);
 
-            if (message != null && GetParameter(message.Trim(), out ComplexMessage parameters))
+            if (message is not null && GetParameter(message.Trim(), out ComplexMessage parameters))
             {
-                if (parameters != null && parameters.TryDeconstruct(out T1 ele1, out T2 ele2, out T3 ele3))
+                if (parameters is not null && parameters.TryDeconstruct(out T1 ele1, out T2 ele2, out T3 ele3))
                 {
                     if (LastParameterProcessing == LastParameterProcessing.None && parameters.Count == 3)
                     {
                         Invoking(e, ele1, ele2, ele3, null);
-                        SetHandled();
                     }
                     else if (LastParameterProcessing == LastParameterProcessing.ComplexMessage && parameters.Count > 3)
                     {
                         Invoking(e, ele1, ele2, ele3, parameters.Skip(2).ToComplexMessage());
-                        SetHandled();
                     }
+                    else
+                    {
+                        return;
+                    }
+
+                    SetHandled();
                 }
             }
         }
     }
 
-    internal enum LastParameterProcessing
+    public enum LastParameterProcessing
     {
         None,
         ComplexMessage

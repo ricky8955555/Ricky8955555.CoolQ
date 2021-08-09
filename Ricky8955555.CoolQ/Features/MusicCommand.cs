@@ -1,15 +1,15 @@
-﻿using HuajiTech.CoolQ;
+﻿using System.Linq;
+using System.Net;
+using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
 using Newtonsoft.Json.Linq;
-using System.Linq;
-using System.Net;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class MusicCommand : Command
+    public class MusicCommand : Command
     {
-        internal override string ResponseCommand { get; } = "music";
+        public override string ResponseCommand { get; } = "music";
 
         protected override string CommandUsage { get; } = "{0}music <歌曲名>";
 

@@ -2,13 +2,13 @@
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    internal class PingApp : App
+    public class PingApp : App
     {
-        internal override string Name { get; } = "Ping";
+        public override string Name { get; } = "Ping";
 
-        internal override string DisplayName { get; } = "Ping";
+        public override string DisplayName { get; } = "Ping";
 
-        internal override Feature[] Features { get; } = new Feature[]
+        public override Feature[] Features { get; } = new Feature[]
         {
             new PingCommand(),
             new PingCustomCommand()

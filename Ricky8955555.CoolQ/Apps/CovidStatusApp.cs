@@ -2,13 +2,13 @@
 
 namespace Ricky8955555.CoolQ.Apps
 {
-    internal class CovidStatusApp : App
+    public class CovidStatusApp : App
     {
-        internal override string Name { get; } = "CovidStatus";
+        public override string Name { get; } = "CovidStatus";
 
-        internal override string DisplayName { get; } = "疫情动态";
+        public override string DisplayName { get; } = "疫情动态";
 
-        internal override Feature[] Features { get; } = new Feature[]
+        public override Feature[] Features { get; } = new Feature[]
         {
             new CovidStatusCommand()
         };

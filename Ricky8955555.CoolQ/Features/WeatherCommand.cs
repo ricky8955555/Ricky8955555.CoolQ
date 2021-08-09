@@ -1,17 +1,17 @@
-﻿using HuajiTech.CoolQ.Events;
-using HuajiTech.CoolQ.Messaging;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using HuajiTech.CoolQ.Events;
+using HuajiTech.CoolQ.Messaging;
+using Newtonsoft.Json.Linq;
 
 namespace Ricky8955555.CoolQ.Features
 {
-    internal class WeatherCommand : Command<PlainText>
+    public class WeatherCommand : Command<PlainText>
     {
         protected override string CommandUsage { get; } = "{0}weather <城市>";
 
-        internal override string ResponseCommand { get; } = "weather";
+        public override string ResponseCommand { get; } = "weather";
 
         protected override void Invoking(MessageReceivedEventArgs e, PlainText plainText, ComplexMessage elements)
         {

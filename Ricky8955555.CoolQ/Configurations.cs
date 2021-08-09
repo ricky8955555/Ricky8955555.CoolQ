@@ -1,24 +1,24 @@
-﻿using Ricky8955555.CoolQ.Configurations;
+﻿using Ricky8955555.CoolQ.Configs;
 
 namespace Ricky8955555.CoolQ
 {
-    internal partial class Configuration
+    public static class Configurations
     {
-        internal readonly static Configuration PluginConfig = new PluginConfig();
+        public readonly static PluginConfig PluginConfig = new();
 
-        internal readonly static Configuration AppStatusConfig = new AppStatusConfig();
+        public readonly static AppStatusConfig AppStatusConfig = new();
 
-        internal readonly static Configuration BlacklistConfig = new BlacklistConfig();
+        public readonly static BlacklistConfig BlacklistConfig = new();
 
-        internal readonly static Configuration SlappingConfig = new SlappingConfig();
+        public readonly static SlappingConfig SlappingConfig = new();
 
-        internal static string Prefix
+        public static string Prefix
         {
             get => PluginConfig.Config["Prefix"].ToString();
             set => PluginConfig.Config["Prefix"] = value;
         }
 
-        internal static long Owner
+        public static long Owner
         {
             get => PluginConfig.Config["Owner"].ToObject<long>();
             set => PluginConfig.Config["Owner"] = value;
